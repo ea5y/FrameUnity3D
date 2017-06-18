@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class Fiber : IFiberWait
 {
     private readonly IEnumerator fiber;
