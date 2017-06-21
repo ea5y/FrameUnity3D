@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class FiberManager : MonoBehaviour
 {
     private static Queue<Fiber> fiberQueue = new Queue<Fiber>();
+    private static Stack<Fiber> fiberStack = new Stack<Fiber>();
 
     public static void AddFiber(IEnumerator coroutine)
     {
