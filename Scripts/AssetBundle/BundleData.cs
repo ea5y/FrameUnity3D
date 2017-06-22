@@ -25,8 +25,6 @@ public abstract class BundleData
     ~BundleData()
     {
         Debug.Log("Releas");
-        //FiberManager.AddFiber(Dispos());
-        this.bundle.Unload(false);
     }
 
     private IEnumerator Dispos()
@@ -37,12 +35,16 @@ public abstract class BundleData
 
     protected void LoadAsset(Action<UnityEngine.Object> callback)
     {
-        var url = URL.ASSETBUNDLE_URL + assetName + suffix;
-		Debug.Log("AssetBundleURL: " + url);
 		Debug.Log("AssetBundle: " + this.bundle);
-
 		Debug.Log("AssetBundleName: " + this.assetName + endWith);
-        var asset = this.bundle.LoadAsset("Cube" + endWith);
+
+        var asset = this.bundle.LoadAsset(this.assetName + endWith);
+        if(asset == null)
+        {
+            Debug.LogError("Load asset error: " + "\nbundle===>" + URL.ASSETBUNDLE_URL + this.assetPath + " not has asset:" + this.assetName + this.endWith);
+            return;
+        }
+            
 		Debug.Log("Asset: " + asset);
 
         callback(asset);
@@ -50,8 +52,6 @@ public abstract class BundleData
 
     public IEnumerator LoadAssetAsync(Action<UnityEngine.Object> callback)
     {
-		var url = URL.ASSETBUNDLE_URL + assetName + suffix;
-		Debug.Log("AssetBundleURL: " + url);
 		Debug.Log("AssetBundle: " + this.bundle);
 		
         var asyncReq = this.bundle.LoadAssetAsync("Cube" + endWith);
@@ -115,6 +115,10 @@ public abstract class BundleData
                 if (www.error != null)
                     throw new System.Exception("WWW download had an error:" + www.error);
                 this.bundle = www.assetBundle;
+                if(this.bundle != null)
+                {
+                    Debug.Log("Load success!");
+                }
                 this.isLoaded = true;
             }
     }
@@ -156,29 +160,6 @@ public class BundleAudio : BundleData
 
 public class BundlePrefab : BundleData
 {
-    /*
-    public IEnumerator GetPrefab(string assetPath, string assetName, Action<UnityEngine.Object> callback)
-    {
-		this.assetPath = assetPath;
-		this.assetName = assetName;
-		this.endWith = ".prefab";
-
-		var url = URL.ASSETBUNDLE_URL + assetName + suffix;
-        //yield return this.LoadAndCache(url);
-        //while (this.bundle == null)
-        //    yield return null;
-        this.LoadAsset(callback);
-    }
-    */
-
-    public IEnumerator GetPrefabAsync(string assetPath, string assetName, Action<UnityEngine.Object> callback)
-    {
-		this.assetPath = assetPath;
-		this.assetName = assetName;
-		this.endWith = ".prefab";
-        yield return this.LoadAssetAsync(callback);
-    }
-
     public IEnumerator HangUPAndLoadAsset(string assetPath, string assetName, Action<UnityEngine.Object> callback)
     {
         Debug.Log("HangUp");
@@ -193,7 +174,8 @@ public class BundlePrefab : BundleData
 		this.assetPath = assetPath;
 		this.assetName = assetName;
 		this.endWith = ".prefab";
-		var url = URL.ASSETBUNDLE_URL + assetName + suffix;
+		var url = URL.ASSETBUNDLE_URL + this.assetPath + suffix;
+        Debug.Log("URL: " + url);
         yield return this.LoadAndCache(url);
         this.LoadAsset(callback);
     }
@@ -212,21 +194,8 @@ public class BundlePrefab : BundleData
 		this.assetPath = assetPath;
 		this.assetName = assetName;
 		this.endWith = ".prefab";
-		var url = URL.ASSETBUNDLE_URL + assetName + suffix;
+		var url = URL.ASSETBUNDLE_URL + this.assetPath + suffix;
         yield return this.LoadAndCache(url);
         yield return this.LoadAssetAsync(callback);
     }
-
-        /*
-	public void GetPrefab(string assetPath, string assetName, Action<GameObject> callback)
-	{
-		this.assetPath = assetPath;
-		this.assetName = assetName;
-		this.endWith = ".prefab";
-		FiberManager.AddFiber(this.LoadAssetAsync((obj)=>{
-					//var atlas = obj as UIAtlas;
-					callback(obj);
-					}));
-	}
-    */
 }

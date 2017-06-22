@@ -63,15 +63,15 @@ public class BundleManager : MonoBehaviour
         Resources.UnloadUnusedAssets();
     }
 
-    private bool GetBundleData<T>(string assetName, out T data) where T : BundleData,new()
+    private bool GetBundleData<T>(string bundleName, out T data) where T : BundleData,new()
     {
         BundleData d;
-        var result = this.bundleDataDic.TryGetValue(assetName, out d);
+        var result = this.bundleDataDic.TryGetValue(bundleName, out d);
         if(!result)
         {
             d = new T();
-            this.bundleDataDic.Add(assetName, d);
-            this.bundleDataList.Add(assetName);
+            this.bundleDataDic.Add(bundleName, d);
+            this.bundleDataList.Add(bundleName);
         }
         data = d as T;
         return result;
@@ -80,7 +80,7 @@ public class BundleManager : MonoBehaviour
     public void GetPrefab(string assetPath, string assetName, Action<GameObject> callback)
     {
         BundlePrefab prefab;
-        if(this.GetBundleData<BundlePrefab>(assetName, out prefab))
+        if(this.GetBundleData<BundlePrefab>(assetPath, out prefab))
         {
             //hang up then load asset
             var co = prefab.HangUPAndLoadAsset(assetPath, assetName, (obj) => { callback(obj as GameObject); });
@@ -97,7 +97,7 @@ public class BundleManager : MonoBehaviour
     public void GetPrefabAsync(string assetPath, string assetName, Action<GameObject> callback)
     {
         BundlePrefab prefab;
-        if(this.GetBundleData<BundlePrefab>(assetName, out prefab))
+        if(this.GetBundleData<BundlePrefab>(assetPath, out prefab))
         {
             //hang up then load asset
             var co = prefab.HangUPAndLoadAssetAsync(assetPath, assetName, (obj) => { callback(obj as GameObject); });
