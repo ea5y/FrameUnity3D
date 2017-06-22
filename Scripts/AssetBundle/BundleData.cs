@@ -27,16 +27,44 @@ public abstract class BundleData
         Debug.Log("Releas");
     }
 
-    private IEnumerator Dispos()
+    public IEnumerator HangUPAndLoadAsset(string assetPath, string assetName, Action<UnityEngine.Object> callback)
     {
-        this.bundle.Unload(false);
-        yield return new WaitSecondsForFiber(0.01f);
+        Debug.Log("HangUp");
+        while (this.isLoaded == false || this.bundle == null)
+            yield return null;
+        this.LoadAsset(callback);
+    }
+
+    public IEnumerator LoadBundleAndLoadAsset(string assetPath, string assetName, Action<UnityEngine.Object> callback)
+    {
+        Debug.Log("LoadBundle");
+		var url = URL.ASSETBUNDLE_URL + this.assetPath + suffix;
+        Debug.Log("URL: " + url);
+        yield return this.LoadAndCache(url);
+        this.LoadAsset(callback);
+    }
+
+    public IEnumerator HangUPAndLoadAssetAsync(string assetPath, string assetName, Action<UnityEngine.Object> callback)
+    {
+        Debug.Log("HangUp");
+        while (this.isLoaded == false || this.bundle == null)
+            yield return null;
+        yield return this.LoadAssetAsync(callback);
+    }
+
+    public IEnumerator LoadBundleAndLoadAssetAsync(string assetPath, string assetName, Action<UnityEngine.Object> callback)
+    {
+        Debug.Log("LoadBundle");
+		var url = URL.ASSETBUNDLE_URL + this.assetPath + suffix;
+        yield return this.LoadAndCache(url);
+        yield return this.LoadAssetAsync(callback);
     }
 
     protected void LoadAsset(Action<UnityEngine.Object> callback)
     {
-		Debug.Log("AssetBundle: " + this.bundle);
-		Debug.Log("AssetBundleName: " + this.assetName + endWith);
+		Debug.Log("Bundle: " + this.bundle);
+		Debug.Log("BundleName: " + this.assetName + endWith);
+        Debug.Log("LoadAsset...");
 
         var asset = this.bundle.LoadAsset(this.assetName + endWith);
         if(asset == null)
@@ -52,14 +80,20 @@ public abstract class BundleData
 
     public IEnumerator LoadAssetAsync(Action<UnityEngine.Object> callback)
     {
-		Debug.Log("AssetBundle: " + this.bundle);
+		Debug.Log("Bundle: " + this.bundle);
+		Debug.Log("BundleName: " + this.assetName + endWith);
+        Debug.Log("LoadAssetAsync...");
 		
-        var asyncReq = this.bundle.LoadAssetAsync("Cube" + endWith);
-		Debug.Log("Req: " + asyncReq);
-		Debug.Log("AssetBundleName: " + this.assetName + endWith);
+        var asyncReq = this.bundle.LoadAssetAsync(this.assetName + endWith);
         yield return asyncReq;
 
-		var asset = asyncReq.asset as GameObject;
+		var asset = asyncReq.asset;
+        if(asset == null)
+        {
+            Debug.LogError("Load asset error: " + "\nbundle===>" + URL.ASSETBUNDLE_URL + this.assetPath + " not has asset:" + this.assetName + this.endWith);
+            yield break;
+        }
+        
 		Debug.Log("Asset: " + asset);
         callback(asset);
     }
@@ -117,7 +151,7 @@ public abstract class BundleData
                 this.bundle = www.assetBundle;
                 if(this.bundle != null)
                 {
-                    Debug.Log("Load success!");
+                    Debug.Log("LoadBundle success!");
                 }
                 this.isLoaded = true;
             }
@@ -126,16 +160,71 @@ public abstract class BundleData
 
 public class BundleIcon : BundleData
 {
-	public void GetIcon(string assetPath, string assetName, Action<UIAtlas, string> callback)
-	{
-		this.assetPath = assetPath;
-		this.assetName = assetName;
-		this.suffix = ".unity3d";
-		FiberManager.AddFiber(this.LoadAssetAsync((obj)=>{
-					//var atlas = obj as UIAtlas;
-					//callback(atlas, assetName);
-					}));
-	}
+    private UIAtlas atlas;
+
+    public IEnumerator Load(string assetPath, string assetName, bool isHangUp, Action<UIAtlas, string> callback)
+    {
+        if(this.atlas == null)
+        {
+            this.assetPath = assetPath;
+            this.assetName = assetName;
+            this.endWith = ".atlas";
+            if(isHangUp)
+            {
+                yield return this.HangUPAndLoadAsset(assetPath, assetName, 
+                        (obj)=>
+                        {
+                        this.atlas = obj as UIAtlas;
+                        callback(this.atlas, this.assetName);
+                        });
+            }
+            else
+            {
+                yield return this.LoadBundleAndLoadAsset(assetPath, assetName, 
+                        (obj)=>
+                        {
+                        this.atlas = obj as UIAtlas;
+                        callback(this.atlas, this.assetName);
+                        });
+            }
+        }
+        else
+        {
+            callback(this.atlas, this.assetName);
+        }
+    }
+
+    public IEnumerator LoadAsync(string assetPath, string assetName, bool isHangUp, Action<UIAtlas, string> callback)
+    {
+        if(this.atlas == null)
+        {
+            this.assetPath = assetPath;
+            this.assetName = assetName;
+            this.endWith = ".atlas";
+            if(isHangUp)
+            {
+                yield return this.HangUPAndLoadAssetAsync(assetPath, assetName, 
+                        (obj)=>
+                        {
+                        this.atlas = obj as UIAtlas;
+                        callback(this.atlas, this.assetName);
+                        });
+            }
+            else
+            {
+                yield return this.LoadBundleAndLoadAssetAsync(assetPath, assetName,
+                        (obj)=>
+                        {
+                        this.atlas = obj as UIAtlas;
+                        callback(this.atlas, this.assetName);
+                        });
+            }
+        }
+        else
+        {
+            callback(this.atlas, this.assetName);
+        }
+    }
 }
 
 public class BundleModel : BundleData
@@ -160,42 +249,69 @@ public class BundleAudio : BundleData
 
 public class BundlePrefab : BundleData
 {
-    public IEnumerator HangUPAndLoadAsset(string assetPath, string assetName, Action<UnityEngine.Object> callback)
+    private GameObject prefab;
+
+    public IEnumerator Load(string assetPath, string assetName, bool isHangUp, Action<GameObject> callback)
     {
-        Debug.Log("HangUp");
-        while (this.isLoaded == false || this.bundle == null)
-            yield return null;
-        this.LoadAsset(callback);
+        if(this.prefab == null)
+        {
+            this.assetPath = assetPath;
+            this.assetName = assetName;
+            this.endWith = ".prefab";
+            if(isHangUp)
+            {
+                yield return this.HangUPAndLoadAsset(assetPath, assetName, 
+                        (obj)=>
+                        {
+                        this.prefab = obj as GameObject;
+                        callback(this.prefab);
+                        });
+            }
+            else
+            {
+                yield return this.LoadBundleAndLoadAsset(assetPath, assetName, 
+                        (obj)=>
+                        {
+                        this.prefab = obj as GameObject;
+                        callback(this.prefab);
+                        });
+            }
+        }
+        else
+        {
+            callback(this.prefab);
+        }
     }
 
-    public IEnumerator LoadBundleAndLoadAsset(string assetPath, string assetName, Action<UnityEngine.Object> callback)
+    public IEnumerator LoadAsync(string assetPath, string assetName, bool isHangUp, Action<GameObject> callback)
     {
-        Debug.Log("LoadBundle");
-		this.assetPath = assetPath;
-		this.assetName = assetName;
-		this.endWith = ".prefab";
-		var url = URL.ASSETBUNDLE_URL + this.assetPath + suffix;
-        Debug.Log("URL: " + url);
-        yield return this.LoadAndCache(url);
-        this.LoadAsset(callback);
-    }
-
-    public IEnumerator HangUPAndLoadAssetAsync(string assetPath, string assetName, Action<UnityEngine.Object> callback)
-    {
-        Debug.Log("HangUp");
-        while (this.isLoaded == false || this.bundle == null)
-            yield return null;
-        yield return this.LoadAssetAsync(callback);
-    }
-
-    public IEnumerator LoadBundleAndLoadAssetAsync(string assetPath, string assetName, Action<UnityEngine.Object> callback)
-    {
-        Debug.Log("LoadBundle");
-		this.assetPath = assetPath;
-		this.assetName = assetName;
-		this.endWith = ".prefab";
-		var url = URL.ASSETBUNDLE_URL + this.assetPath + suffix;
-        yield return this.LoadAndCache(url);
-        yield return this.LoadAssetAsync(callback);
+        if(this.prefab == null)
+        {
+            this.assetPath = assetPath;
+            this.assetName = assetName;
+            this.endWith = ".prefab";
+            if(isHangUp)
+            {
+                yield return this.HangUPAndLoadAssetAsync(assetPath, assetName, 
+                        (obj)=>
+                        {
+                        this.prefab = obj as GameObject;
+                        callback(this.prefab);
+                        });
+            }
+            else
+            {
+                yield return this.LoadBundleAndLoadAssetAsync(assetPath, assetName, 
+                        (obj)=>
+                        {
+                        this.prefab = obj as GameObject;
+                        callback(this.prefab);
+                        });
+            }
+        }
+        else
+        {
+            callback(this.prefab);
+        }
     }
 }

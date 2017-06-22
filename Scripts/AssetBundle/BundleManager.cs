@@ -80,34 +80,16 @@ public class BundleManager : MonoBehaviour
     public void GetPrefab(string assetPath, string assetName, Action<GameObject> callback)
     {
         BundlePrefab prefab;
-        if(this.GetBundleData<BundlePrefab>(assetPath, out prefab))
-        {
-            //hang up then load asset
-            var co = prefab.HangUPAndLoadAsset(assetPath, assetName, (obj) => { callback(obj as GameObject); });
-            StartCoroutine(co);
-        }
-        else
-        {
-            //load bundle and load asset
-            var co = prefab.LoadBundleAndLoadAsset(assetPath, assetName, (obj) => { callback(obj as GameObject); });
-            StartCoroutine(co);
-        }
+        var isHangUp = this.GetBundleData<BundlePrefab>(assetPath, out prefab);
+        var coroutine = prefab.Load(assetPath, assetName, isHangUp, callback);
+        StartCoroutine(coroutine);
     }
 
     public void GetPrefabAsync(string assetPath, string assetName, Action<GameObject> callback)
     {
         BundlePrefab prefab;
-        if(this.GetBundleData<BundlePrefab>(assetPath, out prefab))
-        {
-            //hang up then load asset
-            var co = prefab.HangUPAndLoadAssetAsync(assetPath, assetName, (obj) => { callback(obj as GameObject); });
-            StartCoroutine(co);
-        }
-        else
-        {
-            //load bundle and load asset
-            var co = prefab.LoadBundleAndLoadAssetAsync(assetPath, assetName, (obj) => { callback(obj as GameObject); });
-            StartCoroutine(co);
-        }
+        var isHangUp = this.GetBundleData<BundlePrefab>(assetPath, out prefab);
+        var coroutine = prefab.LoadAsync(assetPath, assetName, isHangUp, callback);
+        StartCoroutine(coroutine);
     }
 }
