@@ -11,9 +11,10 @@ using System.IO;
 
 public class AssetBundles
 {
-	public static string SOURCE_PATH = Application.dataPath + "/ResourcesToAB";
-	public static string OUTPUT_PATH = "Assets/StreamingAssets";
+	public static string SOURCE_PATH = Application.dataPath + "/ResForBundle/";
+	public static string OUTPUT_PATH = "Assets/Bundle/";
 
+    public static string ASSET_PREFAB = ".prefab";
 	public static string ASSET_MODEL = "models";
 	public static string ASSET_TEXTURES = "texture";
 	public static string ASSET_AUDIO = "audio";
@@ -23,7 +24,8 @@ public class AssetBundles
 	private static void Export()
 	{
 		ClearAssetBundlesName();
-		FindFileAndSetAssetBundleName(SOURCE_PATH);
+		//FindFileAndSetAssetBundleName(SOURCE_PATH);
+        SetPathBundleName(SOURCE_PATH);
 
 		var outputpath = OUTPUT_PATH + "/Android";
 		if(!Directory.Exists(outputpath))
@@ -34,6 +36,7 @@ public class AssetBundles
 		BuildPipeline.BuildAssetBundles(outputpath, 0, EditorUserBuildSettings.activeBuildTarget);
 		AssetDatabase.Refresh();
 		Debug.Log("Build AssetBundles Completed!");
+		ClearAssetBundlesName();
 	}
 
 	private static void ClearAssetBundlesName()
@@ -56,6 +59,7 @@ public class AssetBundles
 		Debug.Log("AssetBundleNames.Length: " + length);
 	}
 
+    //just set file
 	private static void FindFileAndSetAssetBundleName(string path)
 	{
 		var folder = new DirectoryInfo(path);
@@ -69,6 +73,39 @@ public class AssetBundles
 					SetAssetBundleName(fileInfo.FullName);
 		}
 	}
+
+    private static void SetPathBundleName(string path)
+    {
+        var folder = new DirectoryInfo(path);
+        FileSystemInfo[] fileInfos = folder.GetFileSystemInfos();
+        foreach(var fileInfo in fileInfos)
+        {
+            if(!fileInfo.Name.EndsWith(".meta"))
+            {
+                //SetAssetBundleName(fileInfo.FullName);
+                SetBundleNameTest(fileInfo.FullName);
+            }
+        }
+    }
+
+    private static void SetBundleNameTest(string bundleFullName)
+    {
+        Debug.Log("BundleFullName: " + bundleFullName);
+        var bundlePJPath = "Assets" + bundleFullName.Substring(Application.dataPath.Length);
+
+        var strArray = bundlePJPath.Split('\\');
+        var bundleName = strArray[strArray.Length -1];
+        var extension = Path.GetExtension(bundleName);
+        if(string.IsNullOrEmpty(extension))
+            extension = "";
+        else
+            extension = ".unity3d";
+        bundleName += extension;
+        Debug.Log("BundleName: " + bundleName);
+
+        AssetImporter assetImporter = AssetImporter.GetAtPath(bundlePJPath);
+        assetImporter.assetBundleName = bundleName;
+    }
 
 	private static void SetAssetBundleName(string fileFullName)
 	{

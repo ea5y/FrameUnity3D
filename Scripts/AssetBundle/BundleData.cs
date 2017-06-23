@@ -63,9 +63,14 @@ public abstract class BundleData
     protected void LoadAsset(Action<UnityEngine.Object> callback)
     {
 		Debug.Log("Bundle: " + this.bundle);
-		Debug.Log("BundleName: " + this.assetName + endWith);
         Debug.Log("LoadAsset...");
 
+        var strArray = this.bundle.AllAssetNames();
+        for(int i = 0; i < strArray.Length; i++)
+        {
+
+            Debug.Log("\nAssetName: " + strArray[i]);
+        }
         var asset = this.bundle.LoadAsset(this.assetName + endWith);
         if(asset == null)
         {
@@ -100,17 +105,23 @@ public abstract class BundleData
 
     private void LoadNoCache()
     {
+        
 
     }
 
     protected IEnumerator LoadAndCache(string url)
     {
             Debug.Log("Loading...");
+
+            //will cache to unity's cache folder in the local stroage device
+            //so, must clean cache for debug
+#if UNITY_EDITOR
+            Caching.CleanCache();
+#endif
             while (!Caching.ready)
                 yield return null;
 
-            /*
-            using (WWW wwwa = WWW.LoadFromCacheOrDownload(URL.ASSETBUNDLE_URL + "AssetBundles",0))
+            using (WWW wwwa = WWW.LoadFromCacheOrDownload(URL.ASSETBUNDLE_URL + "Android",0))
             {
                 yield return wwwa;
                 if(wwwa.error != null)
@@ -131,17 +142,7 @@ public abstract class BundleData
                     string[] depNames = abMainfest.GetAllDependencies(assetName);
                     Debug.Log("depNames length:" + depNames.Length);
                 }
-
-                using (WWW www = WWW.LoadFromCacheOrDownload(url, this.version))
-                {
-                    yield return www;
-                    if (www.error != null)
-                        throw new System.Exception("WWW download had an error:" + www.error);
-                    this.bundle = www.assetBundle;
-
-                }
             }
-            */
 
             using (WWW www = WWW.LoadFromCacheOrDownload(url, this.version))
             {
