@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 2169557237
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c62a195328f3666bbaeeca453fdbd999
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b27395869106ca70862d74db7ea621b3
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/ResForBundle/Atlas/Icon_1.prefab
+Dependencies: []
