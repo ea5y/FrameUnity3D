@@ -47,7 +47,8 @@ public class FiberTest : MonoBehaviour
 		if(GUI.Button(new Rect(410, 10, 100, 40), ""))
 		{
 		//ScenesManager.Instance.LoadingScene("TestScene");
-		ScenesManager.Instance.LoadingResource("");
+		//ScenesManager.Instance.LoadingResource("");
+            Debug.Log("CachPath: " + Application.temporaryCachePath);
 		}
 
         if(GUI.Button(new Rect(230, 110, 180, 60), "Destroy 1000"))

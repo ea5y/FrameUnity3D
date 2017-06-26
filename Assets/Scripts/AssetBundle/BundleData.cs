@@ -38,7 +38,7 @@ public abstract class BundleData
     public IEnumerator LoadBundleAndLoadAsset(string assetPath, string assetName, Action<UnityEngine.Object> callback)
     {
         Debug.Log("LoadBundle");
-		var url = URL.ASSETBUNDLE_URL + this.assetPath + suffix;
+		var url = URL.ASSETBUNDLE_LOCAL_URL + this.assetPath + suffix;
         Debug.Log("URL: " + url);
         yield return this.LoadAndCache(url);
         this.LoadAsset(callback);
@@ -55,7 +55,7 @@ public abstract class BundleData
     public IEnumerator LoadBundleAndLoadAssetAsync(string assetPath, string assetName, Action<UnityEngine.Object> callback)
     {
         Debug.Log("LoadBundle");
-		var url = URL.ASSETBUNDLE_URL + this.assetPath + suffix;
+		var url = URL.ASSETBUNDLE_LOCAL_URL + this.assetPath + suffix;
         yield return this.LoadAndCache(url);
         yield return this.LoadAssetAsync(callback);
     }
@@ -74,7 +74,7 @@ public abstract class BundleData
         var asset = this.bundle.LoadAsset(this.assetName + endWith);
         if(asset == null)
         {
-            Debug.LogError("Load asset error: " + "\nbundle===>" + URL.ASSETBUNDLE_URL + this.assetPath + " not has asset:" + this.assetName + this.endWith);
+            Debug.LogError("Load asset error: " + "\nbundle===>" + URL.ASSETBUNDLE_LOCAL_URL + this.assetPath + " not has asset:" + this.assetName + this.endWith);
             return;
         }
             
@@ -95,7 +95,7 @@ public abstract class BundleData
 		var asset = asyncReq.asset;
         if(asset == null)
         {
-            Debug.LogError("Load asset error: " + "\nbundle===>" + URL.ASSETBUNDLE_URL + this.assetPath + " not has asset:" + this.assetName + this.endWith);
+            Debug.LogError("Load asset error: " + "\nbundle===>" + URL.ASSETBUNDLE_LOCAL_URL + this.assetPath + " not has asset:" + this.assetName + this.endWith);
             yield break;
         }
         
@@ -121,7 +121,7 @@ public abstract class BundleData
             while (!Caching.ready)
                 yield return null;
 
-            using (WWW wwwa = WWW.LoadFromCacheOrDownload(URL.ASSETBUNDLE_URL + "Android",0))
+            using (WWW wwwa = WWW.LoadFromCacheOrDownload(URL.ASSETBUNDLE_LOCAL_URL + "Android",0))
             {
                 yield return wwwa;
                 if(wwwa.error != null)

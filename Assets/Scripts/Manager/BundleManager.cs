@@ -77,6 +77,32 @@ public class BundleManager : MonoBehaviour
         return result;
     }
 
+    public void GetAll()
+    {
+    }
+
+    public IEnumerator LoadAndCache(string bundlePath)
+    {
+        //
+        Debug.Log("Loading...");
+#if UNITY_EDITOR
+        Caching.CleanCache();
+#endif
+        while(!Caching.ready)
+            yield return null;
+
+        using(WWW www = WWW.LoadFromCacheOrDownload(URL.ASSETBUNDLE_HOST_URL + bundlePath, 0))
+        {
+            yield return www;
+            if(www.error != null)
+                throw new Exception("WWW download had an error:" + www.error);
+
+            AssetBundle bundle = www.assetBundle;
+            AssetBundleManifest manifest = bundle.LoadAsset("AssetBundleManifest") as AssetBundleManifest;
+        }
+
+    }
+
     public void GetPrefab(string assetPath, string assetName, Action<GameObject> callback)
     {
         BundlePrefab prefab;
