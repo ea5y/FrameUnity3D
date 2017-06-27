@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
 public class FiberTest : MonoBehaviour 
 {
     public List<UnityEngine.Object> GameObjectList = new List<UnityEngine.Object>();
     private string assetPath = "prefab";
     private string assetName = "Cube_1";
+
     private void OnGUI()
     {
         GUI.Box(new Rect(10, 10, 200, 170), "Create");
@@ -70,5 +70,7 @@ public class FiberTest : MonoBehaviour
 
 	private void Awake()
 	{
+        var obj = IOHelper.ReadFromJson<BundleFileList>(URL.BUNDLE_FILES_URL);
+        Debug.Log("");
 	}
 }

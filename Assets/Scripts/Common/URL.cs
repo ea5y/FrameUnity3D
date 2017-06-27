@@ -18,4 +18,6 @@ public class URL
 
 	public static readonly string ASSETBUNDLE_INPUT_URL = Application.dataPath + "/ResForBundle/";
 	public static readonly string ASSETBUNDLE_OUTPUT_URL = "Assets/Bundle/";
+
+    public static readonly string BUNDLE_FILES_URL = Application.dataPath + "/Bundle/Win/";
 }

@@ -8,6 +8,8 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Collections.Generic;
+
 
 public class AssetBundles
 {
@@ -54,6 +56,11 @@ public class AssetBundles
 		AssetDatabase.Refresh();
 		Debug.Log("Build AssetBundles Completed!");
 		ClearAssetBundlesName();
+
+
+        url = url.Substring(7);
+        Debug.Log("Url: " + url);
+        CreateBundleFileList(Application.dataPath + "/" + url);
 	}
 	private static void ClearAssetBundlesName()
 	{
@@ -81,7 +88,7 @@ public class AssetBundles
         FileSystemInfo[] fileInfos = folder.GetFileSystemInfos();
         foreach(var fileInfo in fileInfos)
         {
-            if(!fileInfo.Name.EndsWith(".meta"))
+            if(!fileInfo.Name.EndsWith(".meta") && !fileInfo.Name.EndsWith(".json"))
             {
                 Path(fileInfo.FullName);
             }
@@ -109,6 +116,27 @@ public class AssetBundles
 
         AssetImporter assetImporter = AssetImporter.GetAtPath(bundlePJPath);
         assetImporter.assetBundleName = bundleName;
+    }
+
+    public static void CreateBundleFileList(string inputPath)
+    {
+        Debug.Log("JsonFrom: " + inputPath);
+        var folder = new DirectoryInfo(inputPath);
+        FileSystemInfo[] fileInfos = folder.GetFileSystemInfos();
+
+        var bundleFileList = new BundleFileList();
+        
+        foreach(var fileInfo in fileInfos) 
+        {
+            if (fileInfo.Name.EndsWith(".meta") || fileInfo.Name.EndsWith(".manifest"))
+                continue;
+            BundleFile bundleFile = new BundleFile();
+            bundleFile.name = fileInfo.Name;
+            bundleFile.md5 = IOHelper.GetFileMD5(fileInfo.FullName);
+
+            bundleFileList.bundleFileList.Add(bundleFile);
+        }
+        IOHelper.SaveToJson<BundleFileList>(bundleFileList, inputPath);
     }
 
     //just set file
