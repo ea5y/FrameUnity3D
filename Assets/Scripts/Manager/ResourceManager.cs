@@ -12,9 +12,11 @@ public class ResourceManager : Singleton<ResourceManager>
 
     private void Awake()
     {
-        this.Load();
+        //this.Load();
+		this.UpdateResource();
     }
 
+	/*
     public void Load()
     {
         Debug.Log("LocalURL: " + URL.ASSETBUNDLE_LOCAL_URL);
@@ -28,10 +30,32 @@ public class ResourceManager : Singleton<ResourceManager>
         
        
     }
+	*/
+
+	public void UpdateResource()
+	{
+		var url = URL.ASSETBUNDLE_HOST_URL + "BundleFileList.json";
+		var bundleFileListHost = this.LoadBundleFileList(url);
+        var bundleFileListLocal = IOHelper.ReadFromJson<BundleFileList>(URL.ASSETBUNDLE_LOCAL_URL);
+		
+		var result = this.CheckAndFilterBundleFile(bundleFileListHost, bundleFileListLocal);
+		if(result)
+		{
+			//load
+			IOHelper.SaveToJson<BundleFileList>(bundleFileListHost, URL.ASSETBUNDLE_LOCAL_URL);
+			this.Load();
+		}
+		else
+		{
+			//to next scene
+			this.OnLoadingCompleted();
+		}
+	}
 
     public BundleFileList LoadBundleFileList(string url)
-    {
+	{
         //load
+		Debug.Log("===>LoadingBundleFileList:");
         Debug.Log("BundleHostURL: " + url);
         WebClient wc = new WebClient();
         Stream s = wc.OpenRead(url);
@@ -39,11 +63,17 @@ public class ResourceManager : Singleton<ResourceManager>
 
         string strLine = sr.ReadToEnd();
         var bundleFileListHost = JsonMapper.ToObject<BundleFileList>(strLine);
-        var bundleFileListLocal = IOHelper.ReadFromJson<BundleFileList>(URL.ASSETBUNDLE_LOCAL_URL);
 
-        //check
-            //read local
-            //diff
+		sr.Close();
+		s.Close();
+		s.Dispose();
+		wc.Dispose();
+		return bundleFileListHost;
+	}
+
+	public bool CheckAndFilterBundleFile(BundleFileList bundleFileListHost, BundleFileList bundleFileListLocal)
+	{
+		Debug.Log("===>CheckAndFilterBundleFile:");
         foreach(var fileHost in bundleFileListHost.bundleFileList)
         {
             var counter = 0;
@@ -69,25 +99,28 @@ public class ResourceManager : Singleton<ResourceManager>
             }
         }
 
-        if(this.willLoadedList.Count > 0)
-        {
-            //Load
-        }
-        else
-        {
-            //skip, to next scene
-        }
-    }
+		return this.willLoadedList.Count > 0;
+	}
 
-    private void Load(string fileName)
-    {
-        var hostUrl = URL.ASSETBUNDLE_HOST_URL + fileName;
-        Debug.Log("URL: " + hostUrl);
+	private void OnLoadingCompleted()
+	{
+		Debug.Log("Load completed.");
+	}
 
-        var localUrl = URL.ASSETBUNDLE_LOCAL_URL + fileName;
-        WebClient wc = new WebClient();
-        wc.DownloadFile(hostUrl, localUrl); 
-    }
+	private void Load()
+	{
+		Debug.Log("===>LoadFile:");
+		foreach(var fileName in this.willLoadedList)
+		{
+			var hostUrl = URL.ASSETBUNDLE_HOST_URL + fileName;
+			Debug.Log("URL: " + hostUrl);
+
+			var localUrl = URL.ASSETBUNDLE_LOCAL_URL + fileName;
+			WebClient wc = new WebClient();
+			wc.DownloadFile(hostUrl, localUrl); 
+			wc.Dispose();
+		}
+	}
 
     /*
     public void CreateBundleFileList(string inputPath)

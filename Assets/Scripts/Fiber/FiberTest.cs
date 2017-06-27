@@ -70,7 +70,8 @@ public class FiberTest : MonoBehaviour
 
 	private void Awake()
 	{
-        var obj = IOHelper.ReadFromJson<BundleFileList>(URL.BUNDLE_FILES_URL);
-        Debug.Log("");
+        //var obj = IOHelper.ReadFromJson<BundleFileList>(URL.BUNDLE_FILES_URL);
+        //Debug.Log("");
+		//ResourceManager.Instance.UpdateResource();
 	}
 }

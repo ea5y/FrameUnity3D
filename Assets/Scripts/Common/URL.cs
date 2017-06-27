@@ -19,7 +19,8 @@ public class URL
 #elif UNITY_IPHONE
         Application.dataPath + "/Raw/";
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-        "file://" + Application.dataPath + "/StreamingAssets/";
+        //"file://" + Application.dataPath + "/StreamingAssets/";
+		"Assets/StreamingAssets/";
 #else
         string.Empty;
 #endif
@@ -27,12 +28,5 @@ public class URL
 	public static readonly string ASSETBUNDLE_INPUT_URL = Application.dataPath + "/ResForBundle/";
 	public static readonly string ASSETBUNDLE_OUTPUT_URL = "Assets/Bundle/";
 
-    public static readonly string BUNDLE_FILES_URL = 
-#if UNITY_ANDROID && !UNITY_EDITOR
-        Application.dataPath + "/Bundle/Win/";
-#elif UNITY_IPHONE
-#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-#else
-        string.Empty;
-#endif
+	public static readonly string BUNDLE_FILES_URL = "";
 }

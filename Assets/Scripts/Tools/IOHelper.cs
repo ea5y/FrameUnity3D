@@ -22,6 +22,7 @@ public static class IOHelper
 #region Json
     public static void SaveToJson<T>(object obj, string outPath)
     {
+		Debug.Log("===>SaveToJson:");
         Debug.Log("SaveToJsonTo: " + outPath);
         CheckPath(outPath);
 
@@ -32,7 +33,7 @@ public static class IOHelper
         //@TODO
         
         //write
-        var fileName = outPath + "/" + typeof(T).ToString() + ".json";
+        var fileName = outPath + typeof(T).ToString() + ".json";
         Debug.Log("FileName: " + fileName);
         //FileStream fs = new FileStream( fileName, FileMode.Create, FileAccess.Write, FileShare.Read);
         FileStream fs = new FileStream( fileName, FileMode.Create);
@@ -47,27 +48,34 @@ public static class IOHelper
 
     public static T ReadFromJson<T>(string fullPath)
     {
+		Debug.Log("===>ReadFramJson:");
         var fileFullName = fullPath + typeof(T) + ".json";
         Debug.Log("JsonFileFullName: " + fileFullName);
-        if(File.Exists(fileFullName))
-        {
-            //read
-            FileStream fs = new FileStream(fileFullName, FileMode.Open);
-            StreamReader sr = new StreamReader(fs);
-            var values = sr.ReadToEnd();
+		if(!File.Exists(fileFullName))
+		{
+			FileStream fsw = new FileStream(fileFullName, FileMode.Create);
+			StreamWriter sw = new StreamWriter(fsw);
+			sw.Write("{}");
+			sw.Close();
+			fsw.Close();
+			fsw.Dispose();
+		}
 
-            //decrypt
-            //@TODO
-            
-            //to obj
-            var obj = JsonMapper.ToObject<T>(values);
-            return obj;
-        }
-        else
-        {
-            Debug.LogError("JsonFile: " + typeof(T).ToString() + "not exists");
-            return default(T);
-        }
+		//read
+		FileStream fsr = new FileStream(fileFullName, FileMode.Open);
+		StreamReader sr = new StreamReader(fsr);
+		var values = sr.ReadToEnd();
+
+		//decrypt
+		//@TODO
+
+		//to obj
+		var obj = JsonMapper.ToObject<T>(values);
+
+		sr.Close();
+		fsr.Close();
+		fsr.Dispose();
+		return obj;
     }
 
     public static void CheckPath(string path)

@@ -24,19 +24,19 @@ public class AssetBundles
 	[MenuItem("AssetBundle/Build For Android")]
     public static void ExportForAndroid()
     {
-        Export(BuildTarget.Android, URL.ASSETBUNDLE_OUTPUT_URL + "Android");
+        Export(BuildTarget.Android, URL.ASSETBUNDLE_OUTPUT_URL + "Android/");
     }
 
 	[MenuItem("AssetBundle/Build For IOS")]
     public static void ExportForIOS()
     {
-        Export(BuildTarget.iOS, URL.ASSETBUNDLE_OUTPUT_URL + "Ios");
+        Export(BuildTarget.iOS, URL.ASSETBUNDLE_OUTPUT_URL + "Ios/");
     }
 
 	[MenuItem("AssetBundle/Build For Win")]
     public static void ExportForWin()
     {
-        Export(BuildTarget.StandaloneWindows, URL.ASSETBUNDLE_OUTPUT_URL + "Win");
+        Export(BuildTarget.StandaloneWindows, URL.ASSETBUNDLE_OUTPUT_URL + "Win/");
     }
 
 	public static void Export(BuildTarget target, string url)
@@ -100,10 +100,11 @@ public class AssetBundles
         Debug.Log("BundleFullName: " + bundleFullName);
         var bundlePJPath = "Assets" + bundleFullName.Substring(Application.dataPath.Length);
 
+		var strArray = bundlePJPath.Split('/');
 #if LINUX_EDITOR
-        var strArray = bundlePJPath.Split('/');
+        strArray = bundlePJPath.Split('/');
 #elif WIN_EDITOR
-        var strArray = bundlePJPath.Split('\\');
+        strArray = bundlePJPath.Split('\\');
 #endif
         var bundleName = strArray[strArray.Length -1];
         var extension = System.IO.Path.GetExtension(bundleName);
