@@ -1,11 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Net;
 using System.IO;
+using LitJson;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
+    private List<string> willLoadedList = new List<string>();
+
     private void Awake()
     {
         this.Load();
@@ -23,6 +27,66 @@ public class ResourceManager : Singleton<ResourceManager>
         var hwrq = (HttpWebRequest)WebRequest.Create(new Uri(""));
         
        
+    }
+
+    public BundleFileList LoadBundleFileList(string url)
+    {
+        //load
+        Debug.Log("BundleHostURL: " + url);
+        WebClient wc = new WebClient();
+        Stream s = wc.OpenRead(url);
+        StreamReader sr = new StreamReader(s);
+
+        string strLine = sr.ReadToEnd();
+        var bundleFileListHost = JsonMapper.ToObject<BundleFileList>(strLine);
+        var bundleFileListLocal = IOHelper.ReadFromJson<BundleFileList>(URL.ASSETBUNDLE_LOCAL_URL);
+
+        //check
+            //read local
+            //diff
+        foreach(var fileHost in bundleFileListHost.bundleFileList)
+        {
+            var counter = 0;
+            foreach(var fileLocal in bundleFileListLocal.bundleFileList)
+            {
+                if(fileHost.name == fileLocal.name)
+                {
+                    //Check md5
+                    if(fileHost.md5 != fileLocal.md5)
+                    {
+                        this.willLoadedList.Add(fileHost.name);
+                    }
+                }
+                else
+                {
+                    counter += 1;
+                }
+            }
+
+            if(counter >= bundleFileListLocal.bundleFileList.Count)
+            {
+                this.willLoadedList.Add(fileHost.name);
+            }
+        }
+
+        if(this.willLoadedList.Count > 0)
+        {
+            //Load
+        }
+        else
+        {
+            //skip, to next scene
+        }
+    }
+
+    private void Load(string fileName)
+    {
+        var hostUrl = URL.ASSETBUNDLE_HOST_URL + fileName;
+        Debug.Log("URL: " + hostUrl);
+
+        var localUrl = URL.ASSETBUNDLE_LOCAL_URL + fileName;
+        WebClient wc = new WebClient();
+        wc.DownloadFile(hostUrl, localUrl); 
     }
 
     /*

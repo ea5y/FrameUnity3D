@@ -137,6 +137,7 @@ public static class IOHelper
         FileStream fs = new FileStream(fileFullName, FileMode.Open);
         byte[] hash = md5Provider.ComputeHash(fs);
         fs.Close();
+        fs.Dispose();
         return System.BitConverter.ToString(hash);
     }
     #endregion
