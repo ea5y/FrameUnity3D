@@ -62,6 +62,7 @@ public class AssetBundles
         Debug.Log("Url: " + url);
         CreateBundleFileList(Application.dataPath + "/" + url);
 	}
+
 	private static void ClearAssetBundlesName()
 	{
 		int length = AssetDatabase.GetAllAssetBundleNames().Length;

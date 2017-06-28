@@ -1,13 +1,22 @@
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Net;
 using System.IO;
 using LitJson;
+using System.ComponentModel;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
+    public UISlider singleSdProgress;
+    public UILabel singleLblProgress;
+    public UISlider totalSdProgress;
+    public UILabel totalLblProgress;
+
+    private int fileCounter = 0;
+    private int fileTotal = 0;
+
     private List<string> willLoadedList = new List<string>();
 
     private void Awake()
@@ -121,6 +130,47 @@ public class ResourceManager : Singleton<ResourceManager>
 			wc.Dispose();
 		}
 	}
+
+    private void CreateWebClient()
+    {
+        foreach(var fileName in this.willLoadedList)
+        {
+            WebClient wc = new WebClient();
+
+            wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(this.OnDownloadProgressChanged);
+            wc.DownloadFileCompleted += new AsyncCompletedEventHandler(this.OnDownloadFileCompleted);
+
+            wc.DownloadFileAsync(new Uri(URL.ASSETBUNDLE_HOST_URL), fileName);
+        }
+    }
+
+    private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+    {
+        this.singleSdProgress.value = e.ProgressPercentage;
+        this.singleLblProgress.text = string.Format("正在下载文件,完成进度{0}% {1}/{2}(字节)"
+                , e.ProgressPercentage
+                , e.BytesReceived
+                , e.TotalBytesToReceive);
+    }
+
+    private void OnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+    {
+        this.fileCounter++;
+
+        var percent = (float) (100 * this.fileCounter / this.fileTotal);
+
+        this.totalSdProgress.value = percent;
+        this.totalLblProgress.text = string.Format("已完成文件下载{0}% {1}/{2}(文件个数)"
+                , percent
+                , this.fileCounter
+                , this.fileTotal);
+
+        if(sender is WebClient)
+        {
+            ((WebClient)sender).CancelAsync();
+            ((WebClient)sender).Dispose();
+        }
+    }
 
     /*
     public void CreateBundleFileList(string inputPath)
