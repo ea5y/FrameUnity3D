@@ -25,6 +25,7 @@ public class AssetBundles
     public static void ExportForAndroid()
     {
         Export(BuildTarget.Android, URL.ASSETBUNDLE_OUTPUT_URL + "Android/");
+
     }
 
 	[MenuItem("AssetBundle/Build For IOS")]

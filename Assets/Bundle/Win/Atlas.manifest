@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1767599483
+CRC: 1029186116
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 96308836242d79ae567a63414a1439cb
+    Hash: 95ab8b734b723ad235334965d9f73e66
   TypeTreeHash:
     serializedVersion: 2
     Hash: b27395869106ca70862d74db7ea621b3
@@ -24,5 +24,13 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 Assets:
+- Assets/ResForBundle/Atlas/Atlas 5.prefab
 - Assets/ResForBundle/Atlas/Atlas.prefab
+- Assets/ResForBundle/Atlas/Atlas 1.prefab
+- Assets/ResForBundle/Atlas/Atlas 8.prefab
+- Assets/ResForBundle/Atlas/Atlas 2.prefab
+- Assets/ResForBundle/Atlas/Atlas 7.prefab
+- Assets/ResForBundle/Atlas/Atlas 4.prefab
+- Assets/ResForBundle/Atlas/Atlas 3.prefab
+- Assets/ResForBundle/Atlas/Atlas 6.prefab
 Dependencies: []

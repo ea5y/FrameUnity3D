@@ -9,40 +9,34 @@ using System.ComponentModel;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
-    public UISlider singleSdProgress;
-    public UILabel singleLblProgress;
-    public UISlider totalSdProgress;
-    public UILabel totalLblProgress;
+	private UILoadingProgress ui;
 
-    private int fileCounter = 0;
-    private int fileTotal = 0;
+    private float fileCounter = 0;
+    private float fileTotal = 0;
 
     private List<string> willLoadedList = new List<string>();
+	private Queue<Action> asyncQueue = new Queue<Action>();
 
     private void Awake()
     {
-        //this.Load();
-		this.UpdateResource();
     }
 
-	/*
-    public void Load()
-    {
-        Debug.Log("LocalURL: " + URL.ASSETBUNDLE_LOCAL_URL);
-        var strArr = URL.ASSETBUNDLE_LOCAL_URL.Split('/');
-        //var str = strArr[strArr.Length-3] + "\\" + strArr[strArr.Length-2] + "\\";
-        var str = "Assets/Bundle/test.png";
-        WebClient wc = new WebClient();
-        wc.DownloadFile("http://www.xiaoyougame.com/x-world/images/activity.png", str); 
-
-        var hwrq = (HttpWebRequest)WebRequest.Create(new Uri(""));
-        
-       
-    }
-	*/
-
-	public void UpdateResource()
+	private void Update()
 	{
+		lock(this.asyncQueue)
+		{
+			if(this.asyncQueue != null && this.asyncQueue.Count > 0)
+			{
+				Debug.Log("+1");
+				var action = this.asyncQueue.Dequeue();
+				action();
+			}
+		}
+	}
+
+	public void UpdateResource(UILoadingProgress ui)
+	{
+		this.ui = ui;
 		var url = URL.ASSETBUNDLE_HOST_URL + "BundleFileList.json";
 		var bundleFileListHost = this.LoadBundleFileList(url);
         var bundleFileListLocal = IOHelper.ReadFromJson<BundleFileList>(URL.ASSETBUNDLE_LOCAL_URL);
@@ -52,7 +46,8 @@ public class ResourceManager : Singleton<ResourceManager>
 		{
 			//load
 			IOHelper.SaveToJson<BundleFileList>(bundleFileListHost, URL.ASSETBUNDLE_LOCAL_URL);
-			this.Load();
+			//this.Load();
+			this.CreateWebClient();
 		}
 		else
 		{
@@ -80,6 +75,7 @@ public class ResourceManager : Singleton<ResourceManager>
 		return bundleFileListHost;
 	}
 
+	//Not perfect, should be change
 	public bool CheckAndFilterBundleFile(BundleFileList bundleFileListHost, BundleFileList bundleFileListLocal)
 	{
 		Debug.Log("===>CheckAndFilterBundleFile:");
@@ -116,23 +112,9 @@ public class ResourceManager : Singleton<ResourceManager>
 		Debug.Log("Load completed.");
 	}
 
-	private void Load()
-	{
-		Debug.Log("===>LoadFile:");
-		foreach(var fileName in this.willLoadedList)
-		{
-			var hostUrl = URL.ASSETBUNDLE_HOST_URL + fileName;
-			Debug.Log("URL: " + hostUrl);
-
-			var localUrl = URL.ASSETBUNDLE_LOCAL_URL + fileName;
-			WebClient wc = new WebClient();
-			wc.DownloadFile(hostUrl, localUrl); 
-			wc.Dispose();
-		}
-	}
-
     private void CreateWebClient()
     {
+		this.fileTotal = this.willLoadedList.Count;
         foreach(var fileName in this.willLoadedList)
         {
             WebClient wc = new WebClient();
@@ -140,31 +122,46 @@ public class ResourceManager : Singleton<ResourceManager>
             wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(this.OnDownloadProgressChanged);
             wc.DownloadFileCompleted += new AsyncCompletedEventHandler(this.OnDownloadFileCompleted);
 
-            wc.DownloadFileAsync(new Uri(URL.ASSETBUNDLE_HOST_URL), fileName);
+			Debug.Log("fileName:" + fileName);
+            wc.DownloadFileAsync(new Uri(URL.ASSETBUNDLE_HOST_URL + fileName), URL.ASSETBUNDLE_LOCAL_URL + fileName);
         }
     }
 
     private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
     {
-        this.singleSdProgress.value = e.ProgressPercentage;
-        this.singleLblProgress.text = string.Format("正在下载文件,完成进度{0}% {1}/{2}(字节)"
+		
+		Action oc = ()=>{
+		var sd = this.ui.view.progressForLoadResource.singleSdProgress;
+		var lbl = this.ui.view.progressForLoadResource.singleLblProgress;
+		var v = (float)e.ProgressPercentage / 100;
+		Debug.Log("ChangeValue:" + v);
+        this.ui.view.progressForLoadResource.singleSdProgress.value = (float)e.ProgressPercentage / 100;
+        this.ui.view.progressForLoadResource.singleLblProgress.text = string.Format("Loading file:\n	progress:{0}% {1}/{2}(byte)"
                 , e.ProgressPercentage
                 , e.BytesReceived
                 , e.TotalBytesToReceive);
+		};
+
+		this.InvokeAsync(oc);
     }
 
     private void OnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
     {
-        this.fileCounter++;
+		Action oc = ()=>{
 
-        var percent = (float) (100 * this.fileCounter / this.fileTotal);
+			this.fileCounter++;
+			var percent = (float)(this.fileCounter / this.fileTotal);
 
-        this.totalSdProgress.value = percent;
-        this.totalLblProgress.text = string.Format("已完成文件下载{0}% {1}/{2}(文件个数)"
-                , percent
-                , this.fileCounter
-                , this.fileTotal);
+			Debug.Log("CompleteValue:" + percent);
+			this.ui.view.progressForLoadResource.totalSdProgress.value = percent;
+			this.ui.view.progressForLoadResource.totalLblProgress.text = string.Format("Completed:{0}% {1}/{2}(File count)"
+					, percent * 100
+					, this.fileCounter
+					, this.fileTotal);
+		};
 
+		this.InvokeAsync(oc);
+		
         if(sender is WebClient)
         {
             ((WebClient)sender).CancelAsync();
@@ -172,23 +169,11 @@ public class ResourceManager : Singleton<ResourceManager>
         }
     }
 
-    /*
-    public void CreateBundleFileList(string inputPath)
-    {
-        var folder = new DirectoryInfo(inputPath);
-        FileSystemInfo[] fileInfos = folder.GetFileSystemInfos();
-
-        List<BundleFile> bundleFileList = new List<BundleFile>();
-        foreach(var fileInfo in fileInfos) 
-        {
-            BundleFile bundleFile = new BundleFile();
-            bundleFile.name = fileInfo.Name;
-            bundleFile.md5 = "1234567890";
-
-            bundleFileList.Add(bundleFile);
-        }
-
-        IOHelper.SaveToJson<List<BundleFile>>(bundleFileList, inputPath);
-    }
-    */
+	private void InvokeAsync(Action action)
+	{
+		lock(this.asyncQueue)
+		{
+			this.asyncQueue.Enqueue(action);
+		}
+	}
 }
