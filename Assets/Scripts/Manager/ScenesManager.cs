@@ -21,15 +21,16 @@ public class ScenesManager : Singleton<ScenesManager>
 
 	public void LoadingScene(string sceneName)
 	{
-		LoadingProgressData.nextScene = sceneName;
-		LoadingProgressData.type = TOOLS.LoadingType.Scene;
+		LoadingSceneData.nextScene = sceneName;
+		LoadingSceneData.type = LoadingType.Scene;
 		Application.LoadLevel("B_SceneLoading");
 		Debug.Log("Test");
 	}
 
-	public void LoadingResource(string url)
+	public void ToLoadingScene(string nextScene, LoadingType type)
 	{
-		LoadingProgressData.type = TOOLS.LoadingType.Resource;
+		LoadingSceneData.nextScene = nextScene;
+		LoadingSceneData.type = type;
 		Application.LoadLevel("B_SceneLoading");
 	}
 }
