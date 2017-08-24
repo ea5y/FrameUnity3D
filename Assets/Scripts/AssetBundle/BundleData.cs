@@ -112,6 +112,7 @@ public abstract class BundleData
     protected IEnumerator LoadAndCache(string url)
     {
             Debug.Log("Loading...");
+        Debug.Log(string.Format("Url: {0}", url));
 
             //will cache to unity's cache folder in the local stroage device
             //so, must clean cache for debug
@@ -121,6 +122,7 @@ public abstract class BundleData
             while (!Caching.ready)
                 yield return null;
 
+            /*
             using (WWW wwwa = WWW.LoadFromCacheOrDownload(URL.ASSETBUNDLE_LOCAL_URL + "Android",0))
             {
                 yield return wwwa;
@@ -143,6 +145,7 @@ public abstract class BundleData
                     Debug.Log("depNames length:" + depNames.Length);
                 }
             }
+            */
 
             using (WWW www = WWW.LoadFromCacheOrDownload(url, this.version))
             {

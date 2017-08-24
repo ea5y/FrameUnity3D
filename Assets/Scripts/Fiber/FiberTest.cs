@@ -5,7 +5,7 @@ public class FiberTest : MonoBehaviour
 {
     public List<UnityEngine.Object> GameObjectList = new List<UnityEngine.Object>();
     private string assetPath = "prefab";
-    private string assetName = "Cube_1";
+    private string assetName = "Cube";
 
     private void OnGUI()
     {

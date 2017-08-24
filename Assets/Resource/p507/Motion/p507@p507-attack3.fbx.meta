@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: a54f03a2ade8e9046b93a2c5c0161328
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Cloth_L_01
+    100002: Cloth_L_02
+    100004: Cloth_R_01
+    100006: Cloth_R_02
+    100008: Hair_B_01
+    100010: Hair_B_02
+    100012: Head
+    100014: Hips
+    100016: LeftArm
+    100018: LeftArmRoll
+    100020: LeftFoot
+    100022: LeftForeArm
+    100024: LeftHand
+    100026: LeftLeg
+    100028: LeftShoulder
+    100030: LeftUpLeg
+    100032: //RootNode
+    100034: RightArm
+    100036: RightArmRoll
+    100038: RightFoot
+    100040: RightForeArm
+    100042: RightHand
+    100044: RightLeg
+    100046: RightShoulder
+    100048: RightUpLeg
+    100050: Root
+    100052: Spine
+    100054: Spine1
+    100056: Spine2
+    100058: weapon_01
+    100060: Cloth_B_01
+    100062: Cloth_B_02
+    100064: Cloth_B_03
+    100066: Cloth_B_04
+    100068: Cloth_B_L_01
+    100070: Cloth_B_R_01
+    100072: weapon_02
+    100074: Bit_Root
+    100076: C1_P
+    100078: C1_T
+    100080: C2_P
+    100082: C2_T
+    100084: Grab
+    400000: Cloth_L_01
+    400002: Cloth_L_02
+    400004: Cloth_R_01
+    400006: Cloth_R_02
+    400008: Hair_B_01
+    400010: Hair_B_02
+    400012: Head
+    400014: Hips
+    400016: LeftArm
+    400018: LeftArmRoll
+    400020: LeftFoot
+    400022: LeftForeArm
+    400024: LeftHand
+    400026: LeftLeg
+    400028: LeftShoulder
+    400030: LeftUpLeg
+    400032: //RootNode
+    400034: RightArm
+    400036: RightArmRoll
+    400038: RightFoot
+    400040: RightForeArm
+    400042: RightHand
+    400044: RightLeg
+    400046: RightShoulder
+    400048: RightUpLeg
+    400050: Root
+    400052: Spine
+    400054: Spine1
+    400056: Spine2
+    400058: weapon_01
+    400060: Cloth_B_01
+    400062: Cloth_B_02
+    400064: Cloth_B_03
+    400066: Cloth_B_04
+    400068: Cloth_B_L_01
+    400070: Cloth_B_R_01
+    400072: weapon_02
+    400074: Bit_Root
+    400076: C1_P
+    400078: C1_T
+    400080: C2_P
+    400082: C2_T
+    400084: Grab
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .00999999978
+    animationPositionError: .00999999978
+    animationScaleError: .00999999978
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 1
+  userData: 

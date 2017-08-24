@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: fdd3a3959d8b0c9498a5e225377bc8ee
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Cloth_B_01
+    100002: Cloth_B_02
+    100004: Cloth_B_03
+    100006: Cloth_B_04
+    100008: Cloth_B_L_01
+    100010: Cloth_B_R_01
+    100012: Cloth_L_01
+    100014: Cloth_R_01
+    100016: Head
+    100018: Hips
+    100020: LeftArm
+    100022: LeftArmRoll
+    100024: LeftFoot
+    100026: LeftForeArm
+    100028: LeftHand
+    100030: LeftLeg
+    100032: LeftShoulder
+    100034: LeftUpLeg
+    100036: //RootNode
+    100038: RightArm
+    100040: RightArmRoll
+    100042: RightFoot
+    100044: RightForeArm
+    100046: RightHand
+    100048: RightLeg
+    100050: RightShoulder
+    100052: RightUpLeg
+    100054: Root
+    100056: Spine
+    100058: Spine1
+    100060: Spine2
+    100062: weapon_01
+    100064: weapon_02
+    100066: Bit_Root
+    100068: C1_P
+    100070: C1_T
+    100072: C2_P
+    100074: C2_T
+    100076: Grab
+    400000: Cloth_B_01
+    400002: Cloth_B_02
+    400004: Cloth_B_03
+    400006: Cloth_B_04
+    400008: Cloth_B_L_01
+    400010: Cloth_B_R_01
+    400012: Cloth_L_01
+    400014: Cloth_R_01
+    400016: Head
+    400018: Hips
+    400020: LeftArm
+    400022: LeftArmRoll
+    400024: LeftFoot
+    400026: LeftForeArm
+    400028: LeftHand
+    400030: LeftLeg
+    400032: LeftShoulder
+    400034: LeftUpLeg
+    400036: //RootNode
+    400038: RightArm
+    400040: RightArmRoll
+    400042: RightFoot
+    400044: RightForeArm
+    400046: RightHand
+    400048: RightLeg
+    400050: RightShoulder
+    400052: RightUpLeg
+    400054: Root
+    400056: Spine
+    400058: Spine1
+    400060: Spine2
+    400062: weapon_01
+    400064: weapon_02
+    400066: Bit_Root
+    400068: C1_P
+    400070: C1_T
+    400072: C2_P
+    400074: C2_T
+    400076: Grab
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .00999999978
+    animationPositionError: .00999999978
+    animationScaleError: .00999999978
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
