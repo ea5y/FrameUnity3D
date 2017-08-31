@@ -1,0 +1,6877 @@
+; FBX 7.4.0 project file
+; Copyright (C) 1997-2010 Autodesk Inc. and/or its licensors.
+; All rights reserved.
+; ----------------------------------------------------
+
+FBXHeaderExtension:  {
+	FBXHeaderVersion: 1003
+	FBXVersion: 7400
+	CreationTimeStamp:  {
+		Version: 1000
+		Year: 2015
+		Month: 6
+		Day: 12
+		Hour: 17
+		Minute: 4
+		Second: 7
+		Millisecond: 423
+	}
+	Creator: "FBX SDK/FBX Plugins version 2015.0"
+	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
+		Type: "UserData"
+		Version: 100
+		MetaData:  {
+			Version: 100
+			Title: ""
+			Subject: ""
+			Author: ""
+			Keywords: ""
+			Revision: ""
+			Comment: ""
+		}
+		Properties70:  {
+			P: "DocumentUrl", "KString", "Url", "", "E:\work\Chara\p013\Scenes\fbx\HitAdd\p013@p013-guard_cha.fbx"
+			P: "SrcDocumentUrl", "KString", "Url", "", "E:\work\Chara\p013\Scenes\fbx\HitAdd\p013@p013-guard_cha.fbx"
+			P: "Original", "Compound", "", ""
+			P: "Original|ApplicationVendor", "KString", "", "", ""
+			P: "Original|ApplicationName", "KString", "", "", ""
+			P: "Original|ApplicationVersion", "KString", "", "", ""
+			P: "Original|DateTime_GMT", "DateTime", "", "", ""
+			P: "Original|FileName", "KString", "", "", ""
+			P: "LastSaved", "Compound", "", ""
+			P: "LastSaved|ApplicationVendor", "KString", "", "", ""
+			P: "LastSaved|ApplicationName", "KString", "", "", ""
+			P: "LastSaved|ApplicationVersion", "KString", "", "", ""
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", ""
+		}
+	}
+}
+GlobalSettings:  {
+	Version: 1000
+	Properties70:  {
+		P: "UpAxis", "int", "Integer", "",1
+		P: "UpAxisSign", "int", "Integer", "",1
+		P: "FrontAxis", "int", "Integer", "",2
+		P: "FrontAxisSign", "int", "Integer", "",1
+		P: "CoordAxis", "int", "Integer", "",0
+		P: "CoordAxisSign", "int", "Integer", "",1
+		P: "OriginalUpAxis", "int", "Integer", "",-1
+		P: "OriginalUpAxisSign", "int", "Integer", "",1
+		P: "UnitScaleFactor", "double", "Number", "",1
+		P: "OriginalUnitScaleFactor", "double", "Number", "",1
+		P: "AmbientColor", "ColorRGB", "Color", "",0,0,0
+		P: "DefaultCamera", "KString", "", "", "Producer Perspective"
+		P: "TimeMode", "enum", "", "",6
+		P: "TimeProtocol", "enum", "", "",2
+		P: "SnapOnFrameMode", "enum", "", "",0
+		P: "TimeSpanStart", "KTime", "Time", "",3079077360
+		P: "TimeSpanStop", "KTime", "Time", "",4618615868
+		P: "CustomFrameRate", "double", "Number", "",-1
+		P: "TimeMarker", "Compound", "", ""
+		P: "CurrentTimeMarker", "int", "Integer", "",-1
+	}
+}
+
+; Documents Description
+;------------------------------------------------------------------
+
+Documents:  {
+	Count: 1
+	Document: 1182883168, "", "Scene" {
+		Properties70:  {
+			P: "SourceObject", "object", "", ""
+			P: "ActiveAnimStackName", "KString", "", "", ""
+		}
+		RootNode: 0
+	}
+}
+
+; Document References
+;------------------------------------------------------------------
+
+References:  {
+}
+
+; Object definitions
+;------------------------------------------------------------------
+
+Definitions:  {
+	Version: 100
+	Count: 481
+	ObjectType: "GlobalSettings" {
+		Count: 1
+	}
+	ObjectType: "AnimationStack" {
+		Count: 1
+		PropertyTemplate: "FbxAnimStack" {
+			Properties70:  {
+				P: "Description", "KString", "", "", ""
+				P: "LocalStart", "KTime", "Time", "",0
+				P: "LocalStop", "KTime", "Time", "",0
+				P: "ReferenceStart", "KTime", "Time", "",0
+				P: "ReferenceStop", "KTime", "Time", "",0
+			}
+		}
+	}
+	ObjectType: "AnimationLayer" {
+		Count: 1
+		PropertyTemplate: "FbxAnimLayer" {
+			Properties70:  {
+				P: "Weight", "Number", "", "A",100
+				P: "Mute", "bool", "", "",0
+				P: "Solo", "bool", "", "",0
+				P: "Lock", "bool", "", "",0
+				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
+				P: "BlendMode", "enum", "", "",0
+				P: "RotationAccumulationMode", "enum", "", "",0
+				P: "ScaleAccumulationMode", "enum", "", "",0
+				P: "BlendModeBypass", "ULongLong", "", "",0
+			}
+		}
+	}
+	ObjectType: "Model" {
+		Count: 35
+		PropertyTemplate: "FbxNode" {
+			Properties70:  {
+				P: "QuaternionInterpolate", "enum", "", "",0
+				P: "RotationOffset", "Vector3D", "Vector", "",0,0,0
+				P: "RotationPivot", "Vector3D", "Vector", "",0,0,0
+				P: "ScalingOffset", "Vector3D", "Vector", "",0,0,0
+				P: "ScalingPivot", "Vector3D", "Vector", "",0,0,0
+				P: "TranslationActive", "bool", "", "",0
+				P: "TranslationMin", "Vector3D", "Vector", "",0,0,0
+				P: "TranslationMax", "Vector3D", "Vector", "",0,0,0
+				P: "TranslationMinX", "bool", "", "",0
+				P: "TranslationMinY", "bool", "", "",0
+				P: "TranslationMinZ", "bool", "", "",0
+				P: "TranslationMaxX", "bool", "", "",0
+				P: "TranslationMaxY", "bool", "", "",0
+				P: "TranslationMaxZ", "bool", "", "",0
+				P: "RotationOrder", "enum", "", "",0
+				P: "RotationSpaceForLimitOnly", "bool", "", "",0
+				P: "RotationStiffnessX", "double", "Number", "",0
+				P: "RotationStiffnessY", "double", "Number", "",0
+				P: "RotationStiffnessZ", "double", "Number", "",0
+				P: "AxisLen", "double", "Number", "",10
+				P: "PreRotation", "Vector3D", "Vector", "",0,0,0
+				P: "PostRotation", "Vector3D", "Vector", "",0,0,0
+				P: "RotationActive", "bool", "", "",0
+				P: "RotationMin", "Vector3D", "Vector", "",0,0,0
+				P: "RotationMax", "Vector3D", "Vector", "",0,0,0
+				P: "RotationMinX", "bool", "", "",0
+				P: "RotationMinY", "bool", "", "",0
+				P: "RotationMinZ", "bool", "", "",0
+				P: "RotationMaxX", "bool", "", "",0
+				P: "RotationMaxY", "bool", "", "",0
+				P: "RotationMaxZ", "bool", "", "",0
+				P: "InheritType", "enum", "", "",0
+				P: "ScalingActive", "bool", "", "",0
+				P: "ScalingMin", "Vector3D", "Vector", "",0,0,0
+				P: "ScalingMax", "Vector3D", "Vector", "",1,1,1
+				P: "ScalingMinX", "bool", "", "",0
+				P: "ScalingMinY", "bool", "", "",0
+				P: "ScalingMinZ", "bool", "", "",0
+				P: "ScalingMaxX", "bool", "", "",0
+				P: "ScalingMaxY", "bool", "", "",0
+				P: "ScalingMaxZ", "bool", "", "",0
+				P: "GeometricTranslation", "Vector3D", "Vector", "",0,0,0
+				P: "GeometricRotation", "Vector3D", "Vector", "",0,0,0
+				P: "GeometricScaling", "Vector3D", "Vector", "",1,1,1
+				P: "MinDampRangeX", "double", "Number", "",0
+				P: "MinDampRangeY", "double", "Number", "",0
+				P: "MinDampRangeZ", "double", "Number", "",0
+				P: "MaxDampRangeX", "double", "Number", "",0
+				P: "MaxDampRangeY", "double", "Number", "",0
+				P: "MaxDampRangeZ", "double", "Number", "",0
+				P: "MinDampStrengthX", "double", "Number", "",0
+				P: "MinDampStrengthY", "double", "Number", "",0
+				P: "MinDampStrengthZ", "double", "Number", "",0
+				P: "MaxDampStrengthX", "double", "Number", "",0
+				P: "MaxDampStrengthY", "double", "Number", "",0
+				P: "MaxDampStrengthZ", "double", "Number", "",0
+				P: "PreferedAngleX", "double", "Number", "",0
+				P: "PreferedAngleY", "double", "Number", "",0
+				P: "PreferedAngleZ", "double", "Number", "",0
+				P: "LookAtProperty", "object", "", ""
+				P: "UpVectorProperty", "object", "", ""
+				P: "Show", "bool", "", "",1
+				P: "NegativePercentShapeSupport", "bool", "", "",1
+				P: "DefaultAttributeIndex", "int", "Integer", "",-1
+				P: "Freeze", "bool", "", "",0
+				P: "LODBox", "bool", "", "",0
+				P: "Lcl Translation", "Lcl Translation", "", "A",0,0,0
+				P: "Lcl Rotation", "Lcl Rotation", "", "A",0,0,0
+				P: "Lcl Scaling", "Lcl Scaling", "", "A",1,1,1
+				P: "Visibility", "Visibility", "", "A",1
+				P: "Visibility Inheritance", "Visibility Inheritance", "", "",1
+			}
+		}
+	}
+	ObjectType: "NodeAttribute" {
+		Count: 35
+		PropertyTemplate: "FbxNull" {
+			Properties70:  {
+				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
+				P: "Size", "double", "Number", "",100
+				P: "Look", "enum", "", "",1
+			}
+		}
+	}
+	ObjectType: "AnimationCurveNode" {
+		Count: 102
+		PropertyTemplate: "FbxAnimCurveNode" {
+			Properties70:  {
+				P: "d", "Compound", "", ""
+			}
+		}
+	}
+	ObjectType: "AnimationCurve" {
+		Count: 306
+	}
+}
+
+; Object properties
+;------------------------------------------------------------------
+
+Objects:  {
+	NodeAttribute: 1145213440, "NodeAttribute::", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145258496, "NodeAttribute::_ncl1_1", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145339280, "NodeAttribute::_ncl1_2", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145331008, "NodeAttribute::_ncl1_3", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145315344, "NodeAttribute::_ncl1_4", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145236496, "NodeAttribute::_ncl1_5", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145238960, "NodeAttribute::_ncl1_6", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145328720, "NodeAttribute::_ncl1_7", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145313232, "NodeAttribute::_ncl1_8", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145311296, "NodeAttribute::_ncl1_9", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145338576, "NodeAttribute::_ncl1_10", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145213264, "NodeAttribute::_ncl1_11", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145328016, "NodeAttribute::_ncl1_12", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146046864, "NodeAttribute::_ncl1_13", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146117968, "NodeAttribute::_ncl1_14", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146076080, "NodeAttribute::_ncl1_15", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146031904, "NodeAttribute::_ncl1_16", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146043872, "NodeAttribute::_ncl1_17", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146081184, "NodeAttribute::_ncl1_18", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146022928, "NodeAttribute::_ncl1_19", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146122896, "NodeAttribute::_ncl1_20", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146083296, "NodeAttribute::_ncl1_21", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146113744, "NodeAttribute::_ncl1_22", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146053904, "NodeAttribute::_ncl1_23", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146061296, "NodeAttribute::_ncl1_24", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1145997760, "NodeAttribute::_ncl1_25", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146058304, "NodeAttribute::_ncl1_26", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146073968, "NodeAttribute::_ncl1_27", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146098784, "NodeAttribute::_ncl1_28", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146002512, "NodeAttribute::_ncl1_29", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146054608, "NodeAttribute::_ncl1_30", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146084352, "NodeAttribute::_ncl1_31", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146009904, "NodeAttribute::_ncl1_32", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146092976, "NodeAttribute::_ncl1_33", "Null" {
+		TypeFlags: "Null"
+	}
+	NodeAttribute: 1146075376, "NodeAttribute::_ncl1_34", "Null" {
+		TypeFlags: "Null"
+	}
+	Model: 1334675456, "Model::p013", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334677648, "Model::Root", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",-0.0483373999595642,1.22772300243378,-0.370611399412155
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334679840, "Model::Hips", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0,-1.99110429699445e-007,0
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",1.55526399612427,49.8969116210938,11.761679649353
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334682032, "Model::RightUpLeg", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",-0.109999996008342,-0.159999678005678,0.00763949151521558
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-87.5858306884766,1.27826201915741,-117.950798034668
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334684224, "Model::RightLeg", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.492544613659788,-1.06656409856742e-007,0
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",4.28317879888661e-015,-1.06377402478669e-014,23.5167503356934
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334686416, "Model::RightFoot", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.486620866661608,-6.46829894784817e-008,1.38884330702638e-008
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",96.5048065185547,-20.1192092895508,-62.9300003051758
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334688608, "Model::LeftUpLeg", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.109999996050666,-0.159999677974981,0.00763949155227051
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-61.2864685058594,8.04488754272461,-88.6904296875
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,0.999999999999999
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334690800, "Model::LeftLeg", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.492544613659767,-1.06656410397976e-007,-2.08166817117217e-016
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-2.42726303466279e-014,-8.26889317922467e-015,21.8651599884033
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334692992, "Model::LeftFoot", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.486620866661438,-6.46826377251331e-008,-1.38888244655133e-008
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",88.2455368041992,5.04048776626587,-65.5571517944336
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334695184, "Model::Spine", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0,-1.99110429699445e-007,0
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",26.7456607818604,4.5980281829834,91.1682434082031
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1334697376, "Model::Spine1", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.124999999999998,-2.26381457533041e-011,1.11022302462516e-016
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",31.93044090271,-17.0760192871094,-4.51403284072876
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611028944, "Model::Spine2", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.138000000000002,1.23673514188472e-011,-2.22044604925031e-016
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",30.4375896453857,6.78731918334961,-8.46472644805908
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611031136, "Model::RightShoulder", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.148574402315744,0.0499999999946582,-0.00486465599567916
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-175.918395996094,17.7713394165039,95.2544021606445
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1.00000000000001,1,1.00000000000001
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611033328, "Model::RightArm", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.0970000000000002,7.31333216208441e-010,-1.00613961606655e-016
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",169.811492919922,-14.2151498794556,-46.4165306091309
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611035520, "Model::RightForeArm", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.292745674148661,1.67659646527207e-007,-4.66293670342566e-015
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",23.0821399688721,-7.49815660949782e-012,-107.921600341797
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",0.999999999999999,0.999999999999999,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611037712, "Model::RightHand", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.300665858987261,-1.0102371772458e-008,-4.92109131222662e-009
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-115.638496398926,26.9663200378418,45.6639709472656
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611039904, "Model::weapon_01", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.118905201554298,-0.0510330200195313,-0.0229431800544262
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",203.250595092773,175.168594360352,175.709106445313
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611042096, "Model::weapon_a", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0,4.16333601147209e-017,3.46944695195361e-017
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611044288, "Model::weapon_b", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",1.11022302462516e-016,-0.274416795528371,0.562920417862105
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",2.5444439442782e-014,9.54166419812018e-014,8.50162301668789e-012
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611046480, "Model::weapon_c", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",-1.11022302462516e-016,0,0.588131183802146
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",6.89544298396183e-012,6.81910907948668e-012,360
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611048672, "Model::weapon_d", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.230365764714251,-0.145710552379232,0.354211572300744
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-2.70919289606375e-012,-9.36769412041016e-012,-28.6479797363281
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",0.999999999999999,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611050864, "Model::weapon_e", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",-3.33066907387547e-016,2.22044604925031e-016,0.716610143777026
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",6.89544298396183e-012,6.81910907948668e-012,360
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611053056, "Model::weapon_f", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",-0.239477564917013,-0.143339324900072,0.228086303647145
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-9.43546716453136e-012,-2.46466996117745e-012,30.5240306854248
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611055248, "Model::RightArmRoll", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.0970000028610229,7.31333216208441e-010,-1.52655705590628e-016
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",121.213996887207,-25.8907794952393,-42.8954811096191
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1611057440, "Model::Cloth_R_01", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.306312710046768,-1.19348996323028e-015,-8.65973959207622e-015
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",75.4897613525391,-50.8846206665039,-9.73940181732178
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543920512, "Model::Cloth_R_02", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.101153798401356,-0.198248103260994,0.110223896801472
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",169.435897827148,-9.60642528533936,-82.2110214233398
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543922704, "Model::LeftShoulder", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.148574402315744,-0.0500000000053421,-0.00486465599568048
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-0.363309502601624,-8.15034294128418,-94.534049987793
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1.00000000000001,1.00000000000001,1.00000000000001
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543924896, "Model::LeftArm", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.097,7.31348759330785e-010,2.08166817117217e-017
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-124.341102600098,1.81571304798126,-63.151309967041
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,1,0.999999999999999
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543927088, "Model::LeftForeArm", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.292745674148654,1.67659646493055e-007,6.66133814775094e-016
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-0.475975304841995,-7.3682021855398e-013,-37.4432907104492
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,0.999999999999999,1
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543929280, "Model::LeftHand", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.300665857589614,-1.05590053089966e-008,-4.39559499909592e-012
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",11.0850200653076,-30.3280601501465,-16.3902797698975
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,0.999999999999999,0.999999999999999
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543931472, "Model::LeftArmRoll", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.0970000028610229,7.3134898137539e-010,1.11022302462516e-016
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-120.124603271484,9.28059959411621,-55.2141189575195
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,0.999999999999999,0.999999999999999
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543933664, "Model::Cloth_L_01", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.306312710046768,-1.43802196816978e-008,-6.52198295369999e-011
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",20.6576499938965,19.0361995697021,18.4994297027588
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1,0.999999999999999,0.999999999999999
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543935856, "Model::Cloth_L_02", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.0965007096529007,-0.19590650498867,-0.121979802846909
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-192.574096679688,13.7939901351929,-81.0427627563477
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543938048, "Model::Head", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0.241409387646448,-6.2093140226148e-012,-1.11022302462516e-016
+			P: "Lcl Rotation", "Lcl Rotation", "", "A+",-97.2119216918945,32.5764808654785,8.91410732269287
+			P: "Lcl Scaling", "Lcl Scaling", "", "A+",1.00000000000001,1.00000000000001,1.00000000000001
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	Model: 1543940240, "Model::Hit_Root", "Null" {
+		Version: 232
+		Properties70:  {
+			P: "TranslationMin", "Vector3D", "Vector", "",-100,-100,-100
+			P: "TranslationMax", "Vector3D", "Vector", "",100,100,100
+			P: "RotationActive", "bool", "", "",1
+			P: "RotationMin", "Vector3D", "Vector", "",-360,-360,-360
+			P: "RotationMax", "Vector3D", "Vector", "",360,360,360
+			P: "InheritType", "enum", "", "",1
+			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
+			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A+",0,1,0
+			P: "Visibility Inheritance", "Visibility Inheritance", "", "",0
+		}
+		Shading: T
+		Culling: "CullingOff"
+	}
+	AnimationStack: 1608138448, "AnimStack::Take 001", "" {
+		Properties70:  {
+			P: "LocalStart", "KTime", "Time", "",3079077360
+			P: "LocalStop", "KTime", "Time", "",4618615868
+			P: "ReferenceStart", "KTime", "Time", "",3079077360
+			P: "ReferenceStop", "KTime", "Time", "",4618615868
+		}
+	}
+	AnimationLayer: 1224770400, "AnimLayer::Base Layer", "" {
+	}
+	AnimationCurveNode: 1608143232, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-0.0483373999595642
+			P: "d|Y", "Number", "", "A",1.22772300243378
+			P: "d|Z", "Number", "", "A",-0.370611399412155
+		}
+	}
+	AnimationCurveNode: 1608148432, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0
+			P: "d|Y", "Number", "", "A",0
+			P: "d|Z", "Number", "", "A",0
+		}
+	}
+	AnimationCurveNode: 1608146976, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1608154672, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0
+			P: "d|Y", "Number", "", "A",-1.99110429699445e-007
+			P: "d|Z", "Number", "", "A",0
+		}
+	}
+	AnimationCurveNode: 1608142400, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1.55526399612427
+			P: "d|Y", "Number", "", "A",49.8969116210938
+			P: "d|Z", "Number", "", "A",11.761679649353
+		}
+	}
+	AnimationCurveNode: 1608124096, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1608125344, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-0.109999996008342
+			P: "d|Y", "Number", "", "A",-0.159999678005678
+			P: "d|Z", "Number", "", "A",0.00763949151521558
+		}
+	}
+	AnimationCurveNode: 1608141776, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-87.5858306884766
+			P: "d|Y", "Number", "", "A",1.27826201915741
+			P: "d|Z", "Number", "", "A",-117.950798034668
+		}
+	}
+	AnimationCurveNode: 1608125552, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1608144272, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.492544613659788
+			P: "d|Y", "Number", "", "A",-1.06656409856742e-007
+			P: "d|Z", "Number", "", "A",0
+		}
+	}
+	AnimationCurveNode: 1608125760, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",4.28317879888661e-015
+			P: "d|Y", "Number", "", "A",-1.06377402478669e-014
+			P: "d|Z", "Number", "", "A",23.5167503356934
+		}
+	}
+	AnimationCurveNode: 1608147184, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1608140528, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.486620866661608
+			P: "d|Y", "Number", "", "A",-6.46829894784817e-008
+			P: "d|Z", "Number", "", "A",1.38884330702638e-008
+		}
+	}
+	AnimationCurveNode: 1608147600, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",96.5048065185547
+			P: "d|Y", "Number", "", "A",-20.1192092895508
+			P: "d|Z", "Number", "", "A",-62.9300003051758
+		}
+	}
+	AnimationCurveNode: 1608148848, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1608150928, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.109999996050666
+			P: "d|Y", "Number", "", "A",-0.159999677974981
+			P: "d|Z", "Number", "", "A",0.00763949155227051
+		}
+	}
+	AnimationCurveNode: 1608145728, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-61.2864685058594
+			P: "d|Y", "Number", "", "A",8.04488754272461
+			P: "d|Z", "Number", "", "A",-88.6904296875
+		}
+	}
+	AnimationCurveNode: 1608169440, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",0.999999999999999
+		}
+	}
+	AnimationCurveNode: 1542004112, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.492544613659767
+			P: "d|Y", "Number", "", "A",-1.06656410397976e-007
+			P: "d|Z", "Number", "", "A",-2.08166817117217e-016
+		}
+	}
+	AnimationCurveNode: 1542003696, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-2.42726303466279e-014
+			P: "d|Y", "Number", "", "A",-8.26889317922467e-015
+			P: "d|Z", "Number", "", "A",21.8651599884033
+		}
+	}
+	AnimationCurveNode: 1542003904, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542004320, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.486620866661438
+			P: "d|Y", "Number", "", "A",-6.46826377251331e-008
+			P: "d|Z", "Number", "", "A",-1.38888244655133e-008
+		}
+	}
+	AnimationCurveNode: 1542004944, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",88.2455368041992
+			P: "d|Y", "Number", "", "A",5.04048776626587
+			P: "d|Z", "Number", "", "A",-65.5571517944336
+		}
+	}
+	AnimationCurveNode: 1542005152, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542005360, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0
+			P: "d|Y", "Number", "", "A",-1.99110429699445e-007
+			P: "d|Z", "Number", "", "A",0
+		}
+	}
+	AnimationCurveNode: 1542005568, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",26.7456607818604
+			P: "d|Y", "Number", "", "A",4.5980281829834
+			P: "d|Z", "Number", "", "A",91.1682434082031
+		}
+	}
+	AnimationCurveNode: 1542005776, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542005984, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.124999999999998
+			P: "d|Y", "Number", "", "A",-2.26381457533041e-011
+			P: "d|Z", "Number", "", "A",1.11022302462516e-016
+		}
+	}
+	AnimationCurveNode: 1542006192, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",31.93044090271
+			P: "d|Y", "Number", "", "A",-17.0760192871094
+			P: "d|Z", "Number", "", "A",-4.51403284072876
+		}
+	}
+	AnimationCurveNode: 1542006400, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542006608, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.138000000000002
+			P: "d|Y", "Number", "", "A",1.23673514188472e-011
+			P: "d|Z", "Number", "", "A",-2.22044604925031e-016
+		}
+	}
+	AnimationCurveNode: 1542006816, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",30.4375896453857
+			P: "d|Y", "Number", "", "A",6.78731918334961
+			P: "d|Z", "Number", "", "A",-8.46472644805908
+		}
+	}
+	AnimationCurveNode: 1542007024, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542007232, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.148574402315744
+			P: "d|Y", "Number", "", "A",0.0499999999946582
+			P: "d|Z", "Number", "", "A",-0.00486465599567916
+		}
+	}
+	AnimationCurveNode: 1542007440, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-175.918395996094
+			P: "d|Y", "Number", "", "A",17.7713394165039
+			P: "d|Z", "Number", "", "A",95.2544021606445
+		}
+	}
+	AnimationCurveNode: 1542007648, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1.00000000000001
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1.00000000000001
+		}
+	}
+	AnimationCurveNode: 1542007856, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.0970000000000002
+			P: "d|Y", "Number", "", "A",7.31333216208441e-010
+			P: "d|Z", "Number", "", "A",-1.00613961606655e-016
+		}
+	}
+	AnimationCurveNode: 1542008064, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",169.811492919922
+			P: "d|Y", "Number", "", "A",-14.2151498794556
+			P: "d|Z", "Number", "", "A",-46.4165306091309
+		}
+	}
+	AnimationCurveNode: 1542008272, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542008480, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.292745674148661
+			P: "d|Y", "Number", "", "A",1.67659646527207e-007
+			P: "d|Z", "Number", "", "A",-4.66293670342566e-015
+		}
+	}
+	AnimationCurveNode: 1542008688, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",23.0821399688721
+			P: "d|Y", "Number", "", "A",-7.49815660949782e-012
+			P: "d|Z", "Number", "", "A",-107.921600341797
+		}
+	}
+	AnimationCurveNode: 1542008896, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.999999999999999
+			P: "d|Y", "Number", "", "A",0.999999999999999
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542009104, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.300665858987261
+			P: "d|Y", "Number", "", "A",-1.0102371772458e-008
+			P: "d|Z", "Number", "", "A",-4.92109131222662e-009
+		}
+	}
+	AnimationCurveNode: 1542009312, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-115.638496398926
+			P: "d|Y", "Number", "", "A",26.9663200378418
+			P: "d|Z", "Number", "", "A",45.6639709472656
+		}
+	}
+	AnimationCurveNode: 1542009520, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542010976, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.118905201554298
+			P: "d|Y", "Number", "", "A",-0.0510330200195313
+			P: "d|Z", "Number", "", "A",-0.0229431800544262
+		}
+	}
+	AnimationCurveNode: 1542011184, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",203.250595092773
+			P: "d|Y", "Number", "", "A",175.168594360352
+			P: "d|Z", "Number", "", "A",175.709106445313
+		}
+	}
+	AnimationCurveNode: 1542011392, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542011600, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0
+			P: "d|Y", "Number", "", "A",4.16333601147209e-017
+			P: "d|Z", "Number", "", "A",3.46944695195361e-017
+		}
+	}
+	AnimationCurveNode: 1542011808, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0
+			P: "d|Y", "Number", "", "A",0
+			P: "d|Z", "Number", "", "A",0
+		}
+	}
+	AnimationCurveNode: 1542012016, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542012224, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1.11022302462516e-016
+			P: "d|Y", "Number", "", "A",-0.274416795528371
+			P: "d|Z", "Number", "", "A",0.562920417862105
+		}
+	}
+	AnimationCurveNode: 1542012432, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",2.5444439442782e-014
+			P: "d|Y", "Number", "", "A",9.54166419812018e-014
+			P: "d|Z", "Number", "", "A",8.50162301668789e-012
+		}
+	}
+	AnimationCurveNode: 1542012640, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542012848, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-1.11022302462516e-016
+			P: "d|Y", "Number", "", "A",0
+			P: "d|Z", "Number", "", "A",0.588131183802146
+		}
+	}
+	AnimationCurveNode: 1542013056, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",6.89544298396183e-012
+			P: "d|Y", "Number", "", "A",6.81910907948668e-012
+			P: "d|Z", "Number", "", "A",360
+		}
+	}
+	AnimationCurveNode: 1542013264, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542013472, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.230365764714251
+			P: "d|Y", "Number", "", "A",-0.145710552379232
+			P: "d|Z", "Number", "", "A",0.354211572300744
+		}
+	}
+	AnimationCurveNode: 1542013680, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-2.70919289606375e-012
+			P: "d|Y", "Number", "", "A",-9.36769412041016e-012
+			P: "d|Z", "Number", "", "A",-28.6479797363281
+		}
+	}
+	AnimationCurveNode: 1542013888, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.999999999999999
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542014096, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-3.33066907387547e-016
+			P: "d|Y", "Number", "", "A",2.22044604925031e-016
+			P: "d|Z", "Number", "", "A",0.716610143777026
+		}
+	}
+	AnimationCurveNode: 1542014304, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",6.89544298396183e-012
+			P: "d|Y", "Number", "", "A",6.81910907948668e-012
+			P: "d|Z", "Number", "", "A",360
+		}
+	}
+	AnimationCurveNode: 1542014512, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542014720, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-0.239477564917013
+			P: "d|Y", "Number", "", "A",-0.143339324900072
+			P: "d|Z", "Number", "", "A",0.228086303647145
+		}
+	}
+	AnimationCurveNode: 1542014928, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-9.43546716453136e-012
+			P: "d|Y", "Number", "", "A",-2.46466996117745e-012
+			P: "d|Z", "Number", "", "A",30.5240306854248
+		}
+	}
+	AnimationCurveNode: 1542015136, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542010352, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.0970000028610229
+			P: "d|Y", "Number", "", "A",7.31333216208441e-010
+			P: "d|Z", "Number", "", "A",-1.52655705590628e-016
+		}
+	}
+	AnimationCurveNode: 1542010560, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",121.213996887207
+			P: "d|Y", "Number", "", "A",-25.8907794952393
+			P: "d|Z", "Number", "", "A",-42.8954811096191
+		}
+	}
+	AnimationCurveNode: 1542010768, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542015344, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.306312710046768
+			P: "d|Y", "Number", "", "A",-1.19348996323028e-015
+			P: "d|Z", "Number", "", "A",-8.65973959207622e-015
+		}
+	}
+	AnimationCurveNode: 1542015552, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",75.4897613525391
+			P: "d|Y", "Number", "", "A",-50.8846206665039
+			P: "d|Z", "Number", "", "A",-9.73940181732178
+		}
+	}
+	AnimationCurveNode: 1542015760, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542016592, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.101153798401356
+			P: "d|Y", "Number", "", "A",-0.198248103260994
+			P: "d|Z", "Number", "", "A",0.110223896801472
+		}
+	}
+	AnimationCurveNode: 1542016800, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",169.435897827148
+			P: "d|Y", "Number", "", "A",-9.60642528533936
+			P: "d|Z", "Number", "", "A",-82.2110214233398
+		}
+	}
+	AnimationCurveNode: 1542017008, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542009728, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.148574402315744
+			P: "d|Y", "Number", "", "A",-0.0500000000053421
+			P: "d|Z", "Number", "", "A",-0.00486465599568048
+		}
+	}
+	AnimationCurveNode: 1542009936, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-0.363309502601624
+			P: "d|Y", "Number", "", "A",-8.15034294128418
+			P: "d|Z", "Number", "", "A",-94.534049987793
+		}
+	}
+	AnimationCurveNode: 1542010144, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1.00000000000001
+			P: "d|Y", "Number", "", "A",1.00000000000001
+			P: "d|Z", "Number", "", "A",1.00000000000001
+		}
+	}
+	AnimationCurveNode: 1542015968, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.097
+			P: "d|Y", "Number", "", "A",7.31348759330785e-010
+			P: "d|Z", "Number", "", "A",2.08166817117217e-017
+		}
+	}
+	AnimationCurveNode: 1542016176, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-124.341102600098
+			P: "d|Y", "Number", "", "A",1.81571304798126
+			P: "d|Z", "Number", "", "A",-63.151309967041
+		}
+	}
+	AnimationCurveNode: 1542016384, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",0.999999999999999
+		}
+	}
+	AnimationCurveNode: 1542017216, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.292745674148654
+			P: "d|Y", "Number", "", "A",1.67659646493055e-007
+			P: "d|Z", "Number", "", "A",6.66133814775094e-016
+		}
+	}
+	AnimationCurveNode: 1542017424, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-0.475975304841995
+			P: "d|Y", "Number", "", "A",-7.3682021855398e-013
+			P: "d|Z", "Number", "", "A",-37.4432907104492
+		}
+	}
+	AnimationCurveNode: 1542017632, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",0.999999999999999
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542017840, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.300665857589614
+			P: "d|Y", "Number", "", "A",-1.05590053089966e-008
+			P: "d|Z", "Number", "", "A",-4.39559499909592e-012
+		}
+	}
+	AnimationCurveNode: 1542018048, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",11.0850200653076
+			P: "d|Y", "Number", "", "A",-30.3280601501465
+			P: "d|Z", "Number", "", "A",-16.3902797698975
+		}
+	}
+	AnimationCurveNode: 1542018256, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",0.999999999999999
+			P: "d|Z", "Number", "", "A",0.999999999999999
+		}
+	}
+	AnimationCurveNode: 1542019088, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.0970000028610229
+			P: "d|Y", "Number", "", "A",7.3134898137539e-010
+			P: "d|Z", "Number", "", "A",1.11022302462516e-016
+		}
+	}
+	AnimationCurveNode: 1542019296, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-120.124603271484
+			P: "d|Y", "Number", "", "A",9.28059959411621
+			P: "d|Z", "Number", "", "A",-55.2141189575195
+		}
+	}
+	AnimationCurveNode: 1542019504, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",0.999999999999999
+			P: "d|Z", "Number", "", "A",0.999999999999999
+		}
+	}
+	AnimationCurveNode: 1542019712, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.306312710046768
+			P: "d|Y", "Number", "", "A",-1.43802196816978e-008
+			P: "d|Z", "Number", "", "A",-6.52198295369999e-011
+		}
+	}
+	AnimationCurveNode: 1542019920, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",20.6576499938965
+			P: "d|Y", "Number", "", "A",19.0361995697021
+			P: "d|Z", "Number", "", "A",18.4994297027588
+		}
+	}
+	AnimationCurveNode: 1542020128, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",0.999999999999999
+			P: "d|Z", "Number", "", "A",0.999999999999999
+		}
+	}
+	AnimationCurveNode: 1542020960, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.0965007096529007
+			P: "d|Y", "Number", "", "A",-0.19590650498867
+			P: "d|Z", "Number", "", "A",-0.121979802846909
+		}
+	}
+	AnimationCurveNode: 1542021168, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-192.574096679688
+			P: "d|Y", "Number", "", "A",13.7939901351929
+			P: "d|Z", "Number", "", "A",-81.0427627563477
+		}
+	}
+	AnimationCurveNode: 1542021376, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurveNode: 1542018464, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0.241409387646448
+			P: "d|Y", "Number", "", "A",-6.2093140226148e-012
+			P: "d|Z", "Number", "", "A",-1.11022302462516e-016
+		}
+	}
+	AnimationCurveNode: 1542018672, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",-97.2119216918945
+			P: "d|Y", "Number", "", "A",32.5764808654785
+			P: "d|Z", "Number", "", "A",8.91410732269287
+		}
+	}
+	AnimationCurveNode: 1542018880, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1.00000000000001
+			P: "d|Y", "Number", "", "A",1.00000000000001
+			P: "d|Z", "Number", "", "A",1.00000000000001
+		}
+	}
+	AnimationCurveNode: 1542020336, "AnimCurveNode::T", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",0
+		}
+	}
+	AnimationCurveNode: 1542020544, "AnimCurveNode::R", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",0
+			P: "d|Y", "Number", "", "A",0
+			P: "d|Z", "Number", "", "A",0
+		}
+	}
+	AnimationCurveNode: 1542020752, "AnimCurveNode::S", "" {
+		Properties70:  {
+			P: "d|X", "Number", "", "A",1
+			P: "d|Y", "Number", "", "A",1
+			P: "d|Z", "Number", "", "A",1
+		}
+	}
+	AnimationCurve: 977800144, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -0.0483374
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977802704, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1.227723
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977691984, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -0.3706114
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977803504, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977798384, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977871184, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977835024, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977871824, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977800944, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977905104, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1.555264
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977797904, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 49.89691
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977819664, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 11.76168
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977922224, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -87.58583
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977724624, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1.278262
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977733424, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -117.9508
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977771024, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 4.283179e-015
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977675824, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -1.063774e-014
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977828464, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 23.51675
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977667824, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 96.50481
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977777584, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -20.11921
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977668784, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -62.93
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977785744, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -61.28647
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977787984, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 8.044888
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977675984, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -88.69043
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977669584, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -2.427263e-014
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977779024, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -8.268893e-015
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977721904, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 21.86516
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977684784, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 88.24554
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977789104, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 5.040488
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977686064, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -65.55715
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977702384, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 26.74566
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977733904, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 4.598028
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977748944, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 91.16824
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977791024, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 31.93044
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977791984, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -17.07602
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977783824, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -4.514033
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977780944, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 30.43759
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977670864, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 6.787319
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977689904, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -8.464726
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977879344, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -175.9184
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977686224, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 17.77134
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977672784, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 95.2544
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977696784, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 169.8115
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977881424, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -14.21515
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977671664, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -46.41653
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977783344, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 23.08214
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977777744, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -7.498157e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977779344, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -107.9216
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977703664, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -115.6385
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977667024, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 26.96632
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977748304, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 45.66397
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977779504, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0.1189052
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977762704, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -0.05103302
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977762544, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -0.02294318
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977831344, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 203.2506
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977830704, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 175.1686
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977832464, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 175.7091
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977832624, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977833104, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977833744, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977689264, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977815504, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 4.163336e-017
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977833904, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 3.469447e-017
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977830544, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977830224, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977904944, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977867024, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977904144, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977903504, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977687504, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1.110223e-016
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977903184, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: -0.2744168
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977902704, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 0.5629204
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977769744, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 2.544444e-014
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977900944, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 9.541664e-014
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977852784, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 8.501623e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977870864, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977871504, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977869744, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977823504, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: -1.110223e-016
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977851344, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977816944, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 0.5881312
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977701104, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 6.895443e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977736304, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 6.819109e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977815824, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 360
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977721424, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977739024, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977796144, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977696464, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 0.2303658
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977737744, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: -0.1457106
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977738064, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 0.3542116
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977737424, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -2.709193e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977737264, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -9.367694e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977733104, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -28.64798
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977733264, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977735824, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977735664, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977739184, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: -3.330669e-016
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977867184, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 2.220446e-016
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977850544, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 0.7166101
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977824304, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 6.895443e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977866704, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 6.819109e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977697744, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 360
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977732784, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977822224, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977698064, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977803984, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: -0.2394776
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977822864, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: -0.1433393
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977821264, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 0.2280863
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977820464, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -9.435467e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977820144, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -2.46467e-012
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977819984, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 30.52403
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977727024, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977777104, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977893584, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977729584, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 121.214
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977787664, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -25.89078
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977691504, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -42.89548
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977867984, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 75.48976
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977851824, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -50.88462
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977761424, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -9.739402
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977692464, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0.1011538
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977772944, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -0.1982481
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977848944, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0.1102239
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977811504, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 169.4359
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977849744, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -9.606425
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 977925104, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -82.21102
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966431840, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966414400, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966419040, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966402240, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -0.3633095
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966438400, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -8.150343
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966432640, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -94.53405
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966464160, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -124.3411
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966364000, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1.815713
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966375840, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -63.15131
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966467520, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -0.4759753
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966465600, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -7.368202e-013
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966465920, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -37.44329
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966247520, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 11.08502
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966376800, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -30.32806
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966472960, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -16.39028
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966475360, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -120.1246
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966430240, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 9.2806
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966473280, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -55.21412
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966478400, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 20.65765
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966459680, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 19.0362
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966376640, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 18.49943
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966225280, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 0.09650071
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966262720, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -0.1959065
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966236480, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -0.1219798
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966468640, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -192.5741
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966248800, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 13.79399
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966362560, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -81.04276
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966231840, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966229760, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966232960, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966287840, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: -97.21192
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966231680, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 32.57648
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966230560, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077199
+		} 
+		KeyValueFloat: *1 {
+			a: 8.914107
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966361600, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966409120, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 1
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+	AnimationCurve: 966256640, "AnimCurve::", "" {
+		Default: 0
+		KeyVer: 4008
+		KeyTime: *1 {
+			a: 3079077200
+		} 
+		KeyValueFloat: *1 {
+			a: 0
+		} 
+		;KeyAttrFlags: Cubic|TangeantUser
+		KeyAttrFlags: *1 {
+			a: 1032
+		} 
+		;KeyAttrDataFloat: RightSlope:0, NextLeftSlope:0, RightWeight:0.333333, NextLeftWeight:0.333333, RightVelocity:0, NextLeftVelocity:0
+		KeyAttrDataFloat: *4 {
+			a: 0,0,218434821,0
+		} 
+		KeyAttrRefCount: *1 {
+			a: 1
+		} 
+	}
+}
+
+; Object connections
+;------------------------------------------------------------------
+
+Connections:  {
+	
+	;Model::p013, Model::RootNode
+	C: "OO",1334675456,0
+	
+	;AnimLayer::Base Layer, AnimStack::Take 001
+	C: "OO",1224770400,1608138448
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1608143232,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1608148432,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1608146976,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1608154672,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1608142400,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1608124096,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1608125344,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1608141776,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1608125552,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1608144272,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1608125760,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1608147184,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1608140528,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1608147600,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1608148848,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1608150928,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1608145728,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1608169440,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542004112,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542003696,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542003904,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542004320,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542004944,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542005152,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542005360,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542005568,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542005776,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542005984,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542006192,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542006400,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542006608,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542006816,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542007024,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542007232,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542007440,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542007648,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542007856,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542008064,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542008272,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542008480,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542008688,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542008896,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542009104,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542009312,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542009520,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542010976,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542011184,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542011392,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542011600,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542011808,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542012016,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542012224,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542012432,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542012640,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542012848,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542013056,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542013264,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542013472,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542013680,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542013888,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542014096,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542014304,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542014512,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542014720,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542014928,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542015136,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542010352,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542010560,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542010768,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542015344,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542015552,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542015760,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542016592,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542016800,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542017008,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542009728,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542009936,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542010144,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542015968,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542016176,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542016384,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542017216,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542017424,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542017632,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542017840,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542018048,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542018256,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542019088,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542019296,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542019504,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542019712,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542019920,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542020128,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542020960,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542021168,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542021376,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542018464,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542018672,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542018880,1224770400
+	
+	;AnimCurveNode::T, AnimLayer::Base Layer
+	C: "OO",1542020336,1224770400
+	
+	;AnimCurveNode::R, AnimLayer::Base Layer
+	C: "OO",1542020544,1224770400
+	
+	;AnimCurveNode::S, AnimLayer::Base Layer
+	C: "OO",1542020752,1224770400
+	
+	;NodeAttribute::, Model::p013
+	C: "OO",1145213440,1334675456
+	
+	;Model::Root, Model::p013
+	C: "OO",1334677648,1334675456
+	
+	;Model::Hit_Root, Model::p013
+	C: "OO",1543940240,1334675456
+	
+	;NodeAttribute::_ncl1_1, Model::Root
+	C: "OO",1145258496,1334677648
+	
+	;Model::Hips, Model::Root
+	C: "OO",1334679840,1334677648
+	
+	;Model::Spine, Model::Root
+	C: "OO",1334695184,1334677648
+	
+	;AnimCurveNode::T, Model::Root
+	C: "OP",1608143232,1334677648, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Root
+	C: "OP",1608148432,1334677648, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Root
+	C: "OP",1608146976,1334677648, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_2, Model::Hips
+	C: "OO",1145339280,1334679840
+	
+	;Model::RightUpLeg, Model::Hips
+	C: "OO",1334682032,1334679840
+	
+	;Model::LeftUpLeg, Model::Hips
+	C: "OO",1334688608,1334679840
+	
+	;AnimCurveNode::T, Model::Hips
+	C: "OP",1608154672,1334679840, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Hips
+	C: "OP",1608142400,1334679840, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Hips
+	C: "OP",1608124096,1334679840, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_3, Model::RightUpLeg
+	C: "OO",1145331008,1334682032
+	
+	;Model::RightLeg, Model::RightUpLeg
+	C: "OO",1334684224,1334682032
+	
+	;AnimCurveNode::T, Model::RightUpLeg
+	C: "OP",1608125344,1334682032, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::RightUpLeg
+	C: "OP",1608141776,1334682032, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::RightUpLeg
+	C: "OP",1608125552,1334682032, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_4, Model::RightLeg
+	C: "OO",1145315344,1334684224
+	
+	;Model::RightFoot, Model::RightLeg
+	C: "OO",1334686416,1334684224
+	
+	;AnimCurveNode::T, Model::RightLeg
+	C: "OP",1608144272,1334684224, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::RightLeg
+	C: "OP",1608125760,1334684224, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::RightLeg
+	C: "OP",1608147184,1334684224, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_5, Model::RightFoot
+	C: "OO",1145236496,1334686416
+	
+	;AnimCurveNode::T, Model::RightFoot
+	C: "OP",1608140528,1334686416, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::RightFoot
+	C: "OP",1608147600,1334686416, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::RightFoot
+	C: "OP",1608148848,1334686416, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_6, Model::LeftUpLeg
+	C: "OO",1145238960,1334688608
+	
+	;Model::LeftLeg, Model::LeftUpLeg
+	C: "OO",1334690800,1334688608
+	
+	;AnimCurveNode::T, Model::LeftUpLeg
+	C: "OP",1608150928,1334688608, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::LeftUpLeg
+	C: "OP",1608145728,1334688608, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::LeftUpLeg
+	C: "OP",1608169440,1334688608, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_7, Model::LeftLeg
+	C: "OO",1145328720,1334690800
+	
+	;Model::LeftFoot, Model::LeftLeg
+	C: "OO",1334692992,1334690800
+	
+	;AnimCurveNode::T, Model::LeftLeg
+	C: "OP",1542004112,1334690800, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::LeftLeg
+	C: "OP",1542003696,1334690800, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::LeftLeg
+	C: "OP",1542003904,1334690800, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_8, Model::LeftFoot
+	C: "OO",1145313232,1334692992
+	
+	;AnimCurveNode::T, Model::LeftFoot
+	C: "OP",1542004320,1334692992, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::LeftFoot
+	C: "OP",1542004944,1334692992, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::LeftFoot
+	C: "OP",1542005152,1334692992, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_9, Model::Spine
+	C: "OO",1145311296,1334695184
+	
+	;Model::Spine1, Model::Spine
+	C: "OO",1334697376,1334695184
+	
+	;AnimCurveNode::T, Model::Spine
+	C: "OP",1542005360,1334695184, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Spine
+	C: "OP",1542005568,1334695184, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Spine
+	C: "OP",1542005776,1334695184, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_10, Model::Spine1
+	C: "OO",1145338576,1334697376
+	
+	;Model::Spine2, Model::Spine1
+	C: "OO",1611028944,1334697376
+	
+	;AnimCurveNode::T, Model::Spine1
+	C: "OP",1542005984,1334697376, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Spine1
+	C: "OP",1542006192,1334697376, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Spine1
+	C: "OP",1542006400,1334697376, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_11, Model::Spine2
+	C: "OO",1145213264,1611028944
+	
+	;Model::RightShoulder, Model::Spine2
+	C: "OO",1611031136,1611028944
+	
+	;Model::LeftShoulder, Model::Spine2
+	C: "OO",1543922704,1611028944
+	
+	;Model::Head, Model::Spine2
+	C: "OO",1543938048,1611028944
+	
+	;AnimCurveNode::T, Model::Spine2
+	C: "OP",1542006608,1611028944, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Spine2
+	C: "OP",1542006816,1611028944, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Spine2
+	C: "OP",1542007024,1611028944, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_12, Model::RightShoulder
+	C: "OO",1145328016,1611031136
+	
+	;Model::RightArm, Model::RightShoulder
+	C: "OO",1611033328,1611031136
+	
+	;Model::RightArmRoll, Model::RightShoulder
+	C: "OO",1611055248,1611031136
+	
+	;Model::Cloth_R_02, Model::RightShoulder
+	C: "OO",1543920512,1611031136
+	
+	;AnimCurveNode::T, Model::RightShoulder
+	C: "OP",1542007232,1611031136, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::RightShoulder
+	C: "OP",1542007440,1611031136, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::RightShoulder
+	C: "OP",1542007648,1611031136, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_13, Model::RightArm
+	C: "OO",1146046864,1611033328
+	
+	;Model::RightForeArm, Model::RightArm
+	C: "OO",1611035520,1611033328
+	
+	;AnimCurveNode::T, Model::RightArm
+	C: "OP",1542007856,1611033328, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::RightArm
+	C: "OP",1542008064,1611033328, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::RightArm
+	C: "OP",1542008272,1611033328, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_14, Model::RightForeArm
+	C: "OO",1146117968,1611035520
+	
+	;Model::RightHand, Model::RightForeArm
+	C: "OO",1611037712,1611035520
+	
+	;AnimCurveNode::T, Model::RightForeArm
+	C: "OP",1542008480,1611035520, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::RightForeArm
+	C: "OP",1542008688,1611035520, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::RightForeArm
+	C: "OP",1542008896,1611035520, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_15, Model::RightHand
+	C: "OO",1146076080,1611037712
+	
+	;Model::weapon_01, Model::RightHand
+	C: "OO",1611039904,1611037712
+	
+	;AnimCurveNode::T, Model::RightHand
+	C: "OP",1542009104,1611037712, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::RightHand
+	C: "OP",1542009312,1611037712, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::RightHand
+	C: "OP",1542009520,1611037712, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_16, Model::weapon_01
+	C: "OO",1146031904,1611039904
+	
+	;Model::weapon_a, Model::weapon_01
+	C: "OO",1611042096,1611039904
+	
+	;AnimCurveNode::T, Model::weapon_01
+	C: "OP",1542010976,1611039904, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::weapon_01
+	C: "OP",1542011184,1611039904, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::weapon_01
+	C: "OP",1542011392,1611039904, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_17, Model::weapon_a
+	C: "OO",1146043872,1611042096
+	
+	;Model::weapon_b, Model::weapon_a
+	C: "OO",1611044288,1611042096
+	
+	;AnimCurveNode::T, Model::weapon_a
+	C: "OP",1542011600,1611042096, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::weapon_a
+	C: "OP",1542011808,1611042096, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::weapon_a
+	C: "OP",1542012016,1611042096, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_18, Model::weapon_b
+	C: "OO",1146081184,1611044288
+	
+	;Model::weapon_c, Model::weapon_b
+	C: "OO",1611046480,1611044288
+	
+	;Model::weapon_e, Model::weapon_b
+	C: "OO",1611050864,1611044288
+	
+	;AnimCurveNode::T, Model::weapon_b
+	C: "OP",1542012224,1611044288, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::weapon_b
+	C: "OP",1542012432,1611044288, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::weapon_b
+	C: "OP",1542012640,1611044288, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_19, Model::weapon_c
+	C: "OO",1146022928,1611046480
+	
+	;Model::weapon_d, Model::weapon_c
+	C: "OO",1611048672,1611046480
+	
+	;AnimCurveNode::T, Model::weapon_c
+	C: "OP",1542012848,1611046480, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::weapon_c
+	C: "OP",1542013056,1611046480, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::weapon_c
+	C: "OP",1542013264,1611046480, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_20, Model::weapon_d
+	C: "OO",1146122896,1611048672
+	
+	;AnimCurveNode::T, Model::weapon_d
+	C: "OP",1542013472,1611048672, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::weapon_d
+	C: "OP",1542013680,1611048672, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::weapon_d
+	C: "OP",1542013888,1611048672, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_21, Model::weapon_e
+	C: "OO",1146083296,1611050864
+	
+	;Model::weapon_f, Model::weapon_e
+	C: "OO",1611053056,1611050864
+	
+	;AnimCurveNode::T, Model::weapon_e
+	C: "OP",1542014096,1611050864, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::weapon_e
+	C: "OP",1542014304,1611050864, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::weapon_e
+	C: "OP",1542014512,1611050864, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_22, Model::weapon_f
+	C: "OO",1146113744,1611053056
+	
+	;AnimCurveNode::T, Model::weapon_f
+	C: "OP",1542014720,1611053056, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::weapon_f
+	C: "OP",1542014928,1611053056, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::weapon_f
+	C: "OP",1542015136,1611053056, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_23, Model::RightArmRoll
+	C: "OO",1146053904,1611055248
+	
+	;Model::Cloth_R_01, Model::RightArmRoll
+	C: "OO",1611057440,1611055248
+	
+	;AnimCurveNode::T, Model::RightArmRoll
+	C: "OP",1542010352,1611055248, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::RightArmRoll
+	C: "OP",1542010560,1611055248, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::RightArmRoll
+	C: "OP",1542010768,1611055248, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_24, Model::Cloth_R_01
+	C: "OO",1146061296,1611057440
+	
+	;AnimCurveNode::T, Model::Cloth_R_01
+	C: "OP",1542015344,1611057440, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Cloth_R_01
+	C: "OP",1542015552,1611057440, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Cloth_R_01
+	C: "OP",1542015760,1611057440, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_25, Model::Cloth_R_02
+	C: "OO",1145997760,1543920512
+	
+	;AnimCurveNode::T, Model::Cloth_R_02
+	C: "OP",1542016592,1543920512, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Cloth_R_02
+	C: "OP",1542016800,1543920512, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Cloth_R_02
+	C: "OP",1542017008,1543920512, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_26, Model::LeftShoulder
+	C: "OO",1146058304,1543922704
+	
+	;Model::LeftArm, Model::LeftShoulder
+	C: "OO",1543924896,1543922704
+	
+	;Model::LeftArmRoll, Model::LeftShoulder
+	C: "OO",1543931472,1543922704
+	
+	;Model::Cloth_L_02, Model::LeftShoulder
+	C: "OO",1543935856,1543922704
+	
+	;AnimCurveNode::T, Model::LeftShoulder
+	C: "OP",1542009728,1543922704, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::LeftShoulder
+	C: "OP",1542009936,1543922704, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::LeftShoulder
+	C: "OP",1542010144,1543922704, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_27, Model::LeftArm
+	C: "OO",1146073968,1543924896
+	
+	;Model::LeftForeArm, Model::LeftArm
+	C: "OO",1543927088,1543924896
+	
+	;AnimCurveNode::T, Model::LeftArm
+	C: "OP",1542015968,1543924896, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::LeftArm
+	C: "OP",1542016176,1543924896, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::LeftArm
+	C: "OP",1542016384,1543924896, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_28, Model::LeftForeArm
+	C: "OO",1146098784,1543927088
+	
+	;Model::LeftHand, Model::LeftForeArm
+	C: "OO",1543929280,1543927088
+	
+	;AnimCurveNode::T, Model::LeftForeArm
+	C: "OP",1542017216,1543927088, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::LeftForeArm
+	C: "OP",1542017424,1543927088, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::LeftForeArm
+	C: "OP",1542017632,1543927088, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_29, Model::LeftHand
+	C: "OO",1146002512,1543929280
+	
+	;AnimCurveNode::T, Model::LeftHand
+	C: "OP",1542017840,1543929280, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::LeftHand
+	C: "OP",1542018048,1543929280, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::LeftHand
+	C: "OP",1542018256,1543929280, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_30, Model::LeftArmRoll
+	C: "OO",1146054608,1543931472
+	
+	;Model::Cloth_L_01, Model::LeftArmRoll
+	C: "OO",1543933664,1543931472
+	
+	;AnimCurveNode::T, Model::LeftArmRoll
+	C: "OP",1542019088,1543931472, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::LeftArmRoll
+	C: "OP",1542019296,1543931472, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::LeftArmRoll
+	C: "OP",1542019504,1543931472, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_31, Model::Cloth_L_01
+	C: "OO",1146084352,1543933664
+	
+	;AnimCurveNode::T, Model::Cloth_L_01
+	C: "OP",1542019712,1543933664, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Cloth_L_01
+	C: "OP",1542019920,1543933664, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Cloth_L_01
+	C: "OP",1542020128,1543933664, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_32, Model::Cloth_L_02
+	C: "OO",1146009904,1543935856
+	
+	;AnimCurveNode::T, Model::Cloth_L_02
+	C: "OP",1542020960,1543935856, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Cloth_L_02
+	C: "OP",1542021168,1543935856, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Cloth_L_02
+	C: "OP",1542021376,1543935856, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_33, Model::Head
+	C: "OO",1146092976,1543938048
+	
+	;AnimCurveNode::T, Model::Head
+	C: "OP",1542018464,1543938048, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Head
+	C: "OP",1542018672,1543938048, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Head
+	C: "OP",1542018880,1543938048, "Lcl Scaling"
+	
+	;NodeAttribute::_ncl1_34, Model::Hit_Root
+	C: "OO",1146075376,1543940240
+	
+	;AnimCurveNode::T, Model::Hit_Root
+	C: "OP",1542020336,1543940240, "Lcl Translation"
+	
+	;AnimCurveNode::R, Model::Hit_Root
+	C: "OP",1542020544,1543940240, "Lcl Rotation"
+	
+	;AnimCurveNode::S, Model::Hit_Root
+	C: "OP",1542020752,1543940240, "Lcl Scaling"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977800144,1608143232, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977802704,1608143232, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977691984,1608143232, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977803504,1608148432, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977798384,1608148432, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977871184,1608148432, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977835024,1608146976, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977871824,1608146976, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977800944,1608146976, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977690864,1608154672, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977799504,1608154672, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977799024,1608154672, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977905104,1608142400, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977797904,1608142400, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977819664,1608142400, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977913264,1608124096, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977913904,1608124096, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977887184,1608124096, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977800464,1608125344, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977912944,1608125344, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977923824,1608125344, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977922224,1608141776, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977724624,1608141776, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977733424,1608141776, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977819504,1608125552, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977890384,1608125552, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977913104,1608125552, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977725264,1608144272, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977677584,1608144272, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977828624,1608144272, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977771024,1608125760, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977675824,1608125760, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977828464,1608125760, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977845264,1608147184, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977807824,1608147184, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977817264,1608147184, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977866224,1608140528, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977782544,1608140528, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977734224,1608140528, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977667824,1608147600, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977777584,1608147600, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977668784,1608147600, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977795344,1608148848, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977690704,1608148848, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977668144,1608148848, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977722704,1608150928, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977685424,1608150928, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977670224,1608150928, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977785744,1608145728, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977787984,1608145728, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977675984,1608145728, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977880624,1608169440, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977670384,1608169440, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977789264,1608169440, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977722544,1542004112, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977691664,1542004112, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977828784,1542004112, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977669584,1542003696, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977779024,1542003696, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977721904,1542003696, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977691184,1542003904, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977676784,1542003904, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977789584,1542003904, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977800784,1542004320, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977671504,1542004320, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977758064,1542004320, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977684784,1542004944, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977789104,1542004944, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977686064,1542004944, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977879984,1542005152, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977785104,1542005152, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977720944,1542005152, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977799664,1542005360, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977790224,1542005360, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977786544,1542005360, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977702384,1542005568, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977733904,1542005568, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977748944,1542005568, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977685104,1542005776, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977778384,1542005776, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977783984,1542005776, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977694064,1542005984, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977679664,1542005984, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977786384,1542005984, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977791024,1542006192, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977791984,1542006192, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977783824,1542006192, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977683184,1542006400, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977733744,1542006400, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977784144,1542006400, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977699504,1542006608, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977687984,1542006608, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977689584,1542006608, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977780944,1542006816, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977670864,1542006816, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977689904,1542006816, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977685584,1542007024, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977668944,1542007024, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977788304,1542007024, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977798864,1542007232, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977683504,1542007232, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977788464,1542007232, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977879344,1542007440, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977686224,1542007440, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977672784,1542007440, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977698384,1542007648, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977852624,1542007648, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977784624,1542007648, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977914544,1542007856, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977686384,1542007856, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977748144,1542007856, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977696784,1542008064, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977881424,1542008064, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977671664,1542008064, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977668304,1542008272, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977702544,1542008272, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977687344,1542008272, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977722864,1542008480, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977772304,1542008480, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977670704,1542008480, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977783344,1542008688, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977777744,1542008688, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977779344,1542008688, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977734544,1542008896, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977778704,1542008896, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977778224,1542008896, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977723824,1542009104, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977686864,1542009104, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977686704,1542009104, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977703664,1542009312, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977667024,1542009312, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977748304,1542009312, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977781264,1542009520, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977684944,1542009520, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977790384,1542009520, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977779504,1542010976, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977762704,1542010976, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977762544,1542010976, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977831344,1542011184, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977830704,1542011184, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977832464,1542011184, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977832624,1542011392, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977833104,1542011392, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977833744,1542011392, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977689264,1542011600, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977815504,1542011600, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977833904,1542011600, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977830544,1542011808, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977830224,1542011808, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977904944,1542011808, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977867024,1542012016, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977904144,1542012016, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977903504,1542012016, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977687504,1542012224, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977903184,1542012224, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977902704,1542012224, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977769744,1542012432, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977900944,1542012432, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977852784,1542012432, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977870864,1542012640, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977871504,1542012640, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977869744,1542012640, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977823504,1542012848, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977851344,1542012848, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977816944,1542012848, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977701104,1542013056, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977736304,1542013056, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977815824,1542013056, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977721424,1542013264, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977739024,1542013264, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977796144,1542013264, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977696464,1542013472, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977737744,1542013472, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977738064,1542013472, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977737424,1542013680, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977737264,1542013680, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977733104,1542013680, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977733264,1542013888, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977735824,1542013888, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977735664,1542013888, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977739184,1542014096, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977867184,1542014096, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977850544,1542014096, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977824304,1542014304, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977866704,1542014304, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977697744,1542014304, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977732784,1542014512, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977822224,1542014512, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977698064,1542014512, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977803984,1542014720, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977822864,1542014720, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977821264,1542014720, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977820464,1542014928, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977820144,1542014928, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977819984,1542014928, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977727024,1542015136, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977777104,1542015136, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977893584,1542015136, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977690224,1542010352, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977896144,1542010352, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977728944,1542010352, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977729584,1542010560, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977787664,1542010560, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977691504,1542010560, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977824464,1542010768, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977787504,1542010768, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977786864,1542010768, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977699344,1542015344, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977732304,1542015344, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977732464,1542015344, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977867984,1542015552, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977851824,1542015552, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977761424,1542015552, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977765264,1542015760, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977832784,1542015760, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",977919664,1542015760, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977692464,1542016592, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977772944,1542016592, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977848944,1542016592, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977811504,1542016800, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977849744,1542016800, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",977925104,1542016800, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966431840,1542017008, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966414400,1542017008, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966419040,1542017008, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",977802224,1542009728, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966415040,1542009728, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966433280,1542009728, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966402240,1542009936, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966438400,1542009936, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966432640,1542009936, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966468480,1542010144, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966427360,1542010144, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966481760,1542010144, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966433760,1542015968, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966433920,1542015968, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966463680,1542015968, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966464160,1542016176, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966364000,1542016176, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966375840,1542016176, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966394080,1542016384, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966411680,1542016384, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966253440,1542016384, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966400160,1542017216, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966466720,1542017216, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966467840,1542017216, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966467520,1542017424, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966465600,1542017424, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966465920,1542017424, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966332320,1542017632, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966361120,1542017632, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966409760,1542017632, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966466240,1542017840, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966396800,1542017840, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966246880,1542017840, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966247520,1542018048, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966376800,1542018048, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966472960,1542018048, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966318720,1542018256, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966408800,1542018256, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966289280,1542018256, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966366240,1542019088, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966377120,1542019088, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966486080,1542019088, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966475360,1542019296, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966430240,1542019296, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966473280,1542019296, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966257440,1542019504, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966265120,1542019504, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966331520,1542019504, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966418560,1542019712, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966393920,1542019712, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966481920,1542019712, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966478400,1542019920, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966459680,1542019920, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966376640,1542019920, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966326400,1542020128, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966255520,1542020128, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966342240,1542020128, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966225280,1542020960, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966262720,1542020960, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966236480,1542020960, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966468640,1542021168, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966248800,1542021168, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966362560,1542021168, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966231840,1542021376, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966229760,1542021376, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966232960,1542021376, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966418240,1542018464, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966396320,1542018464, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966287200,1542018464, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966287840,1542018672, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966231680,1542018672, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966230560,1542018672, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966323840,1542018880, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966227200,1542018880, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966332160,1542018880, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966361600,1542020336, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966409120,1542020336, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::T
+	C: "OP",966256640,1542020336, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966379520,1542020544, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966324800,1542020544, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::R
+	C: "OP",966322880,1542020544, "d|Z"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966235360,1542020752, "d|X"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966225920,1542020752, "d|Y"
+	
+	;AnimCurve::, AnimCurveNode::S
+	C: "OP",966331840,1542020752, "d|Z"
+}
+;Takes section
+;----------------------------------------------------
+
+Takes:  {
+	Current: ""
+	Take: "Take 001" {
+		FileName: "Take_001.tak"
+		LocalTime: 3079077360,4618615868
+		ReferenceTime: 3079077360,4618615868
+	}
+}
