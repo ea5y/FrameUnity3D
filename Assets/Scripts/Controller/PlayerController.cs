@@ -4,86 +4,142 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public ETCJoystick Joystick;
-    public Camera MainCamera;
-    public GameObject ViewPoint;
+    public ETCButton BtnAttack;
+    public ETCButton BtnSkill_1;
 
-    void Start ()
+    public Camera MainCamera;
+    private PlayerState _state;
+
+    public static PlayerController Inst;
+
+    private void Start ()
     {
+        Inst = this;
+        _state = new PlayerState(GetComponentInChildren<Animator>());
+
         Joystick.onMoveStart.AddListener(OnMoveStart);
         Joystick.onMove.AddListener(OnMove);
         Joystick.onMoveEnd.AddListener(OnMoveEnd);
+
+        Joystick.onTouchStart.AddListener(OnTouchStart);
+        Joystick.onTouchUp.AddListener(OnTouchEnd);
+
+        BtnAttack.onPressed.AddListener(OnClickBtnAttack);
+        BtnSkill_1.onPressed.AddListener(OnClickBtnSkill_1);
 	}
 
-    public void OnMoveStart()
+    private void OnMoveStart()
     {
+        Debug.Log("MoveStart");
+        _state.Move(0);
     }
 
-    private float CollationPlayerForward()
-    {
-        var vec1 = transform.forward.normalized;
-        var vec2 = MainCamera.transform.forward.normalized;
-        var dot = Vector3.Dot(vec1, vec2);
-        var rotate = Mathf.Acos(dot) * Mathf.Rad2Deg;
-        if (!float.IsNaN(rotate))
-        {
-            Debug.Log(string.Format("Rotate: {0}", rotate));
-            transform.Rotate(Vector3.up, rotate);
-        }
-        return rotate;
-    }
-
-    private void CreateRotateMatrixForViewPoint(float angle)
-    {
-        _matrix = Matrix4x4.identity;
-        _matrix.SetTRS(Vector3.zero, Quaternion.Euler(0, angle, 0), Vector3.one);
-    }
-
-    public void OnMove(Vector2 v)
+    private void OnMove(Vector2 v)
     {
         Vector4 offset = new Vector4(v.x, 0, v.y, 1);
         transform.LookAt(MainCamera.transform.TransformVector(offset) + transform.position);
-        transform.Translate(transform.forward * Time.deltaTime * 2, Space.World);
+        transform.Translate(transform.forward * Time.deltaTime * 0.05f, Space.World);
     }
 
-    public void OnMoveEnd()
+    private void OnMoveEnd()
+    {
+        Debug.Log("MoveEnd");
+        _state.Stand();
+    }
+
+    private void OnTouchStart()
+    {
+        //Debug.Log("TouchStart");
+    }
+
+    private void OnTouchEnd()
+    {
+        //Debug.Log("TouchStart");
+    }
+
+    private void OnClickBtnAttack()
+    {
+        _state.Attack();
+    }
+
+    private void OnClickBtnSkill_1()
+    {
+        _state.Skill_1();
+    }
+}
+
+public class PlayerState
+{
+    private Animator _animator;
+
+    public PlayerState(Animator animator)
+    {
+        _animator = animator;
+    }
+
+    public void Stop()
+    {
+        _animator.SetBool("Stand", false);
+        _animator.SetBool("Move", false);
+        _animator.SetBool("Attack", false);
+        _animator.SetBool("Skill_1", false);
+    }
+
+    public void Stand()
+    {
+        Stop();
+        _animator.SetBool("Stand", true);
+    }
+
+    public void Idle()
+    {
+        
+    }
+    
+    public void Move(float speed)
+    {
+        Stop();
+        _animator.SetBool("Move", true);
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Attack");
+        Stop();
+        _animator.SetBool("Attack", true);
+        OnMontionCompleted("Attack");
+    }
+
+    public void Skill_1()
+    {
+        Debug.Log("Skill_1");
+        Stop();
+        _animator.SetBool("Skill_1", true);
+        OnMontionCompleted("Skill");
+    }
+
+    public void Death()
     {
 
     }
 
-    private Mesh _mesh;
-    public Vector3[] vertices;
-    public int[] triangle;
-
-    private Vector4 _startPos;
-    private Matrix4x4 _matrix;
-
-    public float _x;
-    public float _y;
-    public float _z;
-
-    private Vector2 _vec = new Vector2(1, 1);
-    private void Awake()
+    public void Damage()
     {
-        _mesh = new Mesh();
-        _mesh.vertices = vertices;
-        _mesh.triangles = triangle;
-        GetComponent<MeshFilter>().mesh = _mesh;
 
-        _startPos = new Vector4(transform.position.x, transform.position.y, transform.position.z, 1);
     }
 
-    private void Update()
+    private void OnMontionCompleted(string montion)
     {
-        //Translate(_vec);
+        PlayerController.Inst.StartCoroutine(_OnMontionCompleted(montion));
     }
 
-    private void Translate(Vector2 vec)
+    private IEnumerator _OnMontionCompleted(string montion)
     {
-        _matrix = Matrix4x4.identity;
+            while (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+            {
+                yield return null;
+            }
 
-        _matrix.SetTRS(new Vector3(_x + vec.x, _y, _z + vec.y) * 0.2f, Quaternion.identity, Vector3.one);
-
-        var t = _matrix * _startPos;
-        transform.position = new Vector3(t.x, t.y, t.z);
+            this.Stand();
     }
 }
