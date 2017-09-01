@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
     private void Start ()
     {
         Inst = this;
-        _state = new PlayerState(GetComponentInChildren<Animator>());
+        //_state = new PlayerState(GetComponentInChildren<Animator>());
 
         Joystick.onMoveStart.AddListener(OnMoveStart);
         Joystick.onMove.AddListener(OnMove);
@@ -28,8 +28,15 @@ public class PlayerController : MonoBehaviour {
         BtnSkill_1.onPressed.AddListener(OnClickBtnSkill_1);
 	}
 
+    public void GetAnimator()
+    {
+        _state = new PlayerState(GetComponentInChildren<Animator>());
+    }
+
     private void OnMoveStart()
     {
+        if (_state == null)
+            return;
         Debug.Log("MoveStart");
         _state.Move(0);
     }
@@ -43,6 +50,8 @@ public class PlayerController : MonoBehaviour {
 
     private void OnMoveEnd()
     {
+        if (_state == null)
+            return;
         Debug.Log("MoveEnd");
         _state.Stand();
     }
