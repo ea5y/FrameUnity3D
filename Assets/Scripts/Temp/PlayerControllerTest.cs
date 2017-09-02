@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerControllerTest : NetworkBehaviour{
+public class PlayerControllerTest : NetworkBehaviour
+{
+    public GameObject BulletPrefab;
+    public GameObject BulletSpawn;
 
     void Update()
     {
@@ -17,6 +20,26 @@ public class PlayerControllerTest : NetworkBehaviour{
         //transform.parent.Translate(0, 0, z);
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            this.CmdFire();
+        }
+    }
+
+    [CommandAttribute]
+    private void CmdFire()
+    {
+        var bullet = (GameObject)Instantiate(
+                this.BulletPrefab,
+                BulletSpawn.transform.position,
+                BulletSpawn.transform.rotation);
+
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
+
+        NetworkServer.Spawn(bullet);
+
+        Destroy(bullet, 2.0f);
     }
 
     public override void OnStartLocalPlayer()
