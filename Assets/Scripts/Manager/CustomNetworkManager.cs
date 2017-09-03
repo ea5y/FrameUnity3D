@@ -14,4 +14,8 @@ public class CustomNetworkManager : NetworkManager
         //PlayerController.Inst.GetAnimator();
     }
 
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
+    }
 }

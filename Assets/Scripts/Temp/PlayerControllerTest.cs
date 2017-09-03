@@ -32,8 +32,10 @@ public class PlayerControllerTest : NetworkBehaviour
     {
         var bullet = (GameObject)Instantiate(
                 this.BulletPrefab,
-                BulletSpawn.transform.position,
-                BulletSpawn.transform.rotation);
+                BulletSpawn.transform
+                //BulletSpawn.transform.position,
+                //BulletSpawn.transform.rotation
+                );
 
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
 
