@@ -8,6 +8,9 @@ public class PlayerControllerTest : NetworkBehaviour
     public GameObject BulletPrefab;
     public GameObject BulletSpawn;
 
+    public GameObject UIPlayerSpawn;
+    private ItemUIPlayer _uiPlayer;
+
     void Update()
     {
         if (!isLocalPlayer)
@@ -47,5 +50,13 @@ public class PlayerControllerTest : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         GetComponent<MeshRenderer>().material.color = Color.blue;
+        this.AddUIPlayer();
+    }
+
+    private void AddUIPlayer()
+    {
+        _uiPlayer = PanelUIPlayers.Inst.AddUIPlayer(UIPlayerSpawn);
+        var health = transform.GetComponent<Health>();
+        health.SetHealthBar(_uiPlayer.HealthBar);
     }
 }

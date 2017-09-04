@@ -11,11 +11,12 @@ public class CustomNetworkManager : NetworkManager
     {
         var player = (GameObject)GameObject.Instantiate(playerPrefab, PlayerSpawnPos.transform);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-        //PlayerController.Inst.GetAnimator();
     }
 
     public override void OnClientConnect(NetworkConnection conn)
     {
-        base.OnClientConnect(conn);
+        //base.OnClientConnect(conn);
+        ClientScene.Ready(conn);
+        ClientScene.AddPlayer(0);
     }
 }
