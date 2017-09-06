@@ -50,13 +50,16 @@ public class PlayerControllerTest : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         GetComponent<MeshRenderer>().material.color = Color.blue;
-        this.AddUIPlayer();
+        this.CmdAddUIPlayer();
     }
 
-    private void AddUIPlayer()
+    [CommandAttribute]
+    private void CmdAddUIPlayer()
     {
-        _uiPlayer = PanelUIPlayers.Inst.AddUIPlayer(UIPlayerSpawn);
+        var go = PanelUIPlayers.Inst.AddUIPlayer(UIPlayerSpawn);
+        _uiPlayer = go.GetComponent<ItemUIPlayer>();
         var health = transform.GetComponent<Health>();
         health.SetHealthBar(_uiPlayer.HealthBar);
+        NetworkServer.Spawn(go);
     }
 }

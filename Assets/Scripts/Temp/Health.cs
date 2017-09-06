@@ -5,16 +5,23 @@
 //================================
 
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Health : MonoBehaviour
+public class Health : NetworkBehaviour
 {
     public const int MaxHealth = 100;
+
+    [SyncVarAttribute]
     public int CurrentHealth = MaxHealth;
 
     private UISlider _healthBar;
 
     public void TakeDamage(int amount)
     {
+        if(!isServer)
+        {
+            return;
+        }
         this.CurrentHealth -= amount;
         if(this.CurrentHealth <= 0 )
         {

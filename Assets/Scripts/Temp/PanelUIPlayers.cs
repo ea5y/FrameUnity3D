@@ -16,12 +16,12 @@ public class PanelUIPlayers : MonoBehaviour
         Inst = this;
     }
 
-    public ItemUIPlayer AddUIPlayer(GameObject followTarget)
+    public GameObject AddUIPlayer(GameObject followTarget)
     {
         var go = Instantiate(this.UIPlayerPrefab, this.Panel.transform);
         ItemUIPlayer item = go.GetComponent<ItemUIPlayer>();
         item.SetFollowTarget(followTarget);
-        return item;
+        return go;
         //Set follow
         //var screenPos = Camera.main.WorldToScreenPoint(transform.position);
         //Debug.Log("screenPos:" + screenPos);
