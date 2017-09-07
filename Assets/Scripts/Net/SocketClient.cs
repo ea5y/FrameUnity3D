@@ -1,9 +1,13 @@
-﻿using System;
+﻿using LitJson;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading;
+using UnityEngine;
 
-namespace Easy.Unity
+namespace Easy.FrameUnity.Net
 {
     public class SocketClient
     {
@@ -16,23 +20,6 @@ namespace Easy.Unity
 
         public static Dictionary<int, PackageReqHead> SendDic = new Dictionary<int, PackageReqHead>();
 
-        public static void Run()
-        {
-            /*
-            for (int i = 0; i < 30; i++)
-            {
-                Net.Login((res) =>
-                {
-                    Console.WriteLine("Login callback!");
-                });
-            }
-            */
-                Net.Login((res) =>
-                {
-                    Console.WriteLine("Login callback!");
-                });
-        }
-
         //1.Check  connection
         private static void CheckConnection()
         {
@@ -44,7 +31,7 @@ namespace Easy.Unity
         private static void OpenConnection()
         {
             CreateSocketAndConnect();
-            CreateHeartbeatTimer();
+            //CreateHeartbeatTimer();
             CreateReceiveThread();
         }
 
@@ -53,19 +40,19 @@ namespace Easy.Unity
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try
             {
-                Console.WriteLine("===>Connect");
+                //Debug.Log("===>Connect");
                 _socket.Connect("127.0.0.1", 9001);
             }
             catch (SocketException se)
             {
                 CloseConnection();
                 var msg = string.Format("Error: {0}", se.Message);
-                Console.WriteLine(msg);
+                //Debug.Log(msg);
                 throw se;
             }
         }
 
-        private static void CreateHeartbeatTimer()
+        public static void CreateHeartbeatTimer()
         {
             if (_heartbeatTimer == null)
             {
@@ -89,7 +76,7 @@ namespace Easy.Unity
         }
 
         //3.Close connection
-        private static void CloseConnection()
+        public static void CloseConnection()
         {
             _socket.Close();
             _socket = null;
@@ -112,12 +99,14 @@ namespace Easy.Unity
             }
             catch (SocketException se)
             {
+                var msg = se.Message;
+                //Debug.Log(msg);
                 return;
             }
 
             if (_socket == null)
                 return;
-            Console.WriteLine("===>Send");
+            //Debug.Log("===>Send");
             _socket.Send(data);
         }
 
@@ -136,17 +125,19 @@ namespace Easy.Unity
                         NetRead(data, dataLen);
 
                         PackageResHead headRes;
-                        BaseResData res;
-                        if (PackageFactory.Unpack(data, out headRes, out res))
+                        string strDataRes;
+                        if (PackageFactory.Unpack(data, out headRes, out strDataRes))
                         {
+                            OutputHeadRes(headRes);
+
                             PackageReqHead headReq;
                             if(SendDic.TryGetValue(headRes.MsgId, out headReq))
                             {
                                 if(!GetError(headRes.StatusCode))
                                 {
-                                    headReq.callback(res);
+                                    headReq.callback(strDataRes);
                                     SendDic.Remove(headRes.MsgId);
-                                    Console.WriteLine("SendDic count:{0}", SendDic.Count);
+                                    //Debug.Log(string.Format("SendDic count:{0}", SendDic.Count));
                                 }
                             }
                         }
@@ -159,6 +150,20 @@ namespace Easy.Unity
             }
         }
 
+        private static void OutputHeadRes(PackageResHead headRes)
+        {
+            var msg = string.Format(
+                    "HeadRes: \n ActionId:{0},Des:{1},MsgId:{2},SesId:{3},Code{4},St:{5},UserId:{6}",
+                    headRes.ActionId, 
+                    headRes.Description, 
+                    headRes.MsgId, 
+                    headRes.SessionId,
+                    headRes.StatusCode, 
+                    headRes.StrTime,
+                    headRes.UserId);
+            //Debug.Log(msg);
+        }
+
         private static bool GetError(int code)
         {
             if (code == 0)
@@ -166,7 +171,7 @@ namespace Easy.Unity
             else
             {
                 var msg = string.Format("ReqStatus: {0}", ErrorCode.Dic[code]);
-                Console.WriteLine(msg);
+                //Debug.Log(msg);
                 return true;
             }
         }
@@ -193,7 +198,7 @@ namespace Easy.Unity
             }
             catch(SocketException se)
             {
-                Console.WriteLine("Recieve Error: {0}", se.Message);
+                //Debug.Log(string.Format("Recieve Error: {0}", se.Message));
                 CloseConnection();
                 throw;
             }

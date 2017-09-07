@@ -27,7 +27,35 @@ public class URL
         string.Empty;
 #endif
 
-	public static readonly string ASSETBUNDLE_INPUT_URL = Application.dataPath + "/ResForBundle/";
+    public static readonly string STREAMINGASSETS_URL =
+#if UNITY_ANDROID && !UNITY_EDITOR
+        //"jar:file://" + Application.dataPath + "!/assets/";
+        Application.persistentDataPath + "/";
+#elif UNITY_ANDROID && UNITY_EDITOR || UNITY_STANDALONE_WIN && UNITY_EDITOR
+        Application.streamingAssetsPath;
+#elif UNITY_IPHONE && !UNITY_EDITOR
+        "file://" + Application.dataPath + "/Raw/";
+#elif UNITY_IPHONE && UNITY_EDITOR || UNITY_STANDALONE_OSX
+        "file://" + Application.dataPath + "/StreamingAssets/";
+#else
+        string.Empty;
+#endif
+
+    public static readonly string RELATIVE_STREAMINGASSETS_URL =
+#if UNITY_ANDROID && !UNITY_EDITOR
+        //"jar:file://" + Application.dataPath + "!/assets/";
+        Application.persistentDataPath + "/";
+#elif UNITY_ANDROID && UNITY_EDITOR || UNITY_STANDALONE_WIN && UNITY_EDITOR
+        "Assets/StreamingAssets/";
+#elif UNITY_IPHONE && !UNITY_EDITOR
+        "file://" + Application.dataPath + "/Raw/";
+#elif UNITY_IPHONE && UNITY_EDITOR || UNITY_STANDALONE_OSX
+        "file://" + Application.dataPath + "/StreamingAssets/";
+#else
+        string.Empty;
+#endif
+
+    public static readonly string ASSETBUNDLE_INPUT_URL = Application.dataPath + "/ResForBundle/";
 	public static readonly string ASSETBUNDLE_OUTPUT_URL = "Assets/Bundle/";
 
 	public static readonly string BUNDLE_FILES_URL = "";

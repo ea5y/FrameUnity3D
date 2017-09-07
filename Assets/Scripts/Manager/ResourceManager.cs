@@ -7,6 +7,17 @@ using System.IO;
 using LitJson;
 using System.ComponentModel;
 
+public class BundleFile
+{
+    public string name;
+    public string md5;
+}
+
+public class BundleFileList
+{
+    public List<BundleFile> bundleFileList = new List<BundleFile>();
+}
+
 public class ResourceManager : Singleton<ResourceManager>
 {
 	private UILoadingProgress ui;

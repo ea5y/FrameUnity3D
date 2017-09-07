@@ -1,81 +1,70 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
 using LitJson;
 using System.Text;
 using System.Security.Cryptography;
+using UnityEngine;
 
-public class BundleFile
-{
-    public string name;
-    public string md5;
-}
-
-public class BundleFileList
-{
-    public List<BundleFile> bundleFileList = new List<BundleFile>();
-}
 
 public static class IOHelper
 {
 #region Json
-    public static void SaveToJson<T>(object obj, string outPath)
+    public static void SaveToJson<T>(object obj, string projectPath)
     {
-		Debug.Log("===>SaveToJson:");
-        Debug.Log("SaveToJsonTo: " + outPath);
-        CheckPath(outPath);
+        var strArray = typeof(T).ToString().Split('.');
+        var fileName = strArray[strArray.Length - 1];
+        var fileProjectFullName = projectPath + fileName + ".json";
+        var msg = string.Format("===>Save to Json file:\n {0}", fileProjectFullName);
+        Debug.Log(msg);
+        //Console.WriteLine(msg);
+        //Debug.Print(msg);
 
         //to json
         string values = JsonMapper.ToJson(obj);
 
         //Encrypt
         //@TODO
-        
-        //write
-        var fileName = outPath + typeof(T).ToString() + ".json";
-        Debug.Log("FileName: " + fileName);
-        //FileStream fs = new FileStream( fileName, FileMode.Create, FileAccess.Write, FileShare.Read);
-        FileStream fs = new FileStream( fileName, FileMode.Create);
-        StreamWriter sw = new StreamWriter(fs);
-        sw.Write(values);
 
-        //close
-        sw.Close();
-        fs.Close();
-        fs.Dispose();
+        //write
+        CheckPath(projectPath);
+        using (FileStream fs = new FileStream(fileProjectFullName, FileMode.Create))
+        using (StreamWriter sw = new StreamWriter(fs))
+        {
+            sw.Write(values);
+        }
     }
 
-    public static T ReadFromJson<T>(string fullPath)
+    public static T ReadFromJson<T>(string projectPath) where T : new ()
     {
-		Debug.Log("===>ReadFramJson:");
-        var fileFullName = fullPath + typeof(T) + ".json";
-        Debug.Log("JsonFileFullName: " + fileFullName);
-		if(!File.Exists(fileFullName))
+        var strArray = typeof(T).ToString().Split('.');
+        var fileName = strArray[strArray.Length - 1];
+        var fileProjectFullName = projectPath + fileName + ".json";
+
+        var msg = string.Format("===>Read fram Json file:\n {0}", fileProjectFullName);
+        //Console.WriteLine(msg);
+        Debug.Log(msg);
+
+		if(!File.Exists(fileProjectFullName))
 		{
-			FileStream fsw = new FileStream(fileFullName, FileMode.Create);
-			StreamWriter sw = new StreamWriter(fsw);
-			sw.Write("{}");
-			sw.Close();
-			fsw.Close();
-			fsw.Dispose();
+            var msg1 = string.Format("{0}.json not exists!", fileName);
+            //Console.WriteLine(msg1);
+            Debug.Log(msg1);
+
+            SaveToJson<T>(new T(), projectPath);
 		}
 
-		//read
-		FileStream fsr = new FileStream(fileFullName, FileMode.Open);
-		StreamReader sr = new StreamReader(fsr);
-		var values = sr.ReadToEnd();
+        //read
+        using (FileStream fsr = new FileStream(projectPath + fileName + ".json", FileMode.Open))
+        using (StreamReader sr = new StreamReader(fsr))
+        {
+            var values = sr.ReadToEnd();
+            //decrypt
+            //@TODO
 
-		//decrypt
-		//@TODO
-
-		//to obj
-		var obj = JsonMapper.ToObject<T>(values);
-
-		sr.Close();
-		fsr.Close();
-		fsr.Dispose();
-		return obj;
+            //to obj
+            var obj = JsonMapper.ToObject<T>(values);
+            return obj;
+        }
     }
 
     public static void CheckPath(string path)

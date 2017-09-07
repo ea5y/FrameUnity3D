@@ -1,14 +1,20 @@
 ﻿using LitJson;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using UnityEngine;
 
-namespace Easy.Unity
+namespace Easy.FrameUnity.Net
 {
     public class PackageReqHead
     {
         public int MsgId = 0;
         public int ActionId = 0;
-        public Action<BaseResData> callback;
+
+        public static int UserId = 0;
+        public static string SessionId = "";
+        public Action<string> callback;
     }
 
     public class PackageResHead
@@ -22,22 +28,6 @@ namespace Easy.Unity
         public string StrTime;
     }
 
-    public class BaseReqData
-    {
-
-    }
-
-    public class BaseResData
-    {
-
-    }
-
-    public class RegisterData : BaseReqData
-    {
-        public string Username;
-        public string Password;
-    }
-
     public class PackageFactory
     {
         private static string _sendStr;
@@ -49,20 +39,25 @@ namespace Easy.Unity
             WriteHead(head);
             WriteData(data);
 
-            Console.WriteLine("Send: {0}", _sendStr);
+            Debug.Log(string.Format("Send: {0}", _sendStr));
             var bytes = WriteBytesLength();
             _sendStr = "";
             return bytes;
         }
 
-        public static byte[] Pack(int actionId, BaseReqData data, Action<BaseResData> callback)
+        public static byte[] Pack<T>(int actionId, BaseReqData data, Action<T> callback) where T : BaseResData
         {
-            var head = new PackageReqHead() { ActionId = actionId, MsgId = ++MsgCounter, callback = callback };
+            var head = new PackageReqHead() { ActionId = actionId, MsgId = ++MsgCounter,
+                callback = (res)=>
+                {
+                    var obj = JsonMapper.ToObject<T>(res);
+                    Net.InvokeAsync(()=>{ callback(obj); });
+                } };
             SocketClient.SendDic.Add(head.MsgId, head);
             WriteHead(head);
             WriteData(data);
 
-            Console.WriteLine("Send: {0}", _sendStr);
+            Debug.Log(string.Format("Send: {0}", _sendStr));
             var bytes = WriteBytesLength();
             _sendStr = "";
             return bytes;
@@ -70,7 +65,9 @@ namespace Easy.Unity
 
         private static void WriteHead(PackageReqHead head)
         {
-            _sendStr += string.Format("MsgId={0}&ActionId={1}", head.MsgId, head.ActionId);
+            _sendStr += string.Format(
+                    "MsgId={0}&ActionId={1}&Sid={2}&Uid={3}",
+                    head.MsgId, head.ActionId, PackageReqHead.SessionId, PackageReqHead.UserId);
         }
 
         private static void WriteData(BaseReqData data)
@@ -88,39 +85,7 @@ namespace Easy.Unity
             return resultBytes;
         }
 
-        public static bool Unpack(byte[] data, out PackageResHead head, out byte[] bodyBytes)
-        {
-            head = null;
-            bodyBytes = null;
-
-            int pos = 0;
-            int dataLength = GetInt(data, ref pos);
-            if (dataLength != data.Length)
-            {
-                return false;
-            }
-
-            head = new PackageResHead();
-            head.StatusCode = GetInt(data, ref pos);
-            head.MsgId = GetInt(data, ref pos);
-            head.Description = GetString(data, ref pos);
-            head.ActionId = GetInt(data, ref pos);
-            head.StrTime = GetString(data, ref pos);
-            //int bodyLen = data.Length - pos;
-            int bodyLen = GetInt(data, ref pos);
-            if (bodyLen > 0)
-            {
-                bodyBytes = new byte[bodyLen];
-                Buffer.BlockCopy(data, pos, bodyBytes, 0, bodyLen);
-            }
-            else
-            {
-                bodyBytes = new byte[0];
-            }
-            return true;
-        }
-
-        public static bool Unpack(byte[] data, out PackageResHead head, out BaseResData res)
+        public static bool Unpack(byte[] data, out PackageResHead head, out string res)
         {
             head = null;
             byte[] bodyBytes;
@@ -146,8 +111,9 @@ namespace Easy.Unity
                 bodyBytes = new byte[bodyLen];
                 Buffer.BlockCopy(data, pos, bodyBytes, 0, bodyLen);
                 string str = Encoding.UTF8.GetString(bodyBytes);
-                Console.WriteLine("Res: {0}", str);
+                //Debug.Log(string.Format("Res: {0}", str));
                 //res = JsonMapper.ToObject<BaseResData>(str);
+                res = str;
             }
             else
             {
