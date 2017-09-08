@@ -1,11 +1,8 @@
 ﻿using LitJson;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using UnityEngine;
 
 namespace Easy.FrameUnity.Net
 {
@@ -41,7 +38,8 @@ namespace Easy.FrameUnity.Net
             try
             {
                 //Debug.Log("===>Connect");
-                _socket.Connect("127.0.0.1", 9001);
+                //_socket.Connect("127.0.0.1", 9001);
+                _socket.Connect("192.168.1.209", 9001);
             }
             catch (SocketException se)
             {
@@ -78,6 +76,8 @@ namespace Easy.FrameUnity.Net
         //3.Close connection
         public static void CloseConnection()
         {
+            if(_socket == null)
+                return;
             _socket.Close();
             _socket = null;
             if(_heartbeatTimer != null)

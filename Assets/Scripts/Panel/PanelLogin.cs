@@ -8,12 +8,12 @@ using UnityEngine;
 using Easy.FrameUnity.Net;
 using Easy.FrameUnity.Login;
 
-    public class LoginData 
-    {
-        public string Username;
-        public string Password;
-        public string Sid;
-    }
+public class LoginData 
+{
+    public string Username;
+    public string Password;
+    public string Sid;
+}
 
 public class PanelLogin : MonoBehaviour//Singleton<PanelLogin>
 {
@@ -34,25 +34,24 @@ public class PanelLogin : MonoBehaviour//Singleton<PanelLogin>
 
     private void ReadLoginData()
     {
-        //_loginData = IOHelper.ReadFromJson<LoginData>(URL.ASSETBUNDLE_LOCAL_URL);
         _loginData = IOHelper.ReadFromJson<LoginData>(URL.RELATIVE_STREAMINGASSETS_URL);
         PackageReqHead.SessionId = _loginData.Sid;
     }
 
     private void CreateLoginUnit()
     {
-        var normalLogin = new NormalLogin(_loginData);
-        normalLogin.SetCallback((res)=>{
+        _loginUnit = new NormalLogin();
+        _loginUnit.SetLoginData(_loginData);
+        _loginUnit.SetLoginCallback((res)=>{
                 Debug.Log(string.Format("SessionId: {0}", res.SessionId));
                 PackageReqHead.SessionId = res.SessionId;
-            //PackageReqHead.UserId = res.UserData.UserId;
                 _loginData.Sid = res.SessionId;
-                SocketClient.CreateHeartbeatTimer();
-
-                //IOHelper.SaveToJson<LoginData>(_loginData, URL.ASSETBUNDLE_LOCAL_URL);
                 IOHelper.SaveToJson<LoginData>(_loginData, URL.RELATIVE_STREAMINGASSETS_URL);
+
+                SocketClient.CreateHeartbeatTimer();
+                //Enter Game
+                ScenesManager.Inst.EnterScene(ScenesName.E_SceneGame_1);
                 });
-        _loginUnit = normalLogin;
     }
 
     private void SetLogin()
@@ -74,9 +73,14 @@ public class PanelLogin : MonoBehaviour//Singleton<PanelLogin>
 
     private void Login()
     {
+        this.UpdateLoginData();
+        _loginUnit.Login();
+    }
+
+    private void UpdateLoginData()
+    {
         _loginData.Username = InputUsername.value;
         _loginData.Password = InputPassword.value;
         _loginUnit.SetLoginData(_loginData);
-        _loginUnit.Login();
     }
 }

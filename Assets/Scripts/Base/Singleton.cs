@@ -9,26 +9,27 @@ using System.Collections;
 using System;
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-	private static T instance{get;set;}
-	private static readonly object obj = new object();
-	public static T Instance
-	{
-		get
-		{
-			lock(obj)
-			{
-			if(instance == null)
-			{
-				var singleton = new GameObject();
-				instance = singleton.AddComponent<T>();
-			}
-			return instance;
-			}
-		}
-	}
+    public static T Inst;
+    private object _objSync = new object();
 
-	private void OnDestroy()
-	{
-		instance = null;
-	}
+    protected void GetInstance()
+    {
+        lock (_objSync)
+        {
+            if (Inst == null)
+            {
+                Inst = this as T;
+            }
+            else
+            {
+                Debug.LogError("===>Singleton Clash!!!");
+            }
+        }
+    }
+
+    public void Destroy()
+    {
+        Debug.Log("Singleton Destroy");
+        Inst = null;
+    }
 }

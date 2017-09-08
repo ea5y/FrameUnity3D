@@ -50,6 +50,7 @@ public class UILoadingProgress : Singleton<UILoadingProgress>
 
 	private void Awake()
 	{
+        base.GetInstance();
 		Debug.Log("===>Enter LoadingScene");
 		if(LoadingSceneData.type == LoadingType.Resource)
 		{
@@ -96,7 +97,7 @@ public class UILoadingProgress : Singleton<UILoadingProgress>
 		}
 		*/
 
-		ResourceManager.Instance.UpdateResource(this);
+		ResourceManager.Inst.UpdateResource(this);
 		
 	}
 }

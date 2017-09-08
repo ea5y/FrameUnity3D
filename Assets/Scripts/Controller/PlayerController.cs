@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
     {
         Inst = this;
         //_state = new PlayerState(GetComponentInChildren<Animator>());
+        this.GetAnimator();
 
         Joystick.onMoveStart.AddListener(OnMoveStart);
         Joystick.onMove.AddListener(OnMove);

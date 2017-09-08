@@ -11,19 +11,27 @@ namespace Easy.FrameUnity.Login
 {
     public abstract class LoginUnit
     {
+        protected LoginData loginData;
+        protected Action<LoginDataRes> loginCallback;
+
+
         public abstract void Register();
         public abstract void Login();
-        public abstract void SetLoginData(LoginData loginData);
+        public virtual void SetLoginData(LoginData loginData)
+        {
+            this.loginData = loginData;
+        }
+
+        public virtual void SetLoginCallback(Action<LoginDataRes> callback)
+        {
+            this.loginCallback = callback;
+        }
     }
 
     public class NormalLogin : LoginUnit
     {
-        private LoginData _loginData;
-        private Action<LoginDataRes> _loginCallback;
-
-        public NormalLogin(LoginData loginData)
+        public NormalLogin()
         {
-            _loginData = loginData;
         }
 
         public override void Register()
@@ -32,20 +40,9 @@ namespace Easy.FrameUnity.Login
 
         public override void Login()
         {
-            Net.Net.Login(_loginData.Username, 
-                    _loginData.Password,
-                    _loginCallback);
-        }
-
-        public override void SetLoginData(LoginData loginData)
-        {
-            _loginData = loginData;
-        }
-
-        public void SetCallback(Action<LoginDataRes> callback)
-        {
-            _loginCallback = callback;
+            Net.Net.Login(this.loginData.Username, 
+                    this.loginData.Password,
+                    this.loginCallback);
         }
     }
 }
-
