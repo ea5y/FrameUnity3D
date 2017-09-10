@@ -25,8 +25,9 @@ public class PlayerController : MonoBehaviour {
         Joystick.onTouchStart.AddListener(OnTouchStart);
         Joystick.onTouchUp.AddListener(OnTouchEnd);
 
-        BtnAttack.onPressed.AddListener(OnClickBtnAttack);
-        BtnSkill_1.onPressed.AddListener(OnClickBtnSkill_1);
+        //BtnAttack.onPressed.AddListener(OnClickBtnAttack);
+        BtnAttack.onDown.AddListener(OnClickBtnAttack);
+        BtnSkill_1.onDown.AddListener(OnClickBtnSkill_1);
 	}
 
     public void GetAnimator()
@@ -145,11 +146,36 @@ public class PlayerState
 
     private IEnumerator _OnMontionCompleted(string montion)
     {
-            while (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+        yield return new WaitForSeconds(0.3f);
+
+        if(_animator.GetCurrentAnimatorStateInfo(0).IsName(montion))
+        {
+            var msg = _animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+            Debug.Log("Cur anime name:" + msg);
+
+            Debug.Log("Wait MontionCompleted...");
+            while (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9f)
             {
+                if(_animator.IsInTransition(0))
+                    break;
                 yield return null;
             }
 
             this.Stand();
+        }
+    }
+}
+
+public class Attack
+{
+    public Attack(string config)
+    {
+    }
+}
+
+public class Skill_1
+{
+    public Skill_1(string config)
+    {
     }
 }

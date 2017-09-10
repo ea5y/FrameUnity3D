@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
+using System.Text;
+using UnityEngine;
 
 namespace Easy.FrameUnity.Net
 {
@@ -39,7 +41,8 @@ namespace Easy.FrameUnity.Net
             {
                 //Debug.Log("===>Connect");
                 //_socket.Connect("127.0.0.1", 9001);
-                _socket.Connect("192.168.1.209", 9001);
+                //_socket.Connect("192.168.1.209", 9001);
+                _socket.Connect(URL.GAME_SERVER_HOST, URL.GAME_SERVER_PORT);
             }
             catch (SocketException se)
             {
@@ -141,6 +144,14 @@ namespace Easy.FrameUnity.Net
                                 }
                             }
                         }
+                        else
+                        {
+                            //@TODO Recieve BroadCast Event
+                            Net.InvokeAsync(()=>{
+                                    DebugBroadCast(data);
+                                    });
+
+                        }
                     }
                     catch
                     {
@@ -148,6 +159,13 @@ namespace Easy.FrameUnity.Net
                     }
                 }
             }
+        }
+
+        private static void DebugBroadCast(byte[] data)
+        {
+            var str = Encoding.UTF8.GetString(data);
+            var msg = string.Format("BroadCast Result:{0}", str);
+            Debug.Log(msg);
         }
 
         private static void OutputHeadRes(PackageResHead headRes)

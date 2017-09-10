@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Easy.FrameUnity.Net
 {
+    //============BaseData=============
     public class BaseReqData
     {
 
@@ -15,6 +16,12 @@ namespace Easy.FrameUnity.Net
 
     }
 
+    public class BaseCastData
+    {
+
+    }
+
+    //===========LoginData=============
     public class RegisterData : BaseReqData
     {
         public string Username;
@@ -35,5 +42,10 @@ namespace Easy.FrameUnity.Net
     {
         public string SessionId;
         public UserData UserData;
+    }
+
+    public class CastLoginData : BaseCastData
+    {
+        
     }
 }
