@@ -14,6 +14,7 @@ namespace Easy.FrameUnity.Net
     public class Net : MonoBehaviour
     {
         private static Queue<Action> _dispatchQueue = new Queue<Action>();
+        
         private static object _objAsync = new object();
 
         private void OnDestroy()

@@ -28,6 +28,11 @@ namespace Easy.FrameUnity.Net
         public string StrTime;
     }
 
+    public class PackageCastHead
+    {
+        public int ActionId;
+    }
+
     public class PackageFactory
     {
         private static string _sendStr;
@@ -83,6 +88,21 @@ namespace Easy.FrameUnity.Net
             Buffer.BlockCopy(len, 0, resultBytes, 0, len.Length);
             Buffer.BlockCopy(tempBytes, 0, resultBytes, len.Length, tempBytes.Length);
             return resultBytes;
+        }
+
+        public static bool Unpack(byte[] data, out PackageCastHead head, out string res)
+        {
+            head = null;
+            res = null;
+            int pos = 0;
+
+            head = new PackageCastHead();
+            head.ActionId = GetInt(data, ref pos);
+            byte[] bodyBytes = new byte[data.Length - 4];
+            Buffer.BlockCopy(data, pos, bodyBytes, 0, bodyBytes.Length);
+            res = Encoding.UTF8.GetString(bodyBytes);
+
+            return true;
         }
 
         public static bool Unpack(byte[] data, out PackageResHead head, out string res)

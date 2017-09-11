@@ -146,10 +146,16 @@ namespace Easy.FrameUnity.Net
                         }
                         else
                         {
-                            //@TODO Recieve BroadCast Event
-                            Net.InvokeAsync(()=>{
+                            PackageCastHead headCast;
+                            string strDataCast;
+                            if(PackageFactory.Unpack(data, out headCast, out strDataCast))
+                            {
+                                //@TODO Recieve BroadCast Event
+                                Net.InvokeAsync(() =>
+                                {
                                     DebugBroadCast(data);
-                                    });
+                                });
+                            }
 
                         }
                     }
