@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Easy.FrameUnity.Manager;
+using Easy.FrameUnity.Util;
 
 namespace Easy.FrameUnity.Net
 {
@@ -57,6 +59,18 @@ namespace Easy.FrameUnity.Net
                         action();
                         });
             }
+        }
+
+        public static Dictionary<int, Action<byte[]>> CastDic = new Dictionary<int, Action<byte[]>>()
+        {
+            {2001, (res)=>{CastLogin(res);}}
+        };
+
+        private static void CastLogin(byte[] res)
+        {
+            var obj = ProtoBufUtil.Deserialize<CharacterSyncData>(res);
+            Debug.Log("Cast:" + obj);
+            PlayerManager.Inst.Spawn(obj);            
         }
 
         public static void Login(string username, string password, Action<LoginDataRes> callback)

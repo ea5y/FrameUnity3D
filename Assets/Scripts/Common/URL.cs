@@ -4,7 +4,8 @@ using System.Collections;
 public class URL
 {
     //public static readonly string GAME_SERVER_HOST = "192.168.0.108";
-    public static readonly string GAME_SERVER_HOST = "127.0.0.1";
+    //public static readonly string GAME_SERVER_HOST = "127.0.0.1";
+    public static readonly string GAME_SERVER_HOST = "192.168.1.209";
     public static readonly int GAME_SERVER_PORT = 9001;
 
 	public static readonly string ASSETBUNDLE_HOST_URL = 

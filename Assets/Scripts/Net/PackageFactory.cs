@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using ProtoBuf;
+using Easy.FrameUnity.Util;
 
 namespace Easy.FrameUnity.Net
 {
@@ -28,8 +30,10 @@ namespace Easy.FrameUnity.Net
         public string StrTime;
     }
 
+    [ProtoContractAttribute]
     public class PackageCastHead
     {
+        [ProtoMemberAttribute(1)]
         public int ActionId;
     }
 
@@ -90,17 +94,22 @@ namespace Easy.FrameUnity.Net
             return resultBytes;
         }
 
-        public static bool Unpack(byte[] data, out PackageCastHead head, out string res)
+        public static bool Unpack(byte[] data, out PackageCastHead head, out byte[] res)
         {
             head = null;
             res = null;
             int pos = 0;
 
-            head = new PackageCastHead();
-            head.ActionId = GetInt(data, ref pos);
-            byte[] bodyBytes = new byte[data.Length - 4];
-            Buffer.BlockCopy(data, pos, bodyBytes, 0, bodyBytes.Length);
-            res = Encoding.UTF8.GetString(bodyBytes);
+            int headLen = GetInt(data, ref pos);
+            byte[] headBytes = new byte[headLen];
+            Buffer.BlockCopy(data, pos, headBytes, 0, headLen);
+            head = ProtoBufUtil.Deserialize<PackageCastHead>(headBytes);
+
+            pos = pos + headLen;
+            int bodyLen = GetInt(data, ref pos);
+            byte[] bodyBytes = new byte[bodyLen];
+            Buffer.BlockCopy(data, pos, bodyBytes, 0, bodyLen);
+            res = bodyBytes;
 
             return true;
         }

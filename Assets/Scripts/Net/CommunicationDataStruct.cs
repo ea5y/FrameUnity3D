@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ProtoBuf;
 
 namespace Easy.FrameUnity.Net
 {
@@ -44,8 +45,16 @@ namespace Easy.FrameUnity.Net
         public UserData UserData;
     }
 
-    public class CastLoginData : BaseCastData
+    [ProtoContractAttribute]
+    public class CharacterSyncData
     {
-        
+        [ProtoMemberAttribute(1)]
+        public int UserId;
+        [ProtoMemberAttribute(2)]
+        public double PosX;
+        [ProtoMemberAttribute(3)]
+        public double PosY;
+        [ProtoMemberAttribute(4)]
+        public double PosZ;
     }
 }

@@ -19,6 +19,7 @@ namespace Easy.FrameUnity.Net
 
         public static Dictionary<int, PackageReqHead> SendDic = new Dictionary<int, PackageReqHead>();
 
+
         //1.Check  connection
         private static void CheckConnection()
         {
@@ -147,13 +148,16 @@ namespace Easy.FrameUnity.Net
                         else
                         {
                             PackageCastHead headCast;
-                            string strDataCast;
-                            if(PackageFactory.Unpack(data, out headCast, out strDataCast))
+                            byte[] dataCastBytes;
+                            if(PackageFactory.Unpack(data, out headCast, out dataCastBytes))
                             {
+                                var cast = Net.CastDic[headCast.ActionId];
+
                                 //@TODO Recieve BroadCast Event
                                 Net.InvokeAsync(() =>
                                 {
-                                    DebugBroadCast(data);
+                                    //DebugBroadCast(data);
+                                    cast(dataCastBytes);
                                 });
                             }
 

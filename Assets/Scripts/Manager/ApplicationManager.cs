@@ -12,6 +12,7 @@ namespace Easy.FrameUnity.Manager
     {
         public GameObject Managers;
         public GameObject Cameras;
+        public GameObject Plugins;
 
         private void Awake()
         {
@@ -28,6 +29,7 @@ namespace Easy.FrameUnity.Manager
         {
             DontDestroyOnLoad(Managers);			
             DontDestroyOnLoad(Cameras);
+            DontDestroyOnLoad(Plugins);
         }
 
         private void ApplicationPause()

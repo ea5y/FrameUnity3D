@@ -1,16 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class CharaController : MonoBehaviour {
     public ETCJoystick Joystick;
     public ETCButton BtnAttack;
     public ETCButton BtnSkill_1;
 
     public Camera MainCamera;
-    private PlayerState _state;
+    private CharacterState _state;
 
-    public static PlayerController Inst;
+    public static CharaController Inst;
 
     private void Start ()
     {
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 
     public void GetAnimator()
     {
-        _state = new PlayerState(GetComponentInChildren<Animator>());
+        _state = new CharacterState(GetComponentInChildren<Animator>());
     }
 
     private void OnMoveStart()
@@ -79,11 +79,11 @@ public class PlayerController : MonoBehaviour {
     }
 }
 
-public class PlayerState
+public class CharacterState
 {
     private Animator _animator;
 
-    public PlayerState(Animator animator)
+    public CharacterState(Animator animator)
     {
         _animator = animator;
     }
@@ -141,7 +141,7 @@ public class PlayerState
 
     private void OnMontionCompleted(string montion)
     {
-        PlayerController.Inst.StartCoroutine(_OnMontionCompleted(montion));
+        CharaController.Inst.StartCoroutine(_OnMontionCompleted(montion));
     }
 
     private IEnumerator _OnMontionCompleted(string montion)
