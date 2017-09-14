@@ -17,6 +17,7 @@ public class CharaController : MonoBehaviour {
         Inst = this;
         //_state = new PlayerState(GetComponentInChildren<Animator>());
         this.GetAnimator();
+        this.GetEasyTouch();
 
         Joystick.onMoveStart.AddListener(OnMoveStart);
         Joystick.onMove.AddListener(OnMove);
@@ -29,6 +30,13 @@ public class CharaController : MonoBehaviour {
         BtnAttack.onDown.AddListener(OnClickBtnAttack);
         BtnSkill_1.onDown.AddListener(OnClickBtnSkill_1);
 	}
+
+    public void GetEasyTouch()
+    {
+        this.Joystick = EasyTouchPlugin.Inst.Joystick;
+        this.BtnAttack = EasyTouchPlugin.Inst.BtnAttack;
+        this.BtnSkill_1 = EasyTouchPlugin.Inst.BtnSkill_1;
+    }
 
     public void GetAnimator()
     {

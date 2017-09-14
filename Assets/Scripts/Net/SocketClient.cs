@@ -163,12 +163,24 @@ namespace Easy.FrameUnity.Net
 
                         }
                     }
-                    catch
+                    catch(Exception e)
                     {
+                        Net.InvokeAsync(() => { Debug.LogError(string.Format("Error: {0}", e.Message)); });
                         break;
                     }
                 }
             }
+            Net.InvokeAsync(() => { Debug.Log("Exit Recieve thread!"); });
+        }
+
+        private static void ReceiveTest()
+        {
+            //1.poll select
+            //2.read data
+            //3.data unpack
+            //  req&res:json
+            //  cast:protobuf
+            //
         }
 
         private static void DebugBroadCast(byte[] data)

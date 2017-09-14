@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using Easy.FrameUnity.Manager;
+using Easy.FrameUnity.Net;
 
 public enum ScenesName
 {
@@ -52,7 +54,12 @@ public class ScenesManager : Singleton<ScenesManager>
                 break;
             case ScenesName.E_SceneGame_1:
                 op = SceneManager.LoadSceneAsync("E_SceneGame_1");
-                StartCoroutine(Loading(op, () => { EasyTouchPlugin.Inst.Enable(true); }));
+                StartCoroutine(Loading(op, 
+                            () => 
+                            { 
+                                EasyTouchPlugin.Inst.Enable(true);
+                                Net.SpwanPlayer();
+                            }));
                 break;
             case ScenesName.F_SceneGame_2:
                 break;

@@ -7,6 +7,8 @@
 using UnityEngine;
 using Easy.FrameUnity.Net;
 using Easy.FrameUnity.Login;
+using Easy.FrameUnity.Manager;
+using Easy.FrameUnity.Model;
 
 public class LoginData 
 {
@@ -48,9 +50,12 @@ public class PanelLogin : MonoBehaviour//Singleton<PanelLogin>
                 _loginData.Sid = res.SessionId;
                 IOHelper.SaveToJson<LoginData>(_loginData, URL.RELATIVE_STREAMINGASSETS_URL);
 
+                Player.Inst.UserData = res.UserData;
+
                 SocketClient.CreateHeartbeatTimer();
                 //Enter Game
                 ScenesManager.Inst.EnterScene(ScenesName.E_SceneGame_1);
+                //PlayerManager.Inst.PersonalPlayerSpawn();
                 });
     }
 

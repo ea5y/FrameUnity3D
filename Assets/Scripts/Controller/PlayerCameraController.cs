@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Easy.Unity
+namespace Easy.FrameUnity.Controller
 {
-    public class PlayerCameraController : MonoBehaviour
+    public class PlayerCameraController : Singleton<PlayerCameraController>
     {
         public GameObject Player;
         public ETCTouchPad TouchPad;
@@ -16,8 +16,7 @@ namespace Easy.Unity
 
         private void Awake()
         {
-            _offset = Player.transform.position - transform.position;
-
+            base.GetInstance();
             TouchPad.onMove.AddListener(OnMove);
             TouchPad.onMoveStart.AddListener(OnMoveStart);
             TouchPad.onMoveSpeed.AddListener(OnMoveSpeed);
@@ -35,6 +34,13 @@ namespace Easy.Unity
             TouchPad.OnDownLeft.AddListener(OnDownLeft);
             TouchPad.OnDownRight.AddListener(OnDownRight);
             TouchPad.OnDownUp.AddListener(OnDownUp);
+        }
+
+        public void BindPlayer(GameObject player)
+        {
+            this.Player = player;
+            _offset = this.Player.transform.position - transform.position;
+            this.Player.GetComponent<CharaController>().MainCamera = GetComponent<Camera>();
         }
 
         private void LateUpdate()

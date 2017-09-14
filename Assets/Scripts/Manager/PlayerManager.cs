@@ -7,6 +7,8 @@
 using UnityEngine;
 using Easy.FrameUnity.Net;
 using System.Collections.Generic;
+using Easy.FrameUnity.Controller;
+using Easy.FrameUnity.Model;
 
 namespace Easy.FrameUnity.Manager
 {
@@ -25,6 +27,24 @@ namespace Easy.FrameUnity.Manager
         }
 
         public void Spawn(CharacterSyncData data)
+        {
+            if(data.UserId == Player.Inst.UserData.UserId)
+            {
+                this.SpawnPersonalPlayer(data);
+            }
+            else
+            {
+                this.SpawnSharePlayer(data);
+            }
+        }
+
+        public void SpawnPersonalPlayer(CharacterSyncData data)
+        {
+            var go = Instantiate(this.PersonalPlayer, this.PersonPlayerSpawn.transform);
+            PlayerCameraController.Inst.BindPlayer(go);
+        }
+
+        public void SpawnSharePlayer(CharacterSyncData data)
         {
             var msg = "A player is spawned";
             var go = Instantiate(this.SharePlayer, this.SharePlayerSpawn.transform);

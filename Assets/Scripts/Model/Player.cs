@@ -11,7 +11,18 @@ namespace Easy.FrameUnity.Model
 {
     public class Player
     {
+        public UserData UserData;
 
+        private static Player _inst;
+        public static Player Inst
+        {
+            get
+            {
+                if(_inst == null)
+                    _inst = new Player();
+                return _inst;
+            }
+        }
     }
 
     public class PersonalPlayer : Player

@@ -11,6 +11,7 @@ namespace Easy.FrameUnity.Net
     public static class ActionID
     {
         public static readonly int Login = 1002;
+        public static readonly int SpwanPlayer = 1003;
     }
 
     public class Net : MonoBehaviour
@@ -77,6 +78,12 @@ namespace Easy.FrameUnity.Net
         {
             var data = new RegisterData() { Username = username, Password = password };
             var bytes = PackageFactory.Pack(ActionID.Login, data, callback);
+            SocketClient.Send(bytes);
+        }
+
+        public static void SpwanPlayer()
+        {
+            var bytes = PackageFactory.Pack(ActionID.SpwanPlayer);
             SocketClient.Send(bytes);
         }
     }

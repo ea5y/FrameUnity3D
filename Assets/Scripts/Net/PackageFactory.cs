@@ -62,11 +62,22 @@ namespace Easy.FrameUnity.Net
                     var obj = JsonMapper.ToObject<T>(res);
                     Net.InvokeAsync(()=>{ callback(obj); });
                 } };
+
             SocketClient.SendDic.Add(head.MsgId, head);
             WriteHead(head);
             WriteData(data);
 
             Debug.Log(string.Format("Send: {0}", _sendStr));
+            var bytes = WriteBytesLength();
+            _sendStr = "";
+            return bytes;
+        }
+
+        public static byte[] Pack(int actionId)
+        {
+            var head = new PackageReqHead() { ActionId = actionId, MsgId = ++MsgCounter };
+            WriteHead(head);
+
             var bytes = WriteBytesLength();
             _sendStr = "";
             return bytes;
@@ -133,16 +144,18 @@ namespace Easy.FrameUnity.Net
             head.Description = GetString(data, ref pos);
             head.ActionId = GetInt(data, ref pos);
             head.StrTime = GetString(data, ref pos);
-            //int bodyLen = data.Length - pos;
+
+            if(data.Length <= pos)
+            {
+                return true;
+            }
+
             int bodyLen = GetInt(data, ref pos);
             if (bodyLen > 0)
             {
                 bodyBytes = new byte[bodyLen];
                 Buffer.BlockCopy(data, pos, bodyBytes, 0, bodyLen);
-                string str = Encoding.UTF8.GetString(bodyBytes);
-                //Debug.Log(string.Format("Res: {0}", str));
-                //res = JsonMapper.ToObject<BaseResData>(str);
-                res = str;
+                res = Encoding.UTF8.GetString(bodyBytes);
             }
             else
             {
