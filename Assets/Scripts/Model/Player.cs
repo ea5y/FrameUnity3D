@@ -30,7 +30,7 @@ namespace Easy.FrameUnity.Model
         private UserData UserData;
     }
 
-    public class SharePlayer : Player
+    public class SharePlayer
     {
         private CharacterSyncData UserData;
     }

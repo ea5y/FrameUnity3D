@@ -12,6 +12,15 @@ namespace Easy.FrameUnity.Net
     {
         public static readonly int Login = 1002;
         public static readonly int SpwanPlayer = 1003;
+
+    }
+
+    public class CastID
+    {
+        public const int SpwanPlayer = 1000;
+        public const int RecyclePlayer = 1001;
+        public const int SyncPlayerPosition = 1002;
+        public const int SyncPlayrState = 1003;
     }
 
     public class Net : MonoBehaviour
@@ -64,14 +73,21 @@ namespace Easy.FrameUnity.Net
 
         public static Dictionary<int, Action<byte[]>> CastDic = new Dictionary<int, Action<byte[]>>()
         {
-            {2001, (res)=>{CastLogin(res);}}
+            {CastID.SpwanPlayer, (res)=>{CastLogin(res);}},
+            {CastID.RecyclePlayer, (res)=>{CastRecyclePlayer(res);}}
         };
 
         private static void CastLogin(byte[] res)
         {
-            var obj = ProtoBufUtil.Deserialize<CharacterSyncData>(res);
+            var obj = ProtoBufUtil.Deserialize<CharacterSyncDataSet>(res);
             Debug.Log("Cast:" + obj);
             PlayerManager.Inst.Spawn(obj);            
+        }
+
+        private static void CastRecyclePlayer(byte[] res)
+        {
+            var obj = ProtoBufUtil.Deserialize<CharacterSyncData>(res);
+            PlayerManager.Inst.RecyclePlayer(obj);
         }
 
         public static void Login(string username, string password, Action<LoginDataRes> callback)

@@ -151,7 +151,7 @@ namespace Easy.FrameUnity.Net
                             byte[] dataCastBytes;
                             if(PackageFactory.Unpack(data, out headCast, out dataCastBytes))
                             {
-                                var cast = Net.CastDic[headCast.ActionId];
+                                var cast = Net.CastDic[headCast.CastId];
 
                                 //@TODO Recieve BroadCast Event
                                 Net.InvokeAsync(() =>

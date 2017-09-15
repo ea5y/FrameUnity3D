@@ -34,7 +34,7 @@ namespace Easy.FrameUnity.Net
     public class PackageCastHead
     {
         [ProtoMemberAttribute(1)]
-        public int ActionId;
+        public int CastId;
     }
 
     public class PackageFactory

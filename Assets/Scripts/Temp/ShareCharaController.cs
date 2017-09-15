@@ -7,10 +7,12 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Easy.FrameUnity.Net;
 namespace Easy.FrameUnity.Controller
 {
     public class ShareCharaController : Singleton<ShareCharaController>
     {
+        public CharacterSyncData UserData;
         private CharacterState _state;
 
         private void Awake()

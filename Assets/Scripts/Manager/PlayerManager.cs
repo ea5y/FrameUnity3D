@@ -20,37 +20,82 @@ namespace Easy.FrameUnity.Manager
         public GameObject SharePlayer;
 
         public List<GameObject> PlayerList = new List<GameObject>();
+        private Dictionary<int, GameObject> _playerDic = new Dictionary<int, GameObject>();
 
         private void Awake()
         {
             base.GetInstance();
         }
 
-        public void Spawn(CharacterSyncData data)
+        public void Spawn(CharacterSyncDataSet dataSet)
         {
-            if(data.UserId == Player.Inst.UserData.UserId)
+            var msg = string.Format("CharaSynData count: {0}", dataSet.CharaSyncDataList.Count);
+            Debug.Log(msg);
+            foreach(var charaData in dataSet.CharaSyncDataList)
             {
-                this.SpawnPersonalPlayer(data);
-            }
-            else
-            {
-                this.SpawnSharePlayer(data);
+                GameObject player;
+                if(!_playerDic.TryGetValue(charaData.UserId, out player))
+                {
+                    if(charaData.UserId == Player.Inst.UserData.UserId)
+                    {
+                        player = this.SpawnPersonalPlayer(charaData);
+                    }
+                    else
+                    {
+                        player = this.SpawnSharePlayer(charaData);
+                    }
+                    this.PlayerList.Add(player);
+                    this._playerDic.Add(charaData.UserId, player);
+                    
+                    msg = string.Format("Add Player UserId:{0}", charaData.UserId);
+                    Debug.Log(msg);
+                }
             }
         }
 
-        public void SpawnPersonalPlayer(CharacterSyncData data)
+        public GameObject SpawnPersonalPlayer(CharacterSyncData data)
         {
             var go = Instantiate(this.PersonalPlayer, this.PersonPlayerSpawn.transform);
             PlayerCameraController.Inst.BindPlayer(go);
+            return go;
         }
 
-        public void SpawnSharePlayer(CharacterSyncData data)
+        public GameObject SpawnSharePlayer(CharacterSyncData data)
         {
             var msg = "A player is spawned";
             var go = Instantiate(this.SharePlayer, this.SharePlayerSpawn.transform);
-            this.PlayerList.Add(go);
+            go.GetComponent<ShareCharaController>().UserData = data;
 
             Debug.Log(msg);
+            return go;
+        }
+
+        public void RecyclePlayer(CharacterSyncData data)
+        {
+            GameObject player;
+            if(_playerDic.TryGetValue(data.UserId, out player))
+            {
+                int counter = -1;
+                ShareCharaController contr;
+                while(true)
+                {
+                    counter++;
+                    contr = this.PlayerList[counter].GetComponent<ShareCharaController>();
+                    if (contr == null)
+                        continue;
+
+                    if(contr.UserData.UserId == data.UserId)
+                    {
+                        this.PlayerList.RemoveAt(counter);
+                        break;
+                    }
+                }
+
+                _playerDic.Remove(data.UserId);
+
+                player.transform.parent = null;
+                Destroy(player);
+            }
         }
     }
 }

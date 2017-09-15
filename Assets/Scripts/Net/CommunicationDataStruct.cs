@@ -57,4 +57,11 @@ namespace Easy.FrameUnity.Net
         [ProtoMemberAttribute(4)]
         public double PosZ;
     }
+
+    [ProtoContractAttribute]
+    public class CharacterSyncDataSet
+    {
+        [ProtoMemberAttribute(1)]
+        public List<CharacterSyncData> CharaSyncDataList;
+    }
 }
