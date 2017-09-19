@@ -97,6 +97,35 @@ namespace Easy.FrameUnity.Manager
                 Destroy(player);
             }
         }
+
+        public void SyncPlayerPosition(SyncPositionDataSet dataSet)
+        {
+            foreach(var data in dataSet.SyncPositionDataList)
+            {
+                GameObject player;
+                if(this._playerDic.TryGetValue(data.UserId, out player))
+                {
+                    var contro = player.GetComponent<ShareCharaController>();
+                    if(contro != null)
+                        //contro.Trans(data.PosX, data.PosY, data.PosZ);
+                        contro.Trans(data);
+                }
+            }
+        }
+
+        public void SyncPlayrState(SyncStateDataSet dataSet)
+        {
+            foreach(var data in dataSet.SyncStateDataList)
+            {
+                GameObject player;
+                if(this._playerDic.TryGetValue(data.UserId, out player))
+                {
+                    var contro = player.GetComponent<ShareCharaController>();
+                    if(contro != null)
+                        contro.SetState(data);
+                }
+            }
+        }
     }
 }
 

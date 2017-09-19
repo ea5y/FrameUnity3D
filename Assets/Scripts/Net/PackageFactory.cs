@@ -42,6 +42,7 @@ namespace Easy.FrameUnity.Net
         private static string _sendStr;
         private static int MsgCounter = 0;
 
+        /*
         public static byte[] Pack(int actionId, BaseReqData data)
         {
             var head = new PackageReqHead() { ActionId = actionId, MsgId = ++MsgCounter };
@@ -53,6 +54,7 @@ namespace Easy.FrameUnity.Net
             _sendStr = "";
             return bytes;
         }
+        */
 
         public static byte[] Pack<T>(int actionId, BaseReqData data, Action<T> callback) where T : BaseResData
         {
@@ -73,11 +75,14 @@ namespace Easy.FrameUnity.Net
             return bytes;
         }
 
-        public static byte[] Pack(int actionId)
+        public static byte[] Pack(int actionId, BaseReqData data = null)
         {
             var head = new PackageReqHead() { ActionId = actionId, MsgId = ++MsgCounter };
             WriteHead(head);
+            if(data != null)
+                WriteData(data);
 
+            Debug.Log(string.Format("Send: {0}", _sendStr));
             var bytes = WriteBytesLength();
             _sendStr = "";
             return bytes;

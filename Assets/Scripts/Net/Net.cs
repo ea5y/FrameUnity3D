@@ -12,7 +12,8 @@ namespace Easy.FrameUnity.Net
     {
         public static readonly int Login = 1002;
         public static readonly int SpwanPlayer = 1003;
-
+        public static readonly int SyncPlayerPosition = 1004;
+        public static readonly int SyncPlayerState = 1005;
     }
 
     public class CastID
@@ -74,7 +75,9 @@ namespace Easy.FrameUnity.Net
         public static Dictionary<int, Action<byte[]>> CastDic = new Dictionary<int, Action<byte[]>>()
         {
             {CastID.SpwanPlayer, (res)=>{CastLogin(res);}},
-            {CastID.RecyclePlayer, (res)=>{CastRecyclePlayer(res);}}
+            {CastID.RecyclePlayer, (res)=>{CastRecyclePlayer(res);}},
+            {CastID.SyncPlayerPosition, (res)=>{CastSyncPlayerPosition(res);}},
+            {CastID.SyncPlayrState, (res)=>{CastSyncPlayerState(res);}}
         };
 
         private static void CastLogin(byte[] res)
@@ -90,6 +93,19 @@ namespace Easy.FrameUnity.Net
             PlayerManager.Inst.RecyclePlayer(obj);
         }
 
+        private static void CastSyncPlayerPosition(byte[] res)
+        {
+            var obj = ProtoBufUtil.Deserialize<SyncPositionDataSet>(res);
+            //Debug.Log("Cast:" + obj);
+            PlayerManager.Inst.SyncPlayerPosition(obj);
+        }
+
+        private static void CastSyncPlayerState(byte[] res)
+        {
+            var obj = ProtoBufUtil.Deserialize<SyncStateDataSet>(res);
+            PlayerManager.Inst.SyncPlayrState(obj);
+        }
+
         public static void Login(string username, string password, Action<LoginDataRes> callback)
         {
             var data = new RegisterData() { Username = username, Password = password };
@@ -100,6 +116,21 @@ namespace Easy.FrameUnity.Net
         public static void SpwanPlayer()
         {
             var bytes = PackageFactory.Pack(ActionID.SpwanPlayer);
+            SocketClient.Send(bytes);
+        }
+
+        public static void SyncPlayerPosition(double x, double y, double z, double dirX, double dirZ)
+        {
+            var data = new PositionData(){PosX = x, PosY = y, PosZ = z, DirX = dirX, DirZ = dirZ};
+            var bytes = PackageFactory.Pack(ActionID.SyncPlayerPosition, data);
+            SocketClient.Send(bytes);
+        }
+
+        public static void SyncPlayerState(string state)
+        {
+            var str = state.ToLower();
+            var data = new StateData(){State = str};
+            var bytes = PackageFactory.Pack(ActionID.SyncPlayerState, data);
             SocketClient.Send(bytes);
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Easy.FrameUnity.Net;
 
 public class CharaController : MonoBehaviour {
     public ETCJoystick Joystick;
@@ -11,6 +12,10 @@ public class CharaController : MonoBehaviour {
     private CharacterState _state;
 
     public static CharaController Inst;
+
+    private double _offsetX;
+    private double _offsetY = 0;
+    private double _offsetZ;
 
     private void Start ()
     {
@@ -31,6 +36,15 @@ public class CharaController : MonoBehaviour {
         BtnSkill_1.onDown.AddListener(OnClickBtnSkill_1);
 	}
 
+    public void Update()
+    {
+        //Net.SyncPlayerPosition(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+        //Net.SyncPlayerPosition(_offsetX, _offsetY, _offsetZ);
+        if(_offsetX == 0 && _offsetZ == 0)
+            return;
+        Net.SyncPlayerPosition(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z, _offsetX, _offsetZ);
+    }
+
     public void GetEasyTouch()
     {
         this.Joystick = EasyTouchPlugin.Inst.Joystick;
@@ -49,12 +63,17 @@ public class CharaController : MonoBehaviour {
             return;
         Debug.Log("MoveStart");
         _state.Move(0);
+        Net.SyncPlayerState("move");
     }
 
     private void OnMove(Vector2 v)
     {
         Vector4 offset = new Vector4(v.x, 0, v.y, 1);
-        transform.LookAt(MainCamera.transform.TransformVector(offset) + transform.position);
+        var dir = MainCamera.transform.TransformVector(offset);
+        _offsetX = dir.x;
+        _offsetZ = dir.z;
+
+        transform.LookAt(dir + transform.position);
         transform.Translate(transform.forward * Time.deltaTime * 0.05f, Space.World);
     }
 
@@ -63,7 +82,10 @@ public class CharaController : MonoBehaviour {
         if (_state == null)
             return;
         Debug.Log("MoveEnd");
+        _offsetX = 0;
+        _offsetZ = 0;
         _state.Stand();
+        Net.SyncPlayerState("stand");
     }
 
     private void OnTouchStart()
@@ -79,11 +101,13 @@ public class CharaController : MonoBehaviour {
     private void OnClickBtnAttack()
     {
         _state.Attack();
+        Net.SyncPlayerState("attack");
     }
 
     private void OnClickBtnSkill_1()
     {
         _state.Skill_1();
+        Net.SyncPlayerState("skill_1");
     }
 }
 
