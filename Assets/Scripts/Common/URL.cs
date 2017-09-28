@@ -14,7 +14,8 @@ public class URL
 #elif UNITY_IPHONE
         "http://127.0.0.1/resource/IOS/";
 #else
-        "http://127.0.0.1/resource/Win/";
+        //"http://127.0.0.1/resource/Win/";
+        "http://120.26.119.202/luwanzhong/resource/Win/";
 #endif
 
     //Maybe can use Application.streamingAssetsPath + "/";

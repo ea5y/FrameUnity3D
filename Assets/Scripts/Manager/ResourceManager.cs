@@ -6,6 +6,7 @@ using System.Net;
 using System.IO;
 using LitJson;
 using System.ComponentModel;
+using System.Security.Cryptography;
 
 public class BundleFile
 {
@@ -30,6 +31,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
     private void Awake()
     {
+        base.GetInstance();
     }
 
 	private void Update()
@@ -47,25 +49,40 @@ public class ResourceManager : Singleton<ResourceManager>
 
 	public void UpdateResource(UILoadingProgress ui)
 	{
+        StartCoroutine(_UpdateResource(ui));
+	}
+
+    private bool _isLoadingCompleted = false;
+    private IEnumerator _UpdateResource(UILoadingProgress ui)
+    {
 		this.ui = ui;
 		var url = URL.ASSETBUNDLE_HOST_URL + "BundleFileList.json";
 		var bundleFileListHost = this.LoadBundleFileList(url);
-        var bundleFileListLocal = IOHelper.ReadFromJson<BundleFileList>(URL.ASSETBUNDLE_LOCAL_URL);
-		
-		var result = this.CheckAndFilterBundleFile(bundleFileListHost, bundleFileListLocal);
+        var result = this.CheckAndFilterBundleFile(bundleFileListHost, URL.RELATIVE_STREAMINGASSETS_URL);
 		if(result)
 		{
 			//load
-			IOHelper.SaveToJson<BundleFileList>(bundleFileListHost, URL.ASSETBUNDLE_LOCAL_URL);
-			//this.Load();
+            ui.SetUI(LoadingType.Resource);
 			this.CreateWebClient();
 		}
-		else
-		{
-			//to next scene
-			this.OnLoadingCompleted();
-		}
-	}
+        else
+        {
+            _isLoadingCompleted = true;
+        }
+
+        while (!_isLoadingCompleted)
+            yield return null;
+
+        this.OnLoadingCompleted();
+    }
+
+    public bool IsUpdate()
+    {
+		var url = URL.ASSETBUNDLE_HOST_URL + "BundleFileList.json";
+		var bundleFileListHost = this.LoadBundleFileList(url);
+        var result = this.CheckAndFilterBundleFile(bundleFileListHost, URL.RELATIVE_STREAMINGASSETS_URL);
+        return result;
+    }
 
     public BundleFileList LoadBundleFileList(string url)
 	{
@@ -92,6 +109,7 @@ public class ResourceManager : Singleton<ResourceManager>
 		Debug.Log("===>CheckAndFilterBundleFile:");
         foreach(var fileHost in bundleFileListHost.bundleFileList)
         {
+
             var counter = 0;
             foreach(var fileLocal in bundleFileListLocal.bundleFileList)
             {
@@ -118,14 +136,59 @@ public class ResourceManager : Singleton<ResourceManager>
 		return this.willLoadedList.Count > 0;
 	}
 
+    public bool CheckAndFilterBundleFile(BundleFileList bundleFileListHost, string projBundlePath)
+    {
+		Debug.Log("===>CheckAndFilterBundleFile:");
+        var folder = new DirectoryInfo(projBundlePath);
+        FileSystemInfo[] fileInfos = folder.GetFileSystemInfos();
+
+        foreach(var fileHost in bundleFileListHost.bundleFileList)
+        {
+            if (fileHost.name == "BundleFileList.json")
+                continue;
+            var counter = 0;
+            foreach(var fileInfo in fileInfos)
+            {
+                if(fileHost.name == fileInfo.Name)
+                {
+                    Debug.Log("Local bundle name: " + fileInfo.Name);
+                    //check md5
+                    var md5 = new MD5CryptoServiceProvider();
+                    var localFile = new FileStream(fileInfo.FullName, FileMode.Open);
+                    var localFileMd5 = BitConverter.ToString(md5.ComputeHash(localFile));
+                    Debug.Log(string.Format("HostMd5: {0}\nLocalMd5: {1}", fileHost.md5, localFileMd5));
+                    if(fileHost.md5 != localFileMd5)
+                    {
+                        this.willLoadedList.Add(fileHost.name);
+                    }
+                }
+                else
+                {
+                    counter += 1;
+                }
+            }
+
+            if(counter >= fileInfos.Length)
+            {
+                Debug.Log("Counter Max");
+                this.willLoadedList.Add(fileHost.name);
+            }
+        }
+
+		return this.willLoadedList.Count > 0;
+    }
+
 	private void OnLoadingCompleted()
 	{
 		Debug.Log("Load completed.");
+        //ScenesManager.Inst.EnterScene(SceneName.F_SceneGame_2);
+        ScenesManager.Inst.EnterLoadingScene(SceneName.F_SceneGame_2);
 	}
 
     private void CreateWebClient()
     {
 		this.fileTotal = this.willLoadedList.Count;
+        this.InitUI();
         foreach(var fileName in this.willLoadedList)
         {
             WebClient wc = new WebClient();
@@ -134,8 +197,17 @@ public class ResourceManager : Singleton<ResourceManager>
             wc.DownloadFileCompleted += new AsyncCompletedEventHandler(this.OnDownloadFileCompleted);
 
 			Debug.Log("fileName:" + fileName);
-            wc.DownloadFileAsync(new Uri(URL.ASSETBUNDLE_HOST_URL + fileName), URL.ASSETBUNDLE_LOCAL_URL + fileName);
+            wc.DownloadFileAsync(new Uri(URL.ASSETBUNDLE_HOST_URL + fileName), URL.RELATIVE_STREAMINGASSETS_URL+ fileName);
         }
+    }
+
+    private void InitUI()
+    {
+        this.ui.view.progressForLoadResource.totalSdProgress.value = 0;
+        this.ui.view.progressForLoadResource.totalLblProgress.text = string.Format("Completed:{0}% {1}/{2}(File count)"
+                , 0
+                , 0
+                , this.fileTotal);
     }
 
     private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -153,7 +225,7 @@ public class ResourceManager : Singleton<ResourceManager>
                 , e.TotalBytesToReceive);
 		};
 
-		this.InvokeAsync(oc);
+        this.InvokeAsync(oc);
     }
 
     private void OnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
@@ -169,9 +241,12 @@ public class ResourceManager : Singleton<ResourceManager>
 					, percent * 100
 					, this.fileCounter
 					, this.fileTotal);
+
+            if (percent >= 1)
+                _isLoadingCompleted = true;
 		};
 
-		this.InvokeAsync(oc);
+        this.InvokeAsync(oc);
 		
         if(sender is WebClient)
         {

@@ -53,8 +53,9 @@ public class PanelLogin : MonoBehaviour//Singleton<PanelLogin>
                 Player.Inst.UserData = res.UserData;
 
                 SocketClient.CreateHeartbeatTimer();
-                //Enter Game
-                ScenesManager.Inst.EnterScene(ScenesName.E_SceneGame_1);
+            //Enter Game
+            //ScenesManager.Inst.EnterScene(SceneName.E_SceneGame_1);
+            ScenesManager.Inst.EnterLoadingScene(SceneName.E_SceneGame_1);
                 //PlayerManager.Inst.PersonalPlayerSpawn();
                 });
     }

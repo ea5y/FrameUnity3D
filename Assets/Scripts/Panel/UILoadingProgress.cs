@@ -6,6 +6,9 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using System;
+using Easy.FrameUnity.Net;
 
 public enum LoadingType
 {
@@ -15,6 +18,7 @@ public enum LoadingType
 
 public static class LoadingSceneData
 {
+    public static SceneName NextScene;
 	public static string nextScene;
 	public static LoadingType type;
 }
@@ -30,6 +34,7 @@ public class LoadingProgressView
 	[System.SerializableAttribute]
 	public class ProgressForLoadScene
 	{
+        public GameObject Root;
 		public UISlider prgBar;
 		public UILabel lblProcess;
 	}
@@ -37,6 +42,7 @@ public class LoadingProgressView
 	[System.SerializableAttribute]
 	public class ProgressForLoadResource
 	{
+        public GameObject Root;
 		public UISlider singleSdProgress;
 		public UILabel singleLblProgress;
 		public UISlider totalSdProgress;
@@ -54,50 +60,35 @@ public class UILoadingProgress : Singleton<UILoadingProgress>
 		Debug.Log("===>Enter LoadingScene");
 		if(LoadingSceneData.type == LoadingType.Resource)
 		{
-			///StartCoroutine(this.LoadResource());
 			this.LoadResource();
 		}
 		else
 		{
-			//StartCoroutine(this.LoadScene());
+            this.LoadScene();
 		}
 	}
+
+    public void SetUI(LoadingType type)
+    {
+        this.view.progressForLoadResource.singleSdProgress.gameObject.SetActive(type == LoadingType.Resource);
+        this.view.progressForLoadResource.totalSdProgress.gameObject.SetActive(true);
+    }
 
 	public void Loading(float amount)
 	{
-		/*
-		Debug.Log("Progress: " + amount);
-		this.prgBar.value = amount;
-		this.lblProcess.text = amount * 100 + "%";
-		*/
-	}
-
-	private IEnumerator LoadScene()
-	{
-		var operation =	Application.LoadLevelAsync(LoadingSceneData.nextScene);
-
-		while(!operation.isDone)	
-		{
-			yield return null;
-			this.Loading(operation.progress);
-		}
+		this.view.progressForLoadResource.totalSdProgress.value = amount;
+        var percent = (float)amount * 100 + "%";
+        this.view.progressForLoadResource.totalLblProgress.text = percent; 
+		Debug.Log("Progress: " + percent);
 	}
 
 	private void LoadResource()
 	{
-		/*
-		using(WWW www = WWW.LoadFromCacheOrDownload(URL.ASSETBUNDLE_HOST_URL + "Android", 0))
-		{
-			if(!www.isDone)
-			{
-				this.Loading(www.progress);
-				yield return null;
-			}
-			Debug.Log("Loading done");
-		}
-		*/
-
 		ResourceManager.Inst.UpdateResource(this);
-		
 	}
+
+    private void LoadScene()
+    {
+        ScenesManager.Inst.EnterScene(LoadingSceneData.NextScene, this);
+    }
 }

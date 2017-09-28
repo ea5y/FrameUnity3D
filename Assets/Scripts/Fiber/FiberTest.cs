@@ -46,10 +46,11 @@ public class FiberTest : MonoBehaviour
         }
 		if(GUI.Button(new Rect(410, 10, 100, 40), ""))
 		{
-		//ScenesManager.Instance.LoadingScene("TestScene");
-		//ScenesManager.Instance.LoadingResource("");
-//            Debug.Log("CachPath: " + Application.temporaryCachePath);
-			ScenesManager.Inst.ToLoadingScene("test", LoadingType.Resource);
+            //ScenesManager.Instance.LoadingScene("TestScene");
+            //ScenesManager.Instance.LoadingResource("");
+            //            Debug.Log("CachPath: " + Application.temporaryCachePath);
+            //ScenesManager.Inst.ToLoadingScene("test", LoadingType.Resource);
+            ScenesManager.Inst.EnterLoadingScene(SceneName.B_SceneLoading, LoadingType.Resource);
 		}
 
         if(GUI.Button(new Rect(230, 110, 180, 60), "Destroy 1000"))

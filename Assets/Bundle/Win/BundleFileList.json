@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"bundleFileList":[{"name":"atlas","md5":"5D-52-4B-40-98-2F-36-0B-4A-9A-61-3C-36-23-73-43"},{"name":"prefab","md5":"25-CD-FD-E9-75-00-BC-D1-38-92-66-9B-5A-FF-67-8C"},{"name":"Win","md5":"3C-0C-F6-F4-43-E9-B1-30-0C-FA-A2-ED-55-E7-22-B7"}]}
-=======
-{"bundleFileList":[{"name":"Atlas","md5":"C3-37-38-D7-2A-FD-5C-1B-42-A6-0C-BE-33-5E-EC-CD"},{"name":"BundleFileList.json","md5":"73-33-E6-30-41-96-C9-8D-B1-24-98-71-61-2E-DD-83"},{"name":"Prefab","md5":"58-D0-9D-E1-89-F1-62-68-B0-F5-90-48-ED-03-E7-ED"},{"name":"Win","md5":"D2-7A-55-0C-73-0A-01-F3-F8-7C-F0-F4-3B-22-A4-14"}]}
->>>>>>> ad6bd3742714ba7c3b9acf547a5533ffb2f8e383
+{"bundleFileList":[{"name":"atlas","md5":"4B-68-96-B8-F0-C6-AA-56-7F-1A-8C-58-C8-74-EF-6F"},{"name":"BundleFileList.json","md5":"E6-66-50-4E-59-BE-C8-36-18-3C-5B-42-6B-14-8B-03"},{"name":"prefab","md5":"45-57-73-78-38-A4-15-17-7B-B0-F1-9C-63-8C-24-50"},{"name":"Win","md5":"CE-93-7A-F5-74-0E-D4-64-19-D0-AA-B9-5B-03-18-CA"}]}

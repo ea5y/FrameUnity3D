@@ -6,7 +6,7 @@ using System;
 using Easy.FrameUnity.Manager;
 using Easy.FrameUnity.Net;
 
-public enum ScenesName
+public enum SceneName
 {
     A_SceneEnter,
     B_SceneLoading,
@@ -23,55 +23,54 @@ public class ScenesManager : Singleton<ScenesManager>
         base.GetInstance();
     }
 
-    public void LoadingScene(string sceneName)
-	{
-		LoadingSceneData.nextScene = sceneName;
-		LoadingSceneData.type = LoadingType.Scene;
-		Application.LoadLevel("B_SceneLoading");
-		Debug.Log("Test");
-	}
-
-	public void ToLoadingScene(string nextScene, LoadingType type)
-	{
-		LoadingSceneData.nextScene = nextScene;
-		LoadingSceneData.type = type;
-		Application.LoadLevel("B_SceneLoading");
-	}
-
-    public void EnterScene(ScenesName name)
+    public void EnterLoadingScene(SceneName nextScene, LoadingType type = LoadingType.Scene)
     {
-        AsyncOperation op;
-        switch(name)
-        {
-            case ScenesName.A_SceneEnter:
-                break;
-            case ScenesName.B_SceneLoading:
-                break;
-            case ScenesName.C_SceneLogin:
-                op = SceneManager.LoadSceneAsync("C_SceneLogin");
-                break;
-            case ScenesName.D_SceneGameInit:
-                break;
-            case ScenesName.E_SceneGame_1:
-                op = SceneManager.LoadSceneAsync("E_SceneGame_1");
-                StartCoroutine(Loading(op, 
-                            () => 
-                            { 
-                                EasyTouchPlugin.Inst.Enable(true);
-                                Net.SpwanPlayer();
-                            }));
-                break;
-            case ScenesName.F_SceneGame_2:
-                break;
-        }
+        LoadingSceneData.NextScene = nextScene;
+        LoadingSceneData.type = type;
+        SceneManager.LoadSceneAsync("B_SceneLoading");
     }
 
-    private IEnumerator Loading(AsyncOperation op, Action action)
+    public void EnterScene(SceneName name, UILoadingProgress ui)
     {
-        while(!op.isDone)
+        ui.SetUI(LoadingType.Scene);
+        AsyncOperation op = null;
+        Action callback = () => { };
+        switch(name)
+        {
+            case SceneName.A_SceneEnter:
+                break;
+            case SceneName.B_SceneLoading:
+                op = SceneManager.LoadSceneAsync("B_SceneLoading");
+                break;
+            case SceneName.C_SceneLogin:
+                op = SceneManager.LoadSceneAsync("C_SceneLogin");
+                break;
+            case SceneName.D_SceneGameInit:
+                break;
+            case SceneName.E_SceneGame_1:
+                op = SceneManager.LoadSceneAsync("E_SceneGame_1");
+                callback = () => {
+                    EasyTouchPlugin.Inst.Enable(true);
+                    Net.SpwanPlayer();
+                };
+                break;
+            case SceneName.F_SceneGame_2:
+                op = SceneManager.LoadSceneAsync("F_SceneGame_2");
+                break;
+        }
+        StartCoroutine(Loading(op, callback, ui));
+    }
+
+    private IEnumerator Loading(AsyncOperation op, Action callback, UILoadingProgress ui)
+    {
+        //op.allowSceneActivation = false;
+        while (op.progress < 0.8)
         {
             yield return null;
+            ui.Loading(op.progress);
         }
-        action.Invoke();
+        ui.Loading(1);
+        //op.allowSceneActivation = true;
+        callback.Invoke();
     }
 }

@@ -1,10 +1,10 @@
 ManifestFileVersion: 0
-CRC: 3331145696
+CRC: 3679392683
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: Atlas
+      Name: atlas
       Dependencies: {}
     Info_1:
-      Name: Prefab
+      Name: prefab
       Dependencies: {}
