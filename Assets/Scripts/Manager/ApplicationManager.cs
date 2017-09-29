@@ -22,7 +22,7 @@ namespace Easy.FrameUnity.Manager
 
         private void Start()
         {
-            ScenesManager.Inst.EnterLoadingScene(SceneName.C_SceneLogin);
+            ScenesManager.Inst.EnterLoadingScene(SceneName.B_SceneLoading, LoadingType.Resource);
         }
 
         private void ApplicationEnter()

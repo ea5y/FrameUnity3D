@@ -181,8 +181,8 @@ public class ResourceManager : Singleton<ResourceManager>
 	private void OnLoadingCompleted()
 	{
 		Debug.Log("Load completed.");
-        //ScenesManager.Inst.EnterScene(SceneName.F_SceneGame_2);
         ScenesManager.Inst.EnterLoadingScene(SceneName.F_SceneGame_2);
+        //ScenesManager.Inst.EnterLoadingScene(SceneName.C_SceneLogin);
 	}
 
     private void CreateWebClient()
