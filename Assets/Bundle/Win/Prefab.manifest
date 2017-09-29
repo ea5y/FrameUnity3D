@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4089416909
+CRC: 4187782664
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3f5b46cc55860d09c86af10cee9d3f78
+    Hash: c7b3e2de54b6f6554ba6018dc47f65ce
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 07909080f476ae96bb9ccdbb6891692a
+    Hash: 7049aa60a4a69f0c3cbca407bba2dd3d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -27,6 +27,20 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0b4eb3a400afab046abb8471a9d746d6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d4a4401d241ae7d499f320a37e373b3c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
 Assets:
 - Assets/ResForBundle/Prefab/Cube (5) 3.prefab
 - Assets/ResForBundle/Prefab/Cube (5) 1.prefab
@@ -37,5 +51,6 @@ Assets:
 - Assets/ResForBundle/Prefab/Cube (5).prefab
 - Assets/ResForBundle/Prefab/Cube (1).prefab
 - Assets/ResForBundle/Prefab/Cube (3).prefab
+- Assets/ResForBundle/Prefab/Panel/PanelMain.prefab
 - Assets/ResForBundle/Prefab/Cube (5) 4.prefab
 Dependencies: []

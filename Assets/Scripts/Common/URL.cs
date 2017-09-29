@@ -53,6 +53,7 @@ public class URL
         Application.persistentDataPath + "/";
 #elif UNITY_ANDROID && UNITY_EDITOR || UNITY_STANDALONE_WIN && UNITY_EDITOR
         "Assets/StreamingAssets/";
+        //Application.persistentDataPath + "/";
 #elif UNITY_IPHONE && !UNITY_EDITOR
         "file://" + Application.dataPath + "/Raw/";
 #elif UNITY_IPHONE && UNITY_EDITOR || UNITY_STANDALONE_OSX
@@ -65,4 +66,6 @@ public class URL
 	public static readonly string ASSETBUNDLE_OUTPUT_URL = "Assets/Bundle/";
 
 	public static readonly string BUNDLE_FILES_URL = "";
+
+    public static readonly string HOTFIX_URL = RELATIVE_STREAMINGASSETS_URL + "Hotfix.lua";
 }

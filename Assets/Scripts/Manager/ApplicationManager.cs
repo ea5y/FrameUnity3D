@@ -5,6 +5,9 @@
 //================================
 
 using UnityEngine;
+using System;
+using System.IO;
+using XLua;
 
 namespace Easy.FrameUnity.Manager
 {
@@ -17,6 +20,7 @@ namespace Easy.FrameUnity.Manager
         private void Awake()
         {
             base.GetInstance();
+            this.EnableHotFix();
             this.ApplicationEnter();
         }
 
@@ -38,6 +42,15 @@ namespace Easy.FrameUnity.Manager
 
         private void ApplicationQuit()
         {
+        }
+
+        private void EnableHotFix()
+        {
+            if(File.Exists(URL.HOTFIX_URL))
+            {
+                LuaEnv luaEnv = new LuaEnv();
+                luaEnv.DoString(File.ReadAllText(URL.HOTFIX_URL));
+            }
         }
     }
 }

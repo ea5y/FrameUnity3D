@@ -27,7 +27,9 @@ public class ResourceManager : Singleton<ResourceManager>
     private float fileTotal = 0;
 
     private List<string> willLoadedList = new List<string>();
-	private Queue<Action> asyncQueue = new Queue<Action>();
+	private Queue<Action> _displayQueue = new Queue<Action>();
+    private Queue<Loader> _loaderQueue = new Queue<Loader>();
+    private object _asyncLoader = new object();
 
     private void Awake()
     {
@@ -36,26 +38,39 @@ public class ResourceManager : Singleton<ResourceManager>
 
 	private void Update()
 	{
-		lock(this.asyncQueue)
+		lock(_displayQueue)
 		{
-			if(this.asyncQueue != null && this.asyncQueue.Count > 0)
+			if(this._displayQueue.Count > 0)
 			{
-				Debug.Log("+1");
-				var action = this.asyncQueue.Dequeue();
-				action();
+				var action = this._displayQueue.Dequeue();
+				action.Invoke();
 			}
 		}
+
+        lock(_asyncLoader)
+        {
+            if(_loaderQueue.Count > 0)
+            {
+                var loader = _loaderQueue.Peek();
+
+                if (!loader.IsLoading)
+                    loader.Start();
+                if (loader.IsCompleted)
+                    _loaderQueue.Dequeue();
+            }
+        }
 	}
 
-	public void UpdateResource(UILoadingProgress ui)
+    public void UpdateResource(UILoadingProgress ui)
 	{
-        StartCoroutine(_UpdateResource(ui));
+		this.ui = ui;
+        //StartCoroutine(_UpdateResource(ui));
+        StartCoroutine(_UpdateResourceNew(ui));
 	}
 
     private bool _isLoadingCompleted = false;
     private IEnumerator _UpdateResource(UILoadingProgress ui)
     {
-		this.ui = ui;
 		var url = URL.ASSETBUNDLE_HOST_URL + "BundleFileList.json";
 		var bundleFileListHost = this.LoadBundleFileList(url);
         var result = this.CheckAndFilterBundleFile(bundleFileListHost, URL.RELATIVE_STREAMINGASSETS_URL);
@@ -76,12 +91,35 @@ public class ResourceManager : Singleton<ResourceManager>
         this.OnLoadingCompleted();
     }
 
+    private IEnumerator _UpdateResourceNew(UILoadingProgress ui)
+    {
+        if(IsUpdate())
+        {
+            LoadResource();
+        }
+        while (_loaderQueue.Count > 0 || this._displayQueue.Count > 0 )
+            yield return null;
+
+        this.OnLoadingCompleted();
+    }
+
     public bool IsUpdate()
     {
 		var url = URL.ASSETBUNDLE_HOST_URL + "BundleFileList.json";
 		var bundleFileListHost = this.LoadBundleFileList(url);
         var result = this.CheckAndFilterBundleFile(bundleFileListHost, URL.RELATIVE_STREAMINGASSETS_URL);
         return result;
+    }
+
+    private void LoadResource()
+    {
+        ui.SetUI(LoadingType.Resource);
+        this.InitUI();
+        foreach(var fileName in this.willLoadedList)
+        {
+            Loader loader = new Loader(URL.ASSETBUNDLE_HOST_URL + fileName, URL.RELATIVE_STREAMINGASSETS_URL + fileName, this.ui);
+            _loaderQueue.Enqueue(loader);
+        }
     }
 
     public BundleFileList LoadBundleFileList(string url)
@@ -101,39 +139,6 @@ public class ResourceManager : Singleton<ResourceManager>
 		s.Dispose();
 		wc.Dispose();
 		return bundleFileListHost;
-	}
-
-	//Not perfect, should be change
-	public bool CheckAndFilterBundleFile(BundleFileList bundleFileListHost, BundleFileList bundleFileListLocal)
-	{
-		Debug.Log("===>CheckAndFilterBundleFile:");
-        foreach(var fileHost in bundleFileListHost.bundleFileList)
-        {
-
-            var counter = 0;
-            foreach(var fileLocal in bundleFileListLocal.bundleFileList)
-            {
-                if(fileHost.name == fileLocal.name)
-                {
-                    //Check md5
-                    if(fileHost.md5 != fileLocal.md5)
-                    {
-                        this.willLoadedList.Add(fileHost.name);
-                    }
-                }
-                else
-                {
-                    counter += 1;
-                }
-            }
-
-            if(counter >= bundleFileListLocal.bundleFileList.Count)
-            {
-                this.willLoadedList.Add(fileHost.name);
-            }
-        }
-
-		return this.willLoadedList.Count > 0;
 	}
 
     public bool CheckAndFilterBundleFile(BundleFileList bundleFileListHost, string projBundlePath)
@@ -212,7 +217,6 @@ public class ResourceManager : Singleton<ResourceManager>
 
     private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
     {
-		
 		Action oc = ()=>{
 		var sd = this.ui.view.progressForLoadResource.singleSdProgress;
 		var lbl = this.ui.view.progressForLoadResource.singleLblProgress;
@@ -255,11 +259,71 @@ public class ResourceManager : Singleton<ResourceManager>
         }
     }
 
-	private void InvokeAsync(Action action)
+	public void InvokeAsync(Action action)
 	{
-		lock(this.asyncQueue)
+		lock(this._displayQueue)
 		{
-			this.asyncQueue.Enqueue(action);
+			this._displayQueue.Enqueue(action);
 		}
 	}
+
+
+}
+
+public class Loader
+{
+    public WebClient WebClient;
+    public string HostFileURL;
+    public string LocalSaveURL;
+    public UILoadingProgress ui;
+
+    public bool IsCompleted = false;
+    public bool IsLoading = false;
+    public Action Callback = ()=> { };
+    public Loader(string hostFileURL, string LocalSaveURL, UILoadingProgress ui)
+    {
+        this.HostFileURL = hostFileURL;
+        this.LocalSaveURL = LocalSaveURL;
+        this.ui = ui;
+
+        this.WebClient = new WebClient();
+        this.WebClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(this.OnDownloadProgressChanged);
+        this.WebClient.DownloadFileCompleted += new AsyncCompletedEventHandler(this.OnDownloadFileCompleted);
+    }
+
+    public void Start()
+    {
+        this.IsLoading = true;
+        this.WebClient.DownloadFileAsync(new Uri(HostFileURL), LocalSaveURL);
+    }
+
+    private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+    {
+		Action oc = ()=>{
+		var sd = this.ui.view.progressForLoadResource.singleSdProgress;
+		var lbl = this.ui.view.progressForLoadResource.singleLblProgress;
+		var v = (float)e.ProgressPercentage / 100;
+		//Debug.Log("ChangeValue:" + v);
+        this.ui.view.progressForLoadResource.singleSdProgress.value = (float)e.ProgressPercentage / 100;
+        this.ui.view.progressForLoadResource.singleLblProgress.text = string.Format("Loading file:\n	progress:{0}% {1}/{2}(byte)"
+                , e.ProgressPercentage
+                , e.BytesReceived
+                , e.TotalBytesToReceive);
+		};
+
+        ResourceManager.Inst.InvokeAsync(oc);
+    }
+
+    private void OnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+    {
+        this.IsCompleted = true;
+        Debug.Log("File download completed!");
+        ResourceManager.Inst.InvokeAsync(Callback);
+		
+        if(sender is WebClient)
+        {
+            ((WebClient)sender).CancelAsync();
+            ((WebClient)sender).Dispose();
+        }
+    }
 }
