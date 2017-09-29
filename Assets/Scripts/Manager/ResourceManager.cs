@@ -31,6 +31,19 @@ public class ResourceManager : Singleton<ResourceManager>
     private Queue<Loader> _loaderQueue = new Queue<Loader>();
     private object _asyncLoader = new object();
 
+    private long _recieveBytesLength = 0;
+    public long RecieveBytesLength
+    {
+        get
+        {
+            return _recieveBytesLength;
+        }
+        set
+        {
+            _recieveBytesLength = value;
+        }
+    }
+
     private void Awake()
     {
         base.GetInstance();
