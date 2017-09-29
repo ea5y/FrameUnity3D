@@ -63,14 +63,12 @@ public class ScenesManager : Singleton<ScenesManager>
 
     private IEnumerator Loading(AsyncOperation op, Action callback, UILoadingProgress ui)
     {
-        //op.allowSceneActivation = false;
         while (op.progress < 0.8)
         {
             yield return null;
             ui.Loading(op.progress);
         }
         ui.Loading(1);
-        //op.allowSceneActivation = true;
         callback.Invoke();
     }
 }

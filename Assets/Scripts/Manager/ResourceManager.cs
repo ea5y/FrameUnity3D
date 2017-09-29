@@ -12,6 +12,7 @@ public class BundleFile
 {
     public string name;
     public string md5;
+    public string length;
 }
 
 public class BundleFileList
@@ -23,14 +24,13 @@ public class ResourceManager : Singleton<ResourceManager>
 {
 	private UILoadingProgress ui;
 
-    private float fileCounter = 0;
-    private float fileTotal = 0;
-
     private List<string> willLoadedList = new List<string>();
 	private Queue<Action> _displayQueue = new Queue<Action>();
     private Queue<Loader> _loaderQueue = new Queue<Loader>();
     private object _asyncLoader = new object();
+    private object _asyncProgress = new object();
 
+    private long _totalBytesLength = 0;
     private long _recieveBytesLength = 0;
     public long RecieveBytesLength
     {
@@ -40,7 +40,22 @@ public class ResourceManager : Singleton<ResourceManager>
         }
         set
         {
-            _recieveBytesLength = value;
+            lock(_asyncProgress)
+            {
+                _recieveBytesLength = value;
+                var progress = (float)_recieveBytesLength / _totalBytesLength;
+                var percent = (float)progress * 100 + "%";
+
+                var msg = string.Format("Loading file:\n	progress:{0:P1} {1}/{2}(byte)"
+                , progress 
+                , _recieveBytesLength
+                , _totalBytesLength);
+
+                this.InvokeAsync(() => {
+                    this.ui.view.progressForLoadResource.totalSdProgress.value = progress;
+                    this.ui.view.progressForLoadResource.totalLblProgress.text = msg;
+                });
+            }
         }
     }
 
@@ -77,34 +92,10 @@ public class ResourceManager : Singleton<ResourceManager>
     public void UpdateResource(UILoadingProgress ui)
 	{
 		this.ui = ui;
-        //StartCoroutine(_UpdateResource(ui));
-        StartCoroutine(_UpdateResourceNew(ui));
+        StartCoroutine(_UpdateResource(ui));
 	}
 
-    private bool _isLoadingCompleted = false;
     private IEnumerator _UpdateResource(UILoadingProgress ui)
-    {
-		var url = URL.ASSETBUNDLE_HOST_URL + "BundleFileList.json";
-		var bundleFileListHost = this.LoadBundleFileList(url);
-        var result = this.CheckAndFilterBundleFile(bundleFileListHost, URL.RELATIVE_STREAMINGASSETS_URL);
-		if(result)
-		{
-			//load
-            ui.SetUI(LoadingType.Resource);
-			this.CreateWebClient();
-		}
-        else
-        {
-            _isLoadingCompleted = true;
-        }
-
-        while (!_isLoadingCompleted)
-            yield return null;
-
-        this.OnLoadingCompleted();
-    }
-
-    private IEnumerator _UpdateResourceNew(UILoadingProgress ui)
     {
         if(IsUpdate())
         {
@@ -126,8 +117,7 @@ public class ResourceManager : Singleton<ResourceManager>
 
     private void LoadResource()
     {
-        ui.SetUI(LoadingType.Resource);
-        this.InitUI();
+        ui.SetUI(LoadingType.Scene);
         foreach(var fileName in this.willLoadedList)
         {
             Loader loader = new Loader(URL.ASSETBUNDLE_HOST_URL + fileName, URL.RELATIVE_STREAMINGASSETS_URL + fileName, this.ui);
@@ -138,21 +128,27 @@ public class ResourceManager : Singleton<ResourceManager>
     public BundleFileList LoadBundleFileList(string url)
 	{
         //load
-		Debug.Log("===>LoadingBundleFileList:");
-        Debug.Log("BundleHostURL: " + url);
-        WebClient wc = new WebClient();
-        Stream s = wc.OpenRead(url);
-        StreamReader sr = new StreamReader(s);
-
-        string strLine = sr.ReadToEnd();
-        var bundleFileListHost = JsonMapper.ToObject<BundleFileList>(strLine);
-
-		sr.Close();
-		s.Close();
-		s.Dispose();
-		wc.Dispose();
-		return bundleFileListHost;
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(GetRandomUri(url));
+        request.Headers.Add(HttpRequestHeader.CacheControl, "no-cache");
+        request.Headers.Add(HttpRequestHeader.Pragma, "no-cache");
+        request.Headers.Add(HttpRequestHeader.Expires, "-1");
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        using(var responseStream = response.GetResponseStream())
+        using(StreamReader reader = new StreamReader(responseStream))
+        {
+            var str = reader.ReadToEnd();
+            var bundleFileListHost = JsonMapper.ToObject<BundleFileList>(str);
+            return bundleFileListHost;
+        }
 	}
+
+    public static string GetRandomUri(string uri)
+    {
+        System.Random rd = new System.Random();
+        string rdStr = rd.Next(10).ToString() + rd.Next(10).ToString() + rd.Next(10).ToString();
+        string rdUri = uri + "?" + rdStr;
+        return rdUri;
+    }
 
     public bool CheckAndFilterBundleFile(BundleFileList bundleFileListHost, string projBundlePath)
     {
@@ -165,6 +161,7 @@ public class ResourceManager : Singleton<ResourceManager>
             if (fileHost.name == "BundleFileList.json")
                 continue;
             var counter = 0;
+            Debug.Log("File length: " + fileHost.length);
             foreach(var fileInfo in fileInfos)
             {
                 if(fileHost.name == fileInfo.Name)
@@ -178,6 +175,7 @@ public class ResourceManager : Singleton<ResourceManager>
                     if(fileHost.md5 != localFileMd5)
                     {
                         this.willLoadedList.Add(fileHost.name);
+                        _totalBytesLength += long.Parse(fileHost.length);
                     }
                 }
                 else
@@ -190,6 +188,7 @@ public class ResourceManager : Singleton<ResourceManager>
             {
                 Debug.Log("Counter Max");
                 this.willLoadedList.Add(fileHost.name);
+                _totalBytesLength += long.Parse(fileHost.length);
             }
         }
 
@@ -203,75 +202,6 @@ public class ResourceManager : Singleton<ResourceManager>
         //ScenesManager.Inst.EnterLoadingScene(SceneName.C_SceneLogin);
 	}
 
-    private void CreateWebClient()
-    {
-		this.fileTotal = this.willLoadedList.Count;
-        this.InitUI();
-        foreach(var fileName in this.willLoadedList)
-        {
-            WebClient wc = new WebClient();
-
-            wc.DownloadProgressChanged += new DownloadProgressChangedEventHandler(this.OnDownloadProgressChanged);
-            wc.DownloadFileCompleted += new AsyncCompletedEventHandler(this.OnDownloadFileCompleted);
-
-			Debug.Log("fileName:" + fileName);
-            wc.DownloadFileAsync(new Uri(URL.ASSETBUNDLE_HOST_URL + fileName), URL.RELATIVE_STREAMINGASSETS_URL+ fileName);
-        }
-    }
-
-    private void InitUI()
-    {
-        this.ui.view.progressForLoadResource.totalSdProgress.value = 0;
-        this.ui.view.progressForLoadResource.totalLblProgress.text = string.Format("Completed:{0}% {1}/{2}(File count)"
-                , 0
-                , 0
-                , this.fileTotal);
-    }
-
-    private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-    {
-		Action oc = ()=>{
-		var sd = this.ui.view.progressForLoadResource.singleSdProgress;
-		var lbl = this.ui.view.progressForLoadResource.singleLblProgress;
-		var v = (float)e.ProgressPercentage / 100;
-		Debug.Log("ChangeValue:" + v);
-        this.ui.view.progressForLoadResource.singleSdProgress.value = (float)e.ProgressPercentage / 100;
-        this.ui.view.progressForLoadResource.singleLblProgress.text = string.Format("Loading file:\n	progress:{0}% {1}/{2}(byte)"
-                , e.ProgressPercentage
-                , e.BytesReceived
-                , e.TotalBytesToReceive);
-		};
-
-        this.InvokeAsync(oc);
-    }
-
-    private void OnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-    {
-		Action oc = ()=>{
-
-			this.fileCounter++;
-			var percent = (float)(this.fileCounter / this.fileTotal);
-
-			Debug.Log("CompleteValue:" + percent);
-			this.ui.view.progressForLoadResource.totalSdProgress.value = percent;
-			this.ui.view.progressForLoadResource.totalLblProgress.text = string.Format("Completed:{0}% {1}/{2}(File count)"
-					, percent * 100
-					, this.fileCounter
-					, this.fileTotal);
-
-            if (percent >= 1)
-                _isLoadingCompleted = true;
-		};
-
-        this.InvokeAsync(oc);
-		
-        if(sender is WebClient)
-        {
-            ((WebClient)sender).CancelAsync();
-            ((WebClient)sender).Dispose();
-        }
-    }
-
 	public void InvokeAsync(Action action)
 	{
 		lock(this._displayQueue)
@@ -279,8 +209,6 @@ public class ResourceManager : Singleton<ResourceManager>
 			this._displayQueue.Enqueue(action);
 		}
 	}
-
-
 }
 
 public class Loader
@@ -302,6 +230,8 @@ public class Loader
         this.WebClient = new WebClient();
         this.WebClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(this.OnDownloadProgressChanged);
         this.WebClient.DownloadFileCompleted += new AsyncCompletedEventHandler(this.OnDownloadFileCompleted);
+
+        this.Start();
     }
 
     public void Start()
@@ -310,21 +240,13 @@ public class Loader
         this.WebClient.DownloadFileAsync(new Uri(HostFileURL), LocalSaveURL);
     }
 
+    private long _recieveLength = 0;
+    private long _changeValue = 0;
     private void OnDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
     {
-		Action oc = ()=>{
-		var sd = this.ui.view.progressForLoadResource.singleSdProgress;
-		var lbl = this.ui.view.progressForLoadResource.singleLblProgress;
-		var v = (float)e.ProgressPercentage / 100;
-		//Debug.Log("ChangeValue:" + v);
-        this.ui.view.progressForLoadResource.singleSdProgress.value = (float)e.ProgressPercentage / 100;
-        this.ui.view.progressForLoadResource.singleLblProgress.text = string.Format("Loading file:\n	progress:{0}% {1}/{2}(byte)"
-                , e.ProgressPercentage
-                , e.BytesReceived
-                , e.TotalBytesToReceive);
-		};
-
-        ResourceManager.Inst.InvokeAsync(oc);
+        _changeValue = e.BytesReceived - _recieveLength;
+        _recieveLength = e.BytesReceived;
+        ResourceManager.Inst.RecieveBytesLength += _changeValue;
     }
 
     private void OnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)

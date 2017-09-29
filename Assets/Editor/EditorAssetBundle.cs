@@ -136,6 +136,7 @@ public class AssetBundles
             BundleFile bundleFile = new BundleFile();
             bundleFile.name = fileInfo.Name;
             bundleFile.md5 = IOHelper.GetFileMD5(fileInfo.FullName);
+            bundleFile.length = ((FileInfo)fileInfo).Length.ToString();
 
             bundleFileList.bundleFileList.Add(bundleFile);
         }
