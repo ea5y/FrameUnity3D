@@ -130,12 +130,14 @@ public static class IOHelper
     public static string GetFileMD5(string fileFullName)
     {
         MD5CryptoServiceProvider md5Provider = new MD5CryptoServiceProvider();
-        //FileStream fs = new FileStream(fileFullName, FileMode.Open, FileAccess.Read, FileShare.Read);
-        FileStream fs = new FileStream(fileFullName, FileMode.Open);
-        byte[] hash = md5Provider.ComputeHash(fs);
-        fs.Close();
-        fs.Dispose();
-        return System.BitConverter.ToString(hash);
+        using(FileStream fs = new FileStream(fileFullName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+            byte[] hash = md5Provider.ComputeHash(fs);
+            return System.BitConverter.ToString(hash);
+        }
     }
+
+    //@TODO
+    //Write a common function for read & write file otherwise will happen Sharing violation 
     #endregion
 }

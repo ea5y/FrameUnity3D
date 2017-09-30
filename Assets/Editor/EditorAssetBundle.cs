@@ -40,6 +40,12 @@ public class AssetBundles
         Export(BuildTarget.StandaloneWindows, URL.ASSETBUNDLE_OUTPUT_URL + "Win/");
     }
 
+    [MenuItem("AssetBundle/Create Lua FileList")]
+    public static void CreateLuaFileList()
+    {
+        CreateResourceFileList<LuaFile>(URL.ASSETBUNDLE_OUTPUT_URL + "Lua/");
+    }
+
 	public static void Export(BuildTarget target, string url)
 	{
 		ClearAssetBundlesName();
@@ -61,7 +67,8 @@ public class AssetBundles
 
         url = url.Substring(7);
         Debug.Log("Url: " + url);
-        CreateBundleFileList(Application.dataPath + "/" + url);
+        //CreateBundleFileList(Application.dataPath + "/" + url);
+        CreateResourceFileList<BundleFile>(Application.dataPath + "/" + url);
 	}
 
 	private static void ClearAssetBundlesName()
@@ -127,20 +134,41 @@ public class AssetBundles
         var folder = new DirectoryInfo(inputPath);
         FileSystemInfo[] fileInfos = folder.GetFileSystemInfos();
 
-        var bundleFileList = new BundleFileList();
+        var bundleFileList = new ResourceFileList();
         
         foreach(var fileInfo in fileInfos) 
         {
             if (fileInfo.Name.EndsWith(".meta") || fileInfo.Name.EndsWith(".manifest"))
                 continue;
-            BundleFile bundleFile = new BundleFile();
+            ResourceFile bundleFile = new ResourceFile();
             bundleFile.name = fileInfo.Name;
             bundleFile.md5 = IOHelper.GetFileMD5(fileInfo.FullName);
             bundleFile.length = ((FileInfo)fileInfo).Length.ToString();
 
-            bundleFileList.bundleFileList.Add(bundleFile);
+            bundleFileList.resourceFileList.Add(bundleFile);
         }
-        IOHelper.SaveToJson<BundleFileList>(bundleFileList, inputPath);
+        IOHelper.SaveToJson<ResourceFileList>(bundleFileList, inputPath);
+    }
+
+    public static void CreateResourceFileList<T>(string inputPath) where T : ResourceFile, new()
+    {
+        Debug.Log("JsonFrom: " + inputPath);
+        var folder = new DirectoryInfo(inputPath);
+        FileSystemInfo[] fileInfos = folder.GetFileSystemInfos();
+
+        var bundleFileList = new ResourceFileList<T>();
+        foreach(var fileInfo in fileInfos) 
+        {
+            if (fileInfo.Name.EndsWith(".meta") || fileInfo.Name.EndsWith(".manifest"))
+                continue;
+            T bundleFile = new T();
+            bundleFile.name = fileInfo.Name;
+            bundleFile.md5 = IOHelper.GetFileMD5(fileInfo.FullName);
+            bundleFile.length = ((FileInfo)fileInfo).Length.ToString();
+
+            bundleFileList.resourceFileList.Add(bundleFile);
+        }
+        IOHelper.SaveToJson<ResourceFileList>(bundleFileList, inputPath);
     }
 
     //just set file

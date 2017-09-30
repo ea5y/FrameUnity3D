@@ -10,13 +10,18 @@ public class URL
 
 	public static readonly string ASSETBUNDLE_HOST_URL = 
 #if UNITY_ANDROID && !UNITY_EDITOR 
-        "http://127.0.0.1/resource/Android/";
+        //"http://127.0.0.1/resource/Android/";
+        "http://120.26.119.202/luwanzhong/resource/Android/";
 #elif UNITY_IPHONE
         "http://127.0.0.1/resource/IOS/";
 #else
         //"http://127.0.0.1/resource/Win/";
         "http://120.26.119.202/luwanzhong/resource/Win/";
 #endif
+
+    public static readonly string LUA_HOST_URL = "http://120.26.119.202/luwanzhong/resource/Lua/";
+
+    public static readonly string RESOURCE_FILE_LIST_FILENAME = "ResourceFileList.json";
 
     //Maybe can use Application.streamingAssetsPath + "/";
     public static readonly string ASSETBUNDLE_LOCAL_URL =

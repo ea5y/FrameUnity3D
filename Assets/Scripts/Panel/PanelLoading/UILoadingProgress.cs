@@ -8,7 +8,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
-using Easy.FrameUnity.Net;
+using Easy.FrameUnity.Manager;
 
 public enum LoadingType
 {
