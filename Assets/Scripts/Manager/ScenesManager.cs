@@ -56,6 +56,9 @@ public class ScenesManager : Singleton<ScenesManager>
                 break;
             case SceneName.F_SceneGame_2:
                 op = SceneManager.LoadSceneAsync("F_SceneGame_2");
+                callback = () => {
+                    UIManager.Inst.InstantiatePanel("panelmain");
+                };
                 break;
         }
         StartCoroutine(Loading(op, callback, ui));

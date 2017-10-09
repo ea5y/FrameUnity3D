@@ -17,6 +17,8 @@ namespace Easy.FrameUnity.Manager
         public GameObject Cameras;
         public GameObject Plugins;
 
+        public LuaEnv LuaEnv;
+
         private void Awake()
         {
             base.GetInstance();
@@ -48,8 +50,8 @@ namespace Easy.FrameUnity.Manager
         {
             if(File.Exists(URL.HOTFIX_URL))
             {
-                LuaEnv luaEnv = new LuaEnv();
-                luaEnv.DoString(File.ReadAllText(URL.HOTFIX_URL));
+                LuaEnv = new LuaEnv();
+                LuaEnv.DoString(File.ReadAllText(URL.HOTFIX_URL));
             }
             /*
             if (File.Exists(URL.HOTFIX_URL))

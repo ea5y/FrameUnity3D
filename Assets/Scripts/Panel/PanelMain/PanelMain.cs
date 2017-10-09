@@ -7,15 +7,17 @@
 using System;
 using UnityEngine;
 using XLua;
+using Easy.FrameUnity;
 
 namespace Easy.FrameUnity.Panel
 {
     [HotfixAttribute]
-    public class PanelMain : MonoBehaviour
+    public class PanelMain : LuaBehaviour
     {
         public UILabel LBLTest;
         private void Awake()
         {
+            base.Awake();
             /*
             LuaEnv luaEnv = new LuaEnv();
             luaEnv.DoString(@"
@@ -30,7 +32,17 @@ namespace Easy.FrameUnity.Panel
         private void Start()
         {
             this.LBLTest.text = "Before Hotfix";
+            base.Start();
         }
 
+        private void Update()
+        {
+            base.Update();
+        }
+
+        private void OnDestroy()
+        {
+            base.OnDestroy();
+        }
     }
 }

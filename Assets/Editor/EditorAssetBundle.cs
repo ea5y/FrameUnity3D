@@ -9,6 +9,8 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
+using System;
+using Easy.FrameUnity.ScriptableObj;
 
 
 public class AssetBundles
@@ -45,6 +47,35 @@ public class AssetBundles
     {
         CreateResourceFileList<LuaFile>(URL.ASSETBUNDLE_OUTPUT_URL + "Lua/");
     }
+
+    [MenuItem("AssetBundle/Create SPT Asset")]
+    public static void CreateScriptableObjAsset()
+    {
+        string assetName = "New SPT";
+        string assetPath = "Assets";
+        if(Selection.activeObject)
+        {
+            assetPath = AssetDatabase.GetAssetPath(Selection.activeObject);
+            if(System.IO.Path.GetExtension(assetPath) != "")
+            {
+                assetPath = System.IO.Path.GetDirectoryName(assetPath);
+            }
+        }
+
+        bool doCreate = true;
+        string path = System.IO.Path.Combine(assetPath, assetName + ".asset");
+        FileInfo fileInfo = new FileInfo(path);
+        if(fileInfo.Exists)
+        {
+            doCreate = EditorUtility.DisplayDialog(assetName + " already exists.", "Do you want to overwrite the old", "Yes", "No");
+        }
+        if(doCreate)
+        {
+            PanelInfo info = ScriptableObjectHelp.Create<PanelInfo>(assetPath, assetName);
+            Selection.activeObject = info;
+        }
+    }
+
 
 	public static void Export(BuildTarget target, string url)
 	{
