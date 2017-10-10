@@ -8,6 +8,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Easy.FrameUnity.ScriptableObj;
 public class BundleManager : MonoBehaviour
 {
     [SerializeField]
@@ -116,6 +117,22 @@ public class BundleManager : MonoBehaviour
         BundlePrefab prefab;
         var isHangUp = this.GetBundleData<BundlePrefab>(assetPath, out prefab);
         var coroutine = prefab.LoadAsync(assetPath, assetName, isHangUp, callback);
+        StartCoroutine(coroutine);
+    }
+
+    public void GetAsset(string assetPath, string assetName, Action<PanelInfo> callback)
+    {
+        BundleAsset asset;
+        var isHangUp = this.GetBundleData<BundleAsset>(assetPath, out asset);
+        var coroutine = asset.Load(assetPath, assetName, isHangUp, callback);
+        StartCoroutine(coroutine);
+    }
+
+    public void GetAssetAsync(string assetPath, string assetName, Action<PanelInfo> callback)
+    {
+        BundleAsset asset;
+        var isHangUp = this.GetBundleData<BundleAsset>(assetPath, out asset);
+        var coroutine = asset.LoadAsync(assetPath, assetName, isHangUp, callback);
         StartCoroutine(coroutine);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using Easy.FrameUnity.ScriptableObj;
 
 public abstract class BundleData
 {
@@ -249,6 +250,75 @@ public class BundleScene : BundleData
 public class BundleAudio : BundleData
 {
 
+}
+
+public class BundleAsset : BundleData
+{
+    private PanelInfo _panelInfo;
+
+    public IEnumerator Load(string assetPath, string assetName, bool isHangUp, Action<PanelInfo> callback)
+    {
+        if(this._panelInfo == null)
+        {
+            this.assetPath = assetPath;
+            this.assetName = assetName;
+            this.endWith = ".asset";
+            if(isHangUp)
+            {
+                yield return this.HangUPAndLoadAsset(assetPath, assetName,
+                        (obj) =>
+                        {
+                            _panelInfo = obj as PanelInfo;
+                            callback(_panelInfo);
+                        });
+            }
+            else
+            {
+                yield return this.LoadBundleAndLoadAsset(assetPath, assetName,
+                        (obj) =>
+                        {
+                            _panelInfo = obj as PanelInfo;
+                            callback(_panelInfo);
+                        });
+            }
+        }
+        else
+        {
+            callback(_panelInfo);
+        }
+    }
+
+    public IEnumerator LoadAsync(string assetPath, string assetName, bool isHangUp, Action<PanelInfo> callback)
+    {
+        if(_panelInfo == null)
+        {
+            this.assetPath = assetPath;
+            this.assetName = assetName;
+            this.endWith = ".asset";
+            if(isHangUp)
+            {
+                yield return this.HangUPAndLoadAssetAsync(assetPath, assetName,
+                        (obj) =>
+                        {
+                            _panelInfo = obj as PanelInfo;
+                            callback(_panelInfo);
+                        });
+            }
+            else
+            {
+                yield return this.LoadBundleAndLoadAssetAsync(assetPath, assetName,
+                        (obj) =>
+                        {
+                            _panelInfo = obj as PanelInfo;
+                            callback(_panelInfo);
+                        });
+            }
+        }
+        else
+        {
+            callback(_panelInfo);
+        }
+    }
 }
 
 public class BundlePrefab : BundleData

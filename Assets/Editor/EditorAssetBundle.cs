@@ -72,7 +72,7 @@ public class AssetBundles
         if(doCreate)
         {
             PanelInfo info = ScriptableObjectHelp.Create<PanelInfo>(assetPath, assetName);
-            Selection.activeObject = info;
+            //Selection.activeObject = info;
         }
     }
 

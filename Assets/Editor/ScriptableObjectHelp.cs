@@ -13,7 +13,7 @@ namespace Easy.FrameUnity.ScriptableObj
 {
     public class ScriptableObjectHelp
     {
-        public static T Create<T>(string path, string name) where T : ScriptableObjectBase
+        public static T Create<T>(string path, string name) where T : ScriptableObject
         {
             if(new DirectoryInfo(path).Exists == false)
             {

@@ -57,7 +57,12 @@ public class ScenesManager : Singleton<ScenesManager>
             case SceneName.F_SceneGame_2:
                 op = SceneManager.LoadSceneAsync("F_SceneGame_2");
                 callback = () => {
-                    UIManager.Inst.InstantiatePanel("panelmain");
+                    BundleManager.Instance.GetAsset("asset", "panelinfo", (obj)=>{
+                            foreach(var panelName in obj.PanelNameList)
+                            {
+                                UIManager.Inst.InstantiatePanel(panelName);
+                            }
+                            });
                 };
                 break;
         }
