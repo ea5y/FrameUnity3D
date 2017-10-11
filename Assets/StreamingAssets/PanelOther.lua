@@ -1,16 +1,27 @@
+require "ExtendGlobal"
 
-function awake()
-    print("lua-PanelOther awake...")
+PanelOther = class()
+
+function PanelOther:Awake()
+    print("PanelOther Awake")
 end
 
-function start()
-    print("lua-PanelOther start...")
+function PanelOther:Start()
+    print("PanelOther Start")
 end
 
-function update()
-    --print("lua-PanelOther update...")
+function PanelOther:OnEnable()
+    print("PanelOther OnEnable")
 end
 
-function onDestroy()
-    print("lua-PanelOther onDestroy...")
+function PanelOther:OnDisable()
+    print("PanelOther OnDisable")
+end
+
+function PanelOther:Update()
+    --print("PanelOther Update")
+end
+
+function PanelOther:OnDestroy()
+    print("PanelOther OnDestroy")
 end

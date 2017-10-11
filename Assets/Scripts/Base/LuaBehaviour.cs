@@ -24,18 +24,36 @@ namespace Easy.FrameUnity
         public Injection[] Injections;
 
         private LuaEnv _luaEnv;
+
+        /*
         private LuaTable _scriptEnv;
 
         private Action _luaStart;
         private Action _luaUpdate;
         private Action _luaOnDestroy;
+        */
 
         internal static float _lastGCTime = 0;
         internal const float _GCInterval = 1; //1 second
 
+        private ILuaTable _luaTable;
+        protected ILuaTable LuaTable
+        {
+            get
+            {
+                return _luaTable;
+            }
+            set
+            {
+                _luaTable = value;
+            }
+        }
+
         protected void Awake()
         {
-            _luaEnv = ApplicationManager.Inst.LuaEnv;
+            /*
+            this.Init();
+
             _scriptEnv = _luaEnv.NewTable();
             LuaTable meta = _luaEnv.NewTable(); 
             meta.Set("__index", _luaEnv.Global);
@@ -51,21 +69,31 @@ namespace Easy.FrameUnity
            _scriptEnv.Get("start", out _luaStart);
            _scriptEnv.Get("update", out _luaUpdate);
            _scriptEnv.Get("onDestroy", out _luaOnDestroy);
+           */
+            this.Init();
 
-           if(luaAwake != null)
-               luaAwake();
+            if(this.LuaTable != null)
+               this.LuaTable.Awake();
+        }
+
+        protected virtual void Init()
+        {
+            _luaEnv = ApplicationManager.Inst.LuaEnv;
+            Debug.Log("LuaBehaviour Init");
         }
 
         protected void Start()
         {
-            if(_luaStart != null)
-                _luaStart();
+            if(this.LuaTable != null)
+                this.LuaTable.Start();
         }
 
         protected void Update()
         {
-            if(_luaUpdate != null)
-                _luaUpdate();
+            if(this.LuaTable != null)
+            {
+                this.LuaTable.Update();
+            }
 
             if(Time.time - LuaBehaviour._lastGCTime > _GCInterval)
             {
@@ -76,15 +104,11 @@ namespace Easy.FrameUnity
 
         protected void OnDestroy()
         {
-            if(_luaOnDestroy != null)
+            if(this.LuaTable != null)
             {
-                _luaOnDestroy();
+                this.LuaTable.OnDestroy();
             }
-
-            _luaOnDestroy = null;
-            _luaUpdate = null;
-            _luaStart = null;
-            _scriptEnv.Dispose();
+            this.LuaTable = null;
             Injections = null;
         }
     }

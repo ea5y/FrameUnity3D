@@ -21,6 +21,12 @@ namespace XLua.CSObjectWrap
         {
 		    XLua.LuaEnv.AddIniter((luaenv, translator) => {
 			    
+				translator.DelayWrapLoader(typeof(EventDelegate), EventDelegateWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Easy.FrameUnity.Panel.PanelMain), EasyFrameUnityPanelPanelMainWrap.__Register);
+				
+				translator.DelayWrapLoader(typeof(Easy.FrameUnity.LuaBehaviour), EasyFrameUnityLuaBehaviourWrap.__Register);
+				
 				translator.DelayWrapLoader(typeof(LuaBehaviour), LuaBehaviourWrap.__Register);
 				
 				translator.DelayWrapLoader(typeof(XLuaTest.Pedding), XLuaTestPeddingWrap.__Register);
@@ -114,6 +120,8 @@ namespace XLua.CSObjectWrap
 				translator.DelayWrapLoader(typeof(Tutorial.DrivenClassExtensions), TutorialDrivenClassExtensionsWrap.__Register);
 				
 				
+				
+				translator.AddInterfaceBridgeCreator(typeof(Easy.FrameUnity.Manager.ILuaTable), EasyFrameUnityManagerILuaTableBridge.__Create);
 				
 				translator.AddInterfaceBridgeCreator(typeof(InvokeLua.ICalc), InvokeLuaICalcBridge.__Create);
 				

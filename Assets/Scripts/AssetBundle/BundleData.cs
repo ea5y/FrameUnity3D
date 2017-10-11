@@ -66,7 +66,7 @@ public abstract class BundleData
 		Debug.Log("Bundle: " + this.bundle);
         Debug.Log("LoadAsset...");
 
-        var strArray = this.bundle.AllAssetNames();
+        var strArray = this.bundle.GetAllAssetNames();
         for(int i = 0; i < strArray.Length; i++)
         {
 
