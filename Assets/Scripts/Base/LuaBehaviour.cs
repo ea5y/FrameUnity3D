@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using XLua;
 using Easy.FrameUnity.Manager;
 
@@ -22,72 +23,23 @@ namespace Easy.FrameUnity
     public class LuaBehaviour : MonoBehaviour
     {
         public Injection[] Injections;
+        public Dictionary<string, GameObject> HotfixUIDic = new Dictionary<string, GameObject>();
 
-        private LuaEnv _luaEnv;
+        protected void MapHotfixUI()
+        {
+            foreach(var ui in this.Injections)
+            {
+                Debug.Log("Name:" + ui.Name);
+                this.HotfixUIDic.Add(ui.Name, ui.Value);
+            }
+        }
 
         /*
-        private LuaTable _scriptEnv;
-
-        private Action _luaStart;
-        private Action _luaUpdate;
-        private Action _luaOnDestroy;
-        */
-
         internal static float _lastGCTime = 0;
         internal const float _GCInterval = 1; //1 second
+        */
 
-        private ILuaTable _luaTable;
-        protected ILuaTable LuaTable
-        {
-            get
-            {
-                return _luaTable;
-            }
-            set
-            {
-                _luaTable = value;
-            }
-        }
-
-        protected void Awake()
-        {
-            /*
-            this.Init();
-
-            _scriptEnv = _luaEnv.NewTable();
-            LuaTable meta = _luaEnv.NewTable(); 
-            meta.Set("__index", _luaEnv.Global);
-            _scriptEnv.SetMetaTable(meta);
-            meta.Dispose();
-
-            _scriptEnv.Set("self", this);
-            foreach(var injection in Injections)
-                _scriptEnv.Set(injection.Name, injection.Value);
-
-           //_luaEnv.DoString(luaScript.text, "LuaBehaviour", _scriptEnv); 
-           Action luaAwake = _scriptEnv.Get<Action>("awake");
-           _scriptEnv.Get("start", out _luaStart);
-           _scriptEnv.Get("update", out _luaUpdate);
-           _scriptEnv.Get("onDestroy", out _luaOnDestroy);
-           */
-            this.Init();
-
-            if(this.LuaTable != null)
-               this.LuaTable.Awake();
-        }
-
-        protected virtual void Init()
-        {
-            _luaEnv = ApplicationManager.Inst.LuaEnv;
-            Debug.Log("LuaBehaviour Init");
-        }
-
-        protected void Start()
-        {
-            if(this.LuaTable != null)
-                this.LuaTable.Start();
-        }
-
+        /*
         protected void Update()
         {
             if(this.LuaTable != null)
@@ -111,5 +63,6 @@ namespace Easy.FrameUnity
             this.LuaTable = null;
             Injections = null;
         }
+        */
     }
 }

@@ -60,6 +60,7 @@ public class ScenesManager : Singleton<ScenesManager>
                     BundleManager.Instance.GetAsset("asset", "panelinfo", (obj)=>{
                             foreach(var panelName in obj.PanelNameList)
                             {
+                                Debug.Log("PanelName: " + panelName);
                                 UIManager.Inst.InstantiatePanel(panelName);
                             }
                             });

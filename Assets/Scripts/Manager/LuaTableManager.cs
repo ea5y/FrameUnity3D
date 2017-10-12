@@ -43,7 +43,7 @@ namespace Easy.FrameUnity.Manager
 
         public ILuaTable PanelMain;
         public ILuaTable PanelOther;
-        private void Init()
+        public void Init()
         {
             _luaEnv = ApplicationManager.Inst.LuaEnv;
             PanelMain = _luaEnv.Global.Get<ILuaTable>("PanelMain");

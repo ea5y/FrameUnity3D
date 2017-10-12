@@ -31,7 +31,8 @@ namespace Easy.FrameUnity.Manager
         public void InstantiatePanel(string prefabName)
         {
             //prefabName = _assetNamepre + prefabName;
-            BundleManager.Instance.GetPrefab(_assetPath, prefabName, (obj) => {
+            BundleManager.Instance.GetPrefabAsync(_assetPath, prefabName, (obj) => {
+                    Debug.Log("Instantiate panel: " + obj);
                     var go = Instantiate(obj);
                     go.transform.parent = this.UIRoot.transform;
                     go.transform.localScale = new Vector3(1, 1, 1);

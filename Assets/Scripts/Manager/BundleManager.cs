@@ -66,6 +66,7 @@ public class BundleManager : MonoBehaviour
 
     private bool GetBundleData<T>(string bundleName, out T data) where T : BundleData,new()
     {
+        Debug.Log("Find prefab from Bundle cache: " + bundleName);
         BundleData d;
         var result = this.bundleDataDic.TryGetValue(bundleName, out d);
         if(!result)
@@ -134,5 +135,33 @@ public class BundleManager : MonoBehaviour
         var isHangUp = this.GetBundleData<BundleAsset>(assetPath, out asset);
         var coroutine = asset.LoadAsync(assetPath, assetName, isHangUp, callback);
         StartCoroutine(coroutine);
+    }
+
+    //===================================Reconstruction=========================================
+    
+    private bool FindAsset()
+    {
+        return true;
+    }
+
+    private void LoadAsset()
+    {
+    }
+
+    private void SaveAsset()
+    {
+    }
+
+    private bool FindBundle()
+    {
+        return true;
+    }
+
+    private void LoadBundle()
+    {
+    }
+
+    private void SaveBundle()
+    {
     }
 }

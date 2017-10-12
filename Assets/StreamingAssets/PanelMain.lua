@@ -1,3 +1,4 @@
+--[[
 require "ExtendGlobal"
 
 PanelMain = class()
@@ -25,8 +26,20 @@ end
 function PanelMain:OnDestroy()
     print("PanelMain OnDestroy")
 end
+--]]
+
+--Stateful
 --[[
 xlua.hotfix(CS.Easy.FrameUnity.Panel.PanelMain, {
+        ['.ctor'] = function(csobj)
+            return {
+                csobj
+            }
+        end;
+        Start = function(self)
+            --self.csobj.Awake()
+            print("Stateful")
+        end;
         RegisterBtnEvent = function(self)
             local ok,btnG = self.UIDic:TryGetValue('Button_1')
             print(self.UIDic:TryGetValue('Button_1'))
@@ -37,23 +50,23 @@ xlua.hotfix(CS.Easy.FrameUnity.Panel.PanelMain, {
             end
             CS.EventDelegate.Add(btn.onClick, OnNewBtnClick)
             --print("register")
-        end
-
+        end;
     } 
 )
 --]]
---[[
-xlua.hotfix(CS.Easy.FrameUnity.Panel.PanelMain, "RegisterBtnEvent",
+--Stateless
+local util = require 'xlua.util'
+xlua.private_accessible(CS.Easy.FrameUnity.Panel.PanelMain)
+util.hotfix_ex(CS.Easy.FrameUnity.Panel.PanelMain, 'Start',
         function(self)
-            local ok,btnG = self.UIDic:TryGetValue('Button_1')
-            print(self.UIDic:TryGetValue('Button_1'))
-            local btn = btnG:GetComponent('UIButton')
+            CS.Easy.FrameUnity.Panel.PanelMain.Inst:Start();
+            print("Lua: awake")
+            local ok,btn = self.HotfixUIDic:TryGetValue('Button_1')
+            btn = btn:GetComponent('UIButton')
             print(btn)
             local OnNewBtnClick = function()
                 print("Click")
             end
             CS.EventDelegate.Add(btn.onClick, OnNewBtnClick)
-            --print("register")
         end
 )
---]]

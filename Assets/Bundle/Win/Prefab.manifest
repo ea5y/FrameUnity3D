@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3527566271
+CRC: 3302610779
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 93aff9784aec70fec3b2c99d7de94497
+    Hash: e546e4d78ed7bc61776d7a5d0e2a2e08
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 00407c7d2206cfcdeec0c72a62b3b6f2
+    Hash: c9599e04b10eec0906cbaab1079f9517
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -53,12 +53,15 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 6c20815eb3063c24290a61b7020a1836, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 718f97a431c1bef4aae3298a9c036d50, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 Assets:
 - Assets/ResForBundle/Prefab/Panel/PanelUIPlayers/PanelUIPlayers.prefab
 - Assets/ResForBundle/Prefab/Cube (5) 3.prefab
 - Assets/ResForBundle/Prefab/Cube (5) 1.prefab
+- Assets/ResForBundle/Prefab/Panel/PanelOther/PanelOther.prefab
 - Assets/ResForBundle/Prefab/Cube (5) 2.prefab
 - Assets/ResForBundle/Prefab/Cube (2).prefab
 - Assets/ResForBundle/Prefab/Panel/PanelLogin/PanelLogin.prefab

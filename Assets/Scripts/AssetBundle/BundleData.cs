@@ -63,7 +63,6 @@ public abstract class BundleData
 
     protected void LoadAsset(Action<UnityEngine.Object> callback)
     {
-		Debug.Log("Bundle: " + this.bundle);
         Debug.Log("LoadAsset...");
 
         var strArray = this.bundle.GetAllAssetNames();
@@ -87,7 +86,7 @@ public abstract class BundleData
     public IEnumerator LoadAssetAsync(Action<UnityEngine.Object> callback)
     {
 		Debug.Log("Bundle: " + this.bundle);
-		Debug.Log("BundleName: " + this.assetName + endWith);
+		Debug.Log("AssetName: " + this.assetName + endWith);
         Debug.Log("LoadAssetAsync...");
 		
         var asyncReq = this.bundle.LoadAssetAsync(this.assetName + endWith);
@@ -112,6 +111,8 @@ public abstract class BundleData
 
     protected IEnumerator LoadAndCache(string url)
     {
+        if (this.bundle != null)
+            yield break;
             Debug.Log("Loading...");
         Debug.Log(string.Format("Url: {0}", url));
 
@@ -156,11 +157,13 @@ public abstract class BundleData
                 this.bundle = www.assetBundle;
                 if(this.bundle != null)
                 {
-                    Debug.Log("LoadBundle success!");
+                    var msg = string.Format("Bundle: {0} load success!", this.bundle);
+                    Debug.Log(msg);
                 }
                 this.isLoaded = true;
             }
     }
+
 }
 
 public class BundleIcon : BundleData
@@ -386,6 +389,46 @@ public class BundlePrefab : BundleData
         else
         {
             callback(this.prefab);
+        }
+    }
+}
+
+//===================================Reconstruction=========================================
+namespace Easy.FrameUnity.EsAssetBundle
+{
+    public abstract class BundleData
+    {
+        protected AssetBundle bundle;
+        protected string bundlePath;
+        protected string bundleName;
+        protected string bundleSuffix = "";
+
+        private bool _isBundleLoaded;
+        public bool IsBundleLoaded
+        {
+            get{ return _isBundleLoaded;}
+            protected set{_isBundleLoaded = value;}
+        }
+
+        protected void LoadBundle()
+        {
+        }
+    }
+
+    public abstract class AssetData
+    {
+        protected string assetPath;
+        protected string assetName;
+        protected string endWith;
+
+        protected AssetBundle bundle;
+
+        protected string error = "";
+
+        private Action<GameObject> _callback;
+
+        protected void Load()
+        {
         }
     }
 }

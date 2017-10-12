@@ -45,13 +45,15 @@ namespace Easy.FrameUnity.Manager
         private void ApplicationQuit()
         {
         }
-
+        
         public void EnableHotFix()
         {
             if(File.Exists(URL.HOTFIX_URL))
             {
                 LuaEnv = new LuaEnv();
                 LuaEnv.DoString(File.ReadAllText(URL.HOTFIX_URL));
+
+                //LuaTableManager.Inst.Init();
             }
             /*
             if (File.Exists(URL.HOTFIX_URL))

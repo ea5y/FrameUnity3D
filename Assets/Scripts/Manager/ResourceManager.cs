@@ -307,7 +307,7 @@ namespace Easy.FrameUnity.Manager
         private void OnDownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             this.IsCompleted = true;
-            Debug.Log("File download completed!");
+            Debug.Log("File " + this.HostFileURL + " download completed!");
             ResourceManager.Inst.InvokeAsync(Callback);
 
             if (sender is WebClient)

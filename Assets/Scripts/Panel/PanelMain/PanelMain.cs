@@ -15,44 +15,13 @@ using System.Collections;
 
 namespace Easy.FrameUnity.Panel
 {
-    /*
-    [HotfixAttribute]
-    public class PanelMain : LuaBehaviour
-    {
-        public UILabel LBLTest;
-        private void Awake()
-        {
-            base.Awake();
-            LuaEnv luaEnv = new LuaEnv();
-            luaEnv.DoString(@"
-            xlua.hotfix(CS.Easy.FrameUnity.Panel.PanelMain, 'Start',
-                function(self)
-                    self.LBLTest.text = 'After Hotfix'
-                end)
-        ");
-        }
-
-        private void Start()
-        {
-            this.LBLTest.text = "Before Hotfix";
-            base.Start();
-        }
-
-        private void Update()
-        {
-            base.Update();
-        }
-
-        private void OnDestroy()
-        {
-            base.OnDestroy();
-        }
-    }
-    */
-    [HotfixAttribute]
+    [HotfixAttribute(HotfixFlag.Stateless)]
     public class PanelMain : PanelBase<PanelMain>
     {
         public Dictionary<string, GameObject> UIDic = new Dictionary<string, GameObject>();
+        public PanelMain()
+        {
+        }
 
         public override void Back()
         {
@@ -68,42 +37,22 @@ namespace Easy.FrameUnity.Panel
 
         private void Awake()
         {
-            base.Awake();
-            
-        }
-
-        /*
-        public void RegisterBtnEvent()
-        {
-        }
-        */
-
-        protected override void Init()
-        {
-            base.Init();
-            this.LuaTable = LuaTableManager.Inst.PanelMain;
-            foreach(var ui in this.Injections)
-            {
-                Debug.Log("Name:" + ui.Name);
-                this.UIDic.Add(ui.Name, ui.Value);
-            }
-            Debug.Log("PanelMain Init");
-            //this.RegisterBtnEvent();
+            base.GetInstance();
+            base.MapHotfixUI();
+            Debug.Log("CS: Awake");
         }
 
         private void Start()
         {
-            base.Start();
+            Debug.Log("CS: Start");
         }
 
         private void Update()
         {
-            base.Update();
         }
 
         private void OnDestroy()
         {
-            base.OnDestroy();
         }
     }
 }

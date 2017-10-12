@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using XLua;
 using System;
 
+
 public class CSCallLua : MonoBehaviour {
     LuaEnv luaenv = null;
     string script = @"
@@ -90,7 +91,7 @@ public class CSCallLua : MonoBehaviour {
 
         LuaTable d4 = luaenv.Global.Get<LuaTable>("d");//映射到LuaTable，by ref
         Debug.Log("_G.d = {f1=" + d4.Get<int>("f1") + ", f2=" + d4.Get<int>("f2") + "}");
-
+        
 
         Action e = luaenv.Global.Get<Action>("e");//映射到一个delgate，要求delegate加到生成列表，否则返回null，建议用法
         e();
