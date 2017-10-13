@@ -9,6 +9,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Easy.FrameUnity.ScriptableObj;
+using Easy.FrameUnity.EsAssetBundle;
 public class BundleManager : MonoBehaviour
 {
     [SerializeField]
@@ -139,9 +140,10 @@ public class BundleManager : MonoBehaviour
 
     //===================================Reconstruction=========================================
     
-    private bool FindAsset()
+    private bool FindAsset(out GameObject asset)
     {
-        return true;
+        asset = null;
+        return false;
     }
 
     private void LoadAsset()
@@ -152,9 +154,10 @@ public class BundleManager : MonoBehaviour
     {
     }
 
-    private bool FindBundle()
+    private bool FindBundle(out AssetBundle bundle)
     {
-        return true;
+        bundle = null;
+        return false;
     }
 
     private void LoadBundle()
@@ -163,5 +166,23 @@ public class BundleManager : MonoBehaviour
 
     private void SaveBundle()
     {
+    }
+
+    private bool CheckBundleLoading<T>(string bundleName) where T : BundleDataNew
+    {
+        var msg = string.Format("Check bundle: {0} loading", bundleName);
+        Debug.Log(msg);
+
+        return false;
+    }
+
+    private IEnumerator HangUp()
+    {
+        yield return null;
+    }
+
+    public void GetPrefabNew(string assetPath, string assetName, Action<GameObject> callback)
+    {
+        
     }
 }

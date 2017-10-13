@@ -396,7 +396,7 @@ public class BundlePrefab : BundleData
 //===================================Reconstruction=========================================
 namespace Easy.FrameUnity.EsAssetBundle
 {
-    public abstract class BundleData
+    public abstract class BundleDataNew
     {
         protected AssetBundle bundle;
         protected string bundlePath;
@@ -410,25 +410,92 @@ namespace Easy.FrameUnity.EsAssetBundle
             protected set{_isBundleLoaded = value;}
         }
 
-        protected void LoadBundle()
+        protected IEnumerator LoadBundle(string url)
         {
+            Debug.Log("Load Bundle...");
+            if(this.bundle != null)
+                yield break;
+
+            using(WWW www = new WWW(url))
+            {
+                yield return www;
+                if(www.error != null)
+                    throw new System.Exception("WWW download had an error:" + www.error);
+                this.bundle = www.assetBundle;
+                if(this.bundle != null)
+                {
+                    var msg = string.Format("Bundle: {0} load success!", this.bundle);
+                    Debug.Log(msg);
+                    this.IsBundleLoaded = true;
+                }
+                else
+                {
+                    this.IsBundleLoaded = false;
+                }
+            }
         }
     }
 
-    public abstract class AssetData
+    public class AssetData : BundleDataNew, IDynamicObject 
     {
         protected string assetPath;
         protected string assetName;
-        protected string endWith;
+        protected string assetSuffix = "";
 
-        protected AssetBundle bundle;
-
-        protected string error = "";
-
-        private Action<GameObject> _callback;
-
-        protected void Load()
+        public bool IsValidate
         {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public string Identifier
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        protected void LoadAsset()
+        {
+        }
+
+        public virtual IEnumerator Create(object param)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Release()
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetInnerObject()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AssetPrefab : AssetData
+    {
+        public override IEnumerator Create(object param)
+        {
+            CreateAssetPoolItemParam<AssetPrefab> _param = (CreateAssetPoolItemParam<AssetPrefab>)param;
+
+            //@TODO load ...
+            yield break;
         }
     }
 }
