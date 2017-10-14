@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using System;
 using Easy.FrameUnity.Manager;
 using Easy.FrameUnity.Net;
+using Easy.FrameUnity.EsAssetBundle;
+using Easy.FrameUnity.ScriptableObj;
 
 public enum SceneName
 {
@@ -57,7 +59,7 @@ public class ScenesManager : Singleton<ScenesManager>
             case SceneName.F_SceneGame_2:
                 op = SceneManager.LoadSceneAsync("F_SceneGame_2");
                 callback = () => {
-                    BundleManager.Instance.GetAsset("asset", "panelinfo", (obj)=>{
+                    AssetPool.Inst.FindAsset<AssetScriptableObject, PanelInfo>("asset", "panelinfo", (obj)=>{
                             foreach(var panelName in obj.PanelNameList)
                             {
                                 Debug.Log("PanelName: " + panelName);

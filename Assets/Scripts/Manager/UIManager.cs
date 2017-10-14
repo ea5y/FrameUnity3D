@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using System;
+using Easy.FrameUnity.EsAssetBundle;
 
 namespace Easy.FrameUnity.Manager
 {
@@ -31,6 +32,7 @@ namespace Easy.FrameUnity.Manager
         public void InstantiatePanel(string prefabName)
         {
             //prefabName = _assetNamepre + prefabName;
+            /*
             BundleManager.Instance.GetPrefabAsync(_assetPath, prefabName, (obj) => {
                     Debug.Log("Instantiate panel: " + obj);
                     var go = Instantiate(obj);
@@ -38,6 +40,15 @@ namespace Easy.FrameUnity.Manager
                     go.transform.localScale = new Vector3(1, 1, 1);
                     go.transform.localPosition = new Vector3(0, 0, 0);
                     });
+                    */
+            AssetPool.Inst.FindAsset<AssetPrefab, GameObject>("prefab", prefabName, (obj)=>{
+                    Debug.Log("Instantiate panel: " + obj);
+                    var go = Instantiate(obj);
+                    go.transform.parent = this.UIRoot.transform;
+                    go.transform.localScale = new Vector3(1, 1, 1);
+                    go.transform.localPosition = new Vector3(0, 0, 0);
+                    });
+
         }
     }
 }

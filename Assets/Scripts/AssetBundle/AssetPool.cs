@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 namespace Easy.FrameUnity.EsAssetBundle
 {
     public interface IDynamicObject
@@ -18,33 +19,44 @@ namespace Easy.FrameUnity.EsAssetBundle
         object GetInnerObject();
     }
 
-    public struct CreateAssetPoolItemParam<T>
+    public struct CreateAssetPoolItemParam
     {
         public string BundleName;
         public string PrePath;
         public string AssetName;
-        public Action<T> Callback;
     }
 
     public class PoolItem<T> where T : IDynamicObject , new()
     {
-        private IDynamicObject _object;
+        public IDynamicObject PoolObject { get; set; }
         private object _createParam;
 
-        public bool HasInnerObject{get;private set;}
+        public bool HasInnerObject { get; set; }
         public object InnerObject
         {
-            get{return _object.GetInnerObject();}
+            get{return PoolObject.GetInnerObject();}
         }
 
         public string Identifier
         {
-            get{return _object.Identifier;}
+            get
+            {
+                if (PoolObject == null)
+                    return (++_tempIdentifier).ToString();
+                return PoolObject.Identifier;
+            }
+        }
+
+        private static int _tempIdentifier = 0;
+        public string GetTempIdentifier(bool isNew)
+        {
+            var id = isNew == true ? ++_tempIdentifier : _tempIdentifier;
+            return id.ToString();
         }
 
         public bool IsValidate
         {
-            get{return _object.IsValidate;}
+            get{return PoolObject == null ? true : PoolObject.IsValidate;}
         }
 
         private bool _isUsing;
@@ -70,16 +82,16 @@ namespace Easy.FrameUnity.EsAssetBundle
         public void Create(object param)
         {
             _createParam = param;
-            _object = new T();
-            _object.Create(_createParam);
+            PoolObject = new T();
+            PoolObject.Create(_createParam);
             this.HasInnerObject = true;
         }
 
-        public IEnumerator CreateInnerObject<K>(object param) where K : IDynamicObject, new()
+        public IEnumerator CreateInnerObject<AssetType>(object param) where AssetType : IDynamicObject, new()
         {
             _createParam = param;
-            _object = new K();
-            yield return _object.Create(_createParam);
+            PoolObject = new AssetType();
+            yield return PoolObject.Create(_createParam);
             this.HasInnerObject = true;
         }
 
@@ -91,8 +103,8 @@ namespace Easy.FrameUnity.EsAssetBundle
 
         public void Release()
         {
-            _object.Release();
-            _object = null;
+            PoolObject.Release();
+            PoolObject = null;
             this.HasInnerObject = false;
         }
 
@@ -133,26 +145,11 @@ namespace Easy.FrameUnity.EsAssetBundle
             for(int i = 0; i < initSize; i++)
             {
                 PoolItem<T> pItem = new PoolItem<T>();
-                _hashTableObject.Add(pItem.Identifier, pItem);
-                _hashSetFreeIndex.Add(pItem.Identifier);
+                _hashTableObject.Add(pItem.GetTempIdentifier(true), pItem);
+                _hashSetFreeIndex.Add(pItem.GetTempIdentifier(false));
             }
             
             _currentSize = _hashTableObject.Count;
-        }
-
-        public void Release()
-        {
-            lock(this)
-            {
-                foreach(DictionaryEntry de in _hashTableObject)
-                {
-                    ((PoolItem<T>)de.Value).Release();
-                }
-
-                _hashTableObject.Clear();
-                _hashSetFreeIndex.Clear();
-                _hashSetUsingIndex.Clear();
-            }
         }
 
         public PoolItem<T> FindPoolItem(string identifier)
@@ -244,6 +241,58 @@ namespace Easy.FrameUnity.EsAssetBundle
             }
         }
 
+        public void Release()
+        {
+            lock(this)
+            {
+                foreach(DictionaryEntry de in _hashTableObject)
+                {
+                    ((PoolItem<T>)de.Value).Release();
+                }
+
+                _hashTableObject.Clear();
+                _hashSetFreeIndex.Clear();
+                _hashSetUsingIndex.Clear();
+            }
+        }
+
+        public void PICollection()
+        {
+            lock(this)
+            {
+                foreach(DictionaryEntry de in _hashTableObject)
+                {
+                    var poolItem = (PoolItem<T>)de.Value;
+                    var type = poolItem.PoolObject.GetType();
+                    var attAry = type.GetCustomAttributes(false);
+                    foreach(Attribute a in attAry)
+                    {
+                        TimestampAttribute att = a as TimestampAttribute;
+                        if(att != null)
+                        {
+                            int timeSpan = GetTimeSpanSecond(att.Timestamp, DateTime.Now);
+                            if(timeSpan > att.ExpiredSecond)
+                            {
+                                poolItem.PoolObject = null;
+                                poolItem.HasInnerObject = false;
+                                var msg = string.Format("Collection Asset: {0}", type.Name);
+                                Debug.Log(msg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private int GetTimeSpanSecond(DateTime start, DateTime end)
+        {
+            TimeSpan ts1 = new TimeSpan(start.Ticks);
+            TimeSpan ts2 = new TimeSpan(end.Ticks);
+            TimeSpan ts3 = ts1.Subtract(ts2).Duration();
+
+            return ts3.Seconds;
+        }
+
         public int DecreaseSize(int size)
         {
             int decreaseSize = size;
@@ -308,20 +357,8 @@ namespace Easy.FrameUnity.EsAssetBundle
             this.CreateAssetPool(10, 20);
         }
 
-        public T FindAsset<T>(string assetPath, string assetName) where T : AssetData
-        {
-            var identifier = assetPath + assetName;
-            PoolItem<AssetData> pItem = _assetPool.FindPoolItem(identifier);
-            if(pItem.HasInnerObject)
-                return (T)pItem.InnerObject;
-            else
-            {
-                pItem.Create(identifier);
-                return (T)pItem.InnerObject;
-            }
-        }
-
-        public void FindAsset<T>(string assetPath, string assetName, Action<T> callback) where T : AssetData, new()
+        public void FindAsset<AssetType, CallbackParamType>(string assetPath, string assetName,
+                Action<CallbackParamType> callback) where AssetType : AssetData, new()
         {
             //Get poolitem
             //  has innerobj
@@ -335,16 +372,41 @@ namespace Easy.FrameUnity.EsAssetBundle
             PoolItem<AssetData> pItem = _assetPool.FindPoolItem(identifier);
             if(pItem.HasInnerObject)
             {
-                callback((T)pItem.InnerObject);
+                callback((CallbackParamType)pItem.InnerObject);
             }
             else
             {
-                CreateAssetPoolItemParam<T> param = new CreateAssetPoolItemParam<T>();
+                CreateAssetPoolItemParam param = new CreateAssetPoolItemParam();
                 param.BundleName = assetPath;
                 param.AssetName = assetName;
-                param.Callback = callback;
-                StartCoroutine(pItem.CreateInnerObject<T>(param));
+                var coroutine = _CreateInnerObject<AssetType, CallbackParamType>(pItem, param, callback);
+                StartCoroutine(coroutine);
             }
+
+            _assetPool.FreeUsingItem(pItem);
+        }
+
+        private IEnumerator _CreateInnerObject<AssetType, CallbackParamType>(
+                PoolItem<AssetData> poolItem, 
+                CreateAssetPoolItemParam param, 
+                Action<CallbackParamType> callback) where AssetType : IDynamicObject, new()
+        {
+            yield return poolItem.CreateInnerObject<AssetType>(param);
+            callback((CallbackParamType)poolItem.InnerObject);
+        }
+    }
+
+
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+    public class TimestampAttribute : Attribute
+    {
+        public DateTime Timestamp { get; set; }
+        public int ExpiredSecond { get; set; }
+
+        public TimestampAttribute(int expiredSecond = 10)
+        {
+            this.ExpiredSecond = expiredSecond;
+            this.Timestamp = DateTime.Now;
         }
     }
 }

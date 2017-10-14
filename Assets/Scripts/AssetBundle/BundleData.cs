@@ -398,7 +398,7 @@ namespace Easy.FrameUnity.EsAssetBundle
 {
     public abstract class BundleDataNew
     {
-        protected AssetBundle bundle;
+        public AssetBundle bundle;
         protected string bundlePath;
         protected string bundleName;
         protected string bundleSuffix = "";
@@ -442,6 +442,10 @@ namespace Easy.FrameUnity.EsAssetBundle
         protected string assetName;
         protected string assetSuffix = "";
 
+        private object _asset;
+
+        protected static Dictionary<string, BundleDataNew> bundleDic = new Dictionary<string, BundleDataNew>();
+
         public bool IsValidate
         {
             get
@@ -455,26 +459,77 @@ namespace Easy.FrameUnity.EsAssetBundle
             }
         }
 
-        public string Identifier
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
+        public string Identifier { get; set; }
 
-            set
+        protected bool FindBundle(string bundleName, out BundleDataNew bundle)
+        {
+            var msg = string.Format("===>Find bundle from bundleDic");
+            Debug.Log(msg);
+            if(bundleDic.TryGetValue(bundleName, out bundle))
             {
-                throw new NotImplementedException();
+                return true;
             }
+            bundleDic.Add(bundleName, this);
+            return false;
         }
 
         protected void LoadAsset()
         {
+            var msg = "Load Asset...";
+            Debug.Log(msg);
+
+            var strArray = this.bundle.GetAllAssetNames();
+            for(int i = 0; i < strArray.Length; i++)
+            {
+                msg = string.Format("\nAssetName: {0}", strArray[i]);
+                Debug.Log(msg);
+            }
+
+            //Assign param to attribute
+            var asset = this.bundle.LoadAsset(this.assetName + this.assetSuffix);
+
+            if(asset == null)
+            {
+                msg = string.Format("Load asset error: " + "\nbundle===>" + URL.ASSETBUNDLE_LOCAL_URL + this.bundleName+ " not has asset:" + this.assetName + this.assetSuffix);
+                Debug.LogError(msg);
+                return;
+            }
+
+            msg = string.Format("Asset: {0}", asset);
+            Debug.Log(msg);
+            _asset = asset;
+        }
+
+        protected IEnumerator HangUpForWaitLoadingBundle(BundleDataNew bundle)
+        {
+            while (!bundle.IsBundleLoaded)
+                yield return null;
         }
 
         public virtual IEnumerator Create(object param)
         {
-            throw new NotImplementedException();
+            CreateAssetPoolItemParam _param = (CreateAssetPoolItemParam)param;
+            this.bundleName = _param.BundleName;
+            this.assetName = _param.AssetName;
+            this.Identifier = this.bundleName + this.assetName;
+            BundleDataNew bundle;
+            if(!this.FindBundle(_param.BundleName, out bundle))
+            {
+                //Load Bundle
+                yield return this.LoadBundle(URL.ASSETBUNDLE_LOCAL_URL + _param.BundleName + this.bundleSuffix);
+            }
+            else
+            {
+                if (!bundle.IsBundleLoaded)
+                {
+                    yield return this.HangUpForWaitLoadingBundle(bundle);
+                    this.bundle = bundle.bundle;
+                    this.IsBundleLoaded = true;
+                }
+            }
+
+            //Load Asset
+            this.LoadAsset();
         }
 
         public void Release()
@@ -484,7 +539,7 @@ namespace Easy.FrameUnity.EsAssetBundle
 
         public object GetInnerObject()
         {
-            throw new NotImplementedException();
+            return _asset;
         }
     }
 
@@ -492,10 +547,18 @@ namespace Easy.FrameUnity.EsAssetBundle
     {
         public override IEnumerator Create(object param)
         {
-            CreateAssetPoolItemParam<AssetPrefab> _param = (CreateAssetPoolItemParam<AssetPrefab>)param;
-
-            //@TODO load ...
-            yield break;
+            this.assetSuffix = ".prefab";
+            yield return base.Create(param);
         }
     }
+
+    public class AssetScriptableObject : AssetData
+    {
+        public override IEnumerator Create(object param)
+        {
+            this.assetSuffix = ".asset";
+            yield return base.Create(param);
+        }
+    }
+
 }
