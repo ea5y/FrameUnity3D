@@ -8,33 +8,34 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Easy.FrameUnity.EsAssetBundle
+namespace Easy.FrameUnity.Util
 {
     public interface IDynamicObject
     {
         bool IsValidate{get;set;}
         string Identifier{get;set;}
+        DateTime Timestamp { get; }
         IEnumerator Create(object param);
         void Release();
         object GetInnerObject();
     }
 
-    public struct CreateAssetPoolItemParam
+    public class PoolItem<T> where T : IDynamicObject, new()
     {
-        public string BundleName;
-        public string PrePath;
-        public string AssetName;
-    }
-
-    public class PoolItem<T> where T : IDynamicObject , new()
-    {
-        public IDynamicObject PoolObject { get; set; }
+        public IDynamicObject PoolObject { get; private set; }
         private object _createParam;
 
-        public bool HasInnerObject { get; set; }
+        public bool HasInnerObject { get; private set; }
         public object InnerObject
         {
-            get{return PoolObject.GetInnerObject();}
+            get { return PoolObject.GetInnerObject(); }
+        }
+
+        private static int _tempIdentifier = 0;
+        private int _ownerTempIdentifier;
+        public string OwnerTempIdentifier
+        {
+            get { return _ownerTempIdentifier.ToString(); }
         }
 
         public string Identifier
@@ -42,15 +43,16 @@ namespace Easy.FrameUnity.EsAssetBundle
             get
             {
                 if (PoolObject == null)
-                    return (++_tempIdentifier).ToString();
+                    return _ownerTempIdentifier.ToString();
                 return PoolObject.Identifier;
             }
         }
 
-        private static int _tempIdentifier = 0;
+
         public string GetTempIdentifier(bool isNew)
         {
             var id = isNew == true ? ++_tempIdentifier : _tempIdentifier;
+            _ownerTempIdentifier = _tempIdentifier;
             return id.ToString();
         }
 
@@ -103,6 +105,8 @@ namespace Easy.FrameUnity.EsAssetBundle
 
         public void Release()
         {
+            if (PoolObject == null)
+                return;
             PoolObject.Release();
             PoolObject = null;
             this.HasInnerObject = false;
@@ -127,10 +131,17 @@ namespace Easy.FrameUnity.EsAssetBundle
 
         private Hashtable _hashTableObject;
 
-        private HashSet<string> _hashSetFreeIndex;
-        private HashSet<string> _hashSetUsingIndex;
+        private List<string> _hashSetFreeIndex;
+        private List<string> _hashSetUsingIndex;
 
-        public ObjectPool(int initSize, int capacity)
+        private System.Timers.Timer _gcTimer;
+        public ObjectPool(int initSize, int capacity, int gcInterval = 5)
+        {
+            this.Init(initSize, capacity);
+            this.StartGCCollection(gcInterval);
+        }
+
+        private void Init(int initSize, int capacity)
         {
             if(initSize < 0 || capacity < 1 || initSize > capacity)
             {
@@ -139,8 +150,8 @@ namespace Easy.FrameUnity.EsAssetBundle
 
             _capacity = capacity;
             _hashTableObject = new Hashtable(capacity);
-            _hashSetFreeIndex = new HashSet<string>();
-            _hashSetUsingIndex = new HashSet<string>();
+            _hashSetFreeIndex = new List<string>();
+            _hashSetUsingIndex = new List<string>();
 
             for(int i = 0; i < initSize; i++)
             {
@@ -151,27 +162,25 @@ namespace Easy.FrameUnity.EsAssetBundle
             
             _currentSize = _hashTableObject.Count;
         }
+        
+        private void StartGCCollection(int gcInterval)
+        {
+            _gcTimer = new System.Timers.Timer(gcInterval * 1000);
+            _gcTimer.Elapsed += new System.Timers.ElapsedEventHandler(GCCollection);
+            _gcTimer.AutoReset = true;
+            _gcTimer.Enabled = true;
+            _gcTimer.Start();
+        }
+
+        public void StopGCCollection()
+        {
+            _gcTimer.Stop();
+        }
 
         public PoolItem<T> FindPoolItem(string identifier)
         {
             lock(this)
             {
-                /*
-                T innerObject;
-                if(this.Find(identifier, out innerObject))
-                {
-                    return innerObject;
-                }
-                else
-                {
-                    //check if has free obj
-                    //  No:Create a new PoolItem obj
-                    //  yes:Get free obj
-                    //PoolItem obj create inner obj
-                }
-                return innerObject;
-                */
-
                 PoolItem<T> pItem = null;
                 if(!this.Find(identifier, out pItem))
                 {
@@ -228,6 +237,14 @@ namespace Easy.FrameUnity.EsAssetBundle
             return pItem;
         }
 
+        public void UpdatePoolItemIdentifier(PoolItem<T> poolItem)
+        {
+            _hashTableObject.Remove(poolItem.OwnerTempIdentifier);
+            _hashSetUsingIndex.Remove(poolItem.OwnerTempIdentifier);
+            _hashTableObject.Add(poolItem.Identifier, poolItem);
+            _hashSetUsingIndex.Add(poolItem.Identifier);
+        }
+
         public void FreeUsingItem(PoolItem<T> item)
         {
             lock(this)
@@ -254,30 +271,32 @@ namespace Easy.FrameUnity.EsAssetBundle
                 _hashSetFreeIndex.Clear();
                 _hashSetUsingIndex.Clear();
             }
-        }
 
-        public void PICollection()
+            _gcTimer.Stop();
+            _gcTimer = null;
+        }
+        public void GCCollection(object source, System.Timers.ElapsedEventArgs e)
         {
             lock(this)
             {
+                Debug.Log("ObjectPool GCColleting...");
                 foreach(DictionaryEntry de in _hashTableObject)
                 {
-                    var poolItem = (PoolItem<T>)de.Value;
-                    var type = poolItem.PoolObject.GetType();
-                    var attAry = type.GetCustomAttributes(false);
-                    foreach(Attribute a in attAry)
+                    var pItem = (PoolItem<T>)de.Value;
+                    if(pItem.HasInnerObject && !pItem.IsUsing)
                     {
-                        TimestampAttribute att = a as TimestampAttribute;
-                        if(att != null)
+                        var timeSpan = this.GetTimeSpanSecond(pItem.PoolObject.Timestamp, DateTime.Now);
+                        if(timeSpan >= 10)
                         {
-                            int timeSpan = GetTimeSpanSecond(att.Timestamp, DateTime.Now);
-                            if(timeSpan > att.ExpiredSecond)
-                            {
-                                poolItem.PoolObject = null;
-                                poolItem.HasInnerObject = false;
-                                var msg = string.Format("Collection Asset: {0}", type.Name);
-                                Debug.Log(msg);
-                            }
+                            var msg = string.Format("Collection Asset: {0}", pItem.PoolObject.GetType().Name);
+                            Debug.Log(msg);
+                            _hashSetFreeIndex.Remove(pItem.Identifier);
+                            _hashTableObject.Remove(pItem.Identifier);
+
+                            pItem.Release();
+                            _hashSetFreeIndex.Add(pItem.Identifier);
+                            _hashTableObject.Add(pItem.Identifier, pItem);
+
                         }
                     }
                 }
@@ -340,73 +359,6 @@ namespace Easy.FrameUnity.EsAssetBundle
             }
             _currentSize -= decreaseSize;
             return decreaseSize;
-        }
-    }
-
-    public class AssetPool : Singleton<AssetPool>
-    {
-        private ObjectPool<AssetData> _assetPool;
-        public void CreateAssetPool(int initSize, int capacity)
-        {
-            _assetPool = new ObjectPool<AssetData>(initSize, capacity);
-        }
-
-        private void Awake()
-        {
-            base.GetInstance();
-            this.CreateAssetPool(10, 20);
-        }
-
-        public void FindAsset<AssetType, CallbackParamType>(string assetPath, string assetName,
-                Action<CallbackParamType> callback) where AssetType : AssetData, new()
-        {
-            //Get poolitem
-            //  has innerobj
-            //      callback(innerobj)
-            //  has't innerobj
-            //      create(param)
-            //      callback(innerobj)
-            //Free poolitem
-            
-            var identifier = assetPath + assetName;
-            PoolItem<AssetData> pItem = _assetPool.FindPoolItem(identifier);
-            if(pItem.HasInnerObject)
-            {
-                callback((CallbackParamType)pItem.InnerObject);
-            }
-            else
-            {
-                CreateAssetPoolItemParam param = new CreateAssetPoolItemParam();
-                param.BundleName = assetPath;
-                param.AssetName = assetName;
-                var coroutine = _CreateInnerObject<AssetType, CallbackParamType>(pItem, param, callback);
-                StartCoroutine(coroutine);
-            }
-
-            _assetPool.FreeUsingItem(pItem);
-        }
-
-        private IEnumerator _CreateInnerObject<AssetType, CallbackParamType>(
-                PoolItem<AssetData> poolItem, 
-                CreateAssetPoolItemParam param, 
-                Action<CallbackParamType> callback) where AssetType : IDynamicObject, new()
-        {
-            yield return poolItem.CreateInnerObject<AssetType>(param);
-            callback((CallbackParamType)poolItem.InnerObject);
-        }
-    }
-
-
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-    public class TimestampAttribute : Attribute
-    {
-        public DateTime Timestamp { get; set; }
-        public int ExpiredSecond { get; set; }
-
-        public TimestampAttribute(int expiredSecond = 10)
-        {
-            this.ExpiredSecond = expiredSecond;
-            this.Timestamp = DateTime.Now;
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Easy.FrameUnity.Manager
                     go.transform.localPosition = new Vector3(0, 0, 0);
                     });
                     */
-            AssetPool.Inst.FindAsset<AssetPrefab, GameObject>("prefab", prefabName, (obj)=>{
+            AssetPoolManager.Inst.FindAsset<AssetPrefab, GameObject>("prefab", prefabName, (obj)=>{
                     Debug.Log("Instantiate panel: " + obj);
                     var go = Instantiate(obj);
                     go.transform.parent = this.UIRoot.transform;

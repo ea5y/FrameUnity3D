@@ -14,12 +14,14 @@ public class FiberTest : MonoBehaviour
         if(GUI.Button(new Rect(20, 40, 180, 60), "Create 1"))
         {
 
+            /*
             BundleManager.Instance.GetPrefab(this.assetPath, this.assetName, (obj) => {
                     var go = Instantiate(obj);
                     go.transform.localPosition = new Vector3(0, 0, 0);
                     this.GameObjectList.Add(go);
                     Debug.Log("GameObject count: " + this.GameObjectList.Count);
                     });	
+                    */
         }
 
         if(GUI.Button(new Rect(20, 110, 180, 60), "Create 1000"))
@@ -27,12 +29,14 @@ public class FiberTest : MonoBehaviour
             for(int i = 1; i < 1001; i++)
             {
                 var p = i + i;
+                /*
                 BundleManager.Instance.GetPrefab(this.assetPath, this.assetName, (obj) => {
                         var go = Instantiate(obj);
                         go.transform.localPosition = new Vector3(p, 0, 0);
                         this.GameObjectList.Add(go);
                         Debug.Log("GameObject count: " + this.GameObjectList.Count);
                         });	
+                        */
             }
         }
 
