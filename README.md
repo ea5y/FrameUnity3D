@@ -1,5 +1,4 @@
 # FrameUnity3D
-My frame of u3d.
 功能点：
   --热更新(用的XLua)目前实现功能：
     1.热更一个原有的界面
