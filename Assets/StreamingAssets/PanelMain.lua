@@ -56,6 +56,7 @@ xlua.hotfix(CS.Easy.FrameUnity.Panel.PanelMain, {
 --]]
 --Stateless
 local util = require 'xlua.util'
+local panelOther = require 'PanelOther'
 xlua.private_accessible(CS.Easy.FrameUnity.Panel.PanelMain)
 util.hotfix_ex(CS.Easy.FrameUnity.Panel.PanelMain, 'Start',
         function(self)
@@ -66,6 +67,7 @@ util.hotfix_ex(CS.Easy.FrameUnity.Panel.PanelMain, 'Start',
             print(btn)
             local OnNewBtnClick = function()
                 print("Click")
+                _G.PanelOther:Open(nil);
             end
             CS.EventDelegate.Add(btn.onClick, OnNewBtnClick)
         end

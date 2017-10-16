@@ -17,12 +17,9 @@ namespace Easy.FrameUnity.Manager
         public GameObject Cameras;
         public GameObject Plugins;
 
-        public LuaEnv LuaEnv;
-
         private void Awake()
         {
             base.GetInstance();
-            //this.EnableHotFix();
             this.ApplicationEnter();
         }
 
@@ -44,29 +41,6 @@ namespace Easy.FrameUnity.Manager
 
         private void ApplicationQuit()
         {
-        }
-        
-        public void EnableHotFix()
-        {
-            if(File.Exists(URL.HOTFIX_URL))
-            {
-                LuaEnv = new LuaEnv();
-                LuaEnv.DoString(File.ReadAllText(URL.HOTFIX_URL));
-
-                //LuaTableManager.Inst.Init();
-            }
-            /*
-            if (File.Exists(URL.HOTFIX_URL))
-            {
-                LuaEnv luaEnv = new LuaEnv();
-                using (FileStream fs = new FileStream(URL.HOTFIX_URL, FileMode.Open, FileAccess.Read, FileShare.Read))
-                using (StreamReader sr = new StreamReader(fs))
-                {
-                    var values = sr.ReadToEnd();
-                    luaEnv.DoString(values);
-                }
-            }
-            */
         }
     }
 }

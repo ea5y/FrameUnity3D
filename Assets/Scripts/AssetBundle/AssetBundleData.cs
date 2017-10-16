@@ -147,9 +147,9 @@ namespace Easy.FrameUnity.EsAssetBundle
                 if (!bundle.IsBundleLoaded)
                 {
                     yield return this.HangUpForWaitLoadingBundle(bundle);
-                    this.bundle = bundle.bundle;
-                    this.IsBundleLoaded = true;
                 }
+                this.bundle = bundle.bundle;
+                this.IsBundleLoaded = true;
             }
 
             //Load Asset

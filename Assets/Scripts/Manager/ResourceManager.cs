@@ -6,7 +6,7 @@ using System.Net;
 using System.IO;
 using LitJson;
 using System.ComponentModel;
-using System.Security.Cryptography;
+using Easy.FrameUnity.Util;
 
 public class ResourceFile
 {
@@ -49,7 +49,7 @@ namespace Easy.FrameUnity.Manager
 
     public class ResourceManager : Singleton<ResourceManager>
     {
-        private UILoadingProgress ui;
+        private PanelLoading ui;
 
         private List<ResourceFile> _willLoadList = new List<ResourceFile>();
         private Queue<Action> _displayQueue = new Queue<Action>();
@@ -117,13 +117,13 @@ namespace Easy.FrameUnity.Manager
             }
         }
 
-        public void UpdateResource(UILoadingProgress ui)
+        public void UpdateResource(PanelLoading ui)
         {
             this.ui = ui;
             StartCoroutine(_UpdateResource(ui));
         }
 
-        private IEnumerator _UpdateResource(UILoadingProgress ui)
+        private IEnumerator _UpdateResource(PanelLoading ui)
         {
             if (IsUpdate())
             {
@@ -132,7 +132,6 @@ namespace Easy.FrameUnity.Manager
             while (_loaderQueue.Count > 0 || this._displayQueue.Count > 0)
                 yield return null;
 
-            //yield return new WaitForSeconds(3);
             this.OnLoadingCompleted();
         }
 
@@ -225,7 +224,7 @@ namespace Easy.FrameUnity.Manager
                     {
                         Debug.Log("Local resource name: " + fileInfo.Name);
                         //check md5
-                        var localFileMd5 = IOHelper.GetFileMD5(fileInfo.FullName);
+                        var localFileMd5 = IOHelperUtil.GetFileMD5(fileInfo.FullName);
                         Debug.Log(string.Format("HostMd5: {0}\nLocalMd5: {1}", fileHost.md5, localFileMd5));
                         if (fileHost.md5 != localFileMd5)
                         {
@@ -252,9 +251,27 @@ namespace Easy.FrameUnity.Manager
         private void OnLoadingCompleted()
         {
             Debug.Log("Load completed.");
-            ApplicationManager.Inst.EnableHotFix();
+            this.EnableHotFix();
+            this.InitManager();
+            this.EnterNextScene();
+        }
+
+        private void EnableHotFix()
+        {
+            HotfixManager.Inst.EnableHotFix();
+        }
+
+        private void InitManager()
+        {
+            foreach(var manager in ManagerCollections.ManagerList)
+            {
+                manager.Init();
+            }
+        }
+
+        private void EnterNextScene()
+        {
             ScenesManager.Inst.EnterLoadingScene(SceneName.F_SceneGame_2);
-            //ScenesManager.Inst.EnterLoadingScene(SceneName.C_SceneLogin);
         }
 
         public void InvokeAsync(Action action)
@@ -271,12 +288,12 @@ namespace Easy.FrameUnity.Manager
         public WebClient WebClient;
         public string HostFileURL;
         public string LocalSaveURL;
-        public UILoadingProgress ui;
+        public PanelLoading ui;
 
         public bool IsCompleted = false;
         public bool IsLoading = false;
         public Action Callback = () => { };
-        public Loader(string hostFileURL, string LocalSaveURL, UILoadingProgress ui)
+        public Loader(string hostFileURL, string LocalSaveURL, PanelLoading ui)
         {
             this.HostFileURL = hostFileURL;
             this.LocalSaveURL = LocalSaveURL;

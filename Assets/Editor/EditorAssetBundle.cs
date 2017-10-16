@@ -8,10 +8,8 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-using System.Collections.Generic;
-using System;
 using Easy.FrameUnity.ScriptableObj;
-
+using Easy.FrameUnity.Util;
 
 public class AssetBundles
 {
@@ -26,26 +24,26 @@ public class AssetBundles
 	[MenuItem("AssetBundle/Build For Android")]
     public static void ExportForAndroid()
     {
-        Export(BuildTarget.Android, URL.ASSETBUNDLE_OUTPUT_URL + "Android/");
+        Export(BuildTarget.Android, URL.ASSETBUNDLE_OUTPUT_URL + "android/");
 
     }
 
 	[MenuItem("AssetBundle/Build For IOS")]
     public static void ExportForIOS()
     {
-        Export(BuildTarget.iOS, URL.ASSETBUNDLE_OUTPUT_URL + "Ios/");
+        Export(BuildTarget.iOS, URL.ASSETBUNDLE_OUTPUT_URL + "ios/");
     }
 
 	[MenuItem("AssetBundle/Build For Win")]
     public static void ExportForWin()
     {
-        Export(BuildTarget.StandaloneWindows, URL.ASSETBUNDLE_OUTPUT_URL + "Win/");
+        Export(BuildTarget.StandaloneWindows, URL.ASSETBUNDLE_OUTPUT_URL + "win/");
     }
 
     [MenuItem("AssetBundle/Create Lua FileList")]
     public static void CreateLuaFileList()
     {
-        CreateResourceFileList<LuaFile>(URL.ASSETBUNDLE_OUTPUT_URL + "Lua/");
+        CreateResourceFileList<LuaFile>(URL.ASSETBUNDLE_OUTPUT_URL + "lua/");
     }
 
     [MenuItem("AssetBundle/Create SPT Asset")]
@@ -173,12 +171,12 @@ public class AssetBundles
                 continue;
             ResourceFile bundleFile = new ResourceFile();
             bundleFile.name = fileInfo.Name;
-            bundleFile.md5 = IOHelper.GetFileMD5(fileInfo.FullName);
+            bundleFile.md5 = IOHelperUtil.GetFileMD5(fileInfo.FullName);
             bundleFile.length = ((FileInfo)fileInfo).Length.ToString();
 
             bundleFileList.resourceFileList.Add(bundleFile);
         }
-        IOHelper.SaveToJson<ResourceFileList>(bundleFileList, inputPath);
+        IOHelperUtil.SaveToJson<ResourceFileList>(bundleFileList, inputPath);
     }
 
     public static void CreateResourceFileList<T>(string inputPath) where T : ResourceFile, new()
@@ -194,12 +192,12 @@ public class AssetBundles
                 continue;
             T bundleFile = new T();
             bundleFile.name = fileInfo.Name;
-            bundleFile.md5 = IOHelper.GetFileMD5(fileInfo.FullName);
+            bundleFile.md5 = IOHelperUtil.GetFileMD5(fileInfo.FullName);
             bundleFile.length = ((FileInfo)fileInfo).Length.ToString();
 
             bundleFileList.resourceFileList.Add(bundleFile);
         }
-        IOHelper.SaveToJson<ResourceFileList>(bundleFileList, inputPath);
+        IOHelperUtil.SaveToJson<ResourceFileList>(bundleFileList, inputPath);
     }
 
     //just set file

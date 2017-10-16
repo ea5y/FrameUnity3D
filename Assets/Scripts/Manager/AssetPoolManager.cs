@@ -1,23 +1,25 @@
 ﻿using Easy.FrameUnity.EsAssetBundle;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Easy.FrameUnity.Util;
 
 namespace Easy.FrameUnity.Manager
 {
-    public class AssetPoolManager : Singleton<AssetPoolManager>
+    public class AssetPoolManager : ManagerBase<AssetPoolManager>
     {
-        private ObjectPool<AssetData> _assetPool;
+        private ObjectPoolUtil<AssetData> _assetPool;
         public void CreateAssetPool(int initSize, int capacity)
         {
-            _assetPool = new ObjectPool<AssetData>(initSize, capacity);
+            _assetPool = new ObjectPoolUtil<AssetData>(initSize, capacity);
         }
 
         private void Awake()
         {
             base.GetInstance();
+        }
+
+        public override void Init()
+        {
             this.CreateAssetPool(10, 20);
         }
 
@@ -31,29 +33,10 @@ namespace Easy.FrameUnity.Manager
             //      create(param)
             //      callback(innerobj)
             //Free poolitem
-
-            /*
-            var identifier = assetPath + assetName;
-            PoolItem<AssetData> pItem = _assetPool.FindPoolItem(identifier);
-            if (pItem.HasInnerObject)
-            {
-                callback((CallbackParamType)pItem.InnerObject);
-            }
-            else
-            {
-                CreateAssetPoolItemParam param = new CreateAssetPoolItemParam();
-                param.BundleName = assetPath;
-                param.AssetName = assetName;
-                var coroutine = _CreateInnerObject<AssetType, CallbackParamType>(pItem, param, callback);
-                StartCoroutine(coroutine);
-            }
-
-            _assetPool.FreeUsingItem(pItem);
-            */
-            StartCoroutine(_Find<AssetType, CallbackParamType>(assetPath, assetName, callback));
+            StartCoroutine(_FindAsset<AssetType, CallbackParamType>(assetPath, assetName, callback));
         }
 
-        private IEnumerator _Find<AssetType, CallbackParamType>(string assetPath, string assetName,
+        private IEnumerator _FindAsset<AssetType, CallbackParamType>(string assetPath, string assetName,
                 Action<CallbackParamType> callback) where AssetType : AssetData, new()
         {
             var identifier = assetPath + assetName;

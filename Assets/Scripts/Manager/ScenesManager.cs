@@ -32,7 +32,7 @@ public class ScenesManager : Singleton<ScenesManager>
         SceneManager.LoadSceneAsync("B_SceneLoading");
     }
 
-    public void EnterScene(SceneName name, UILoadingProgress ui)
+    public void RealLoadScene(SceneName name, PanelLoading ui)
     {
         ui.SetUI(LoadingType.Scene);
         AsyncOperation op = null;
@@ -72,7 +72,7 @@ public class ScenesManager : Singleton<ScenesManager>
         StartCoroutine(Loading(op, callback, ui));
     }
 
-    private IEnumerator Loading(AsyncOperation op, Action callback, UILoadingProgress ui)
+    private IEnumerator Loading(AsyncOperation op, Action callback, PanelLoading ui)
     {
         while (op.progress < 0.8)
         {
