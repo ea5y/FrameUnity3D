@@ -71,7 +71,8 @@ namespace Easy.FrameUnity.Manager
 
         private void OnDestroy()
         {
-            _assetPool.Release();
+            if(_assetPool != null)
+                _assetPool.Release();
         }
     }
 }
