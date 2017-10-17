@@ -68,7 +68,7 @@ public class URL
 #endif
 
     public static readonly string ASSETBUNDLE_INPUT_URL = Application.dataPath + "/ResForBundle/";
-	public static readonly string ASSETBUNDLE_OUTPUT_URL = "Assets/bundle/";
+	public static readonly string ASSETBUNDLE_OUTPUT_URL = "Assets/HotfixRes/";
 
 	public static readonly string BUNDLE_FILES_URL = "";
 

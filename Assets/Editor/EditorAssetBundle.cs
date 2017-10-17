@@ -31,19 +31,19 @@ public class AssetBundles
 	[MenuItem("AssetBundle/Build For IOS")]
     public static void ExportForIOS()
     {
-        Export(BuildTarget.iOS, URL.ASSETBUNDLE_OUTPUT_URL + "ios/");
+        Export(BuildTarget.iOS, URL.ASSETBUNDLE_OUTPUT_URL + "Bundle/ios/");
     }
 
 	[MenuItem("AssetBundle/Build For Win")]
     public static void ExportForWin()
     {
-        Export(BuildTarget.StandaloneWindows, URL.ASSETBUNDLE_OUTPUT_URL + "win/");
+        Export(BuildTarget.StandaloneWindows, URL.ASSETBUNDLE_OUTPUT_URL + "Bundle/win/");
     }
 
     [MenuItem("AssetBundle/Create Lua FileList")]
     public static void CreateLuaFileList()
     {
-        CreateResourceFileList<LuaFile>(URL.ASSETBUNDLE_OUTPUT_URL + "lua/");
+        CreateResourceFileList<LuaFile>(URL.ASSETBUNDLE_OUTPUT_URL + "Lua/");
     }
 
     [MenuItem("AssetBundle/Create SPT Asset")]
