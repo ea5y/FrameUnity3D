@@ -1,0 +1,2 @@
+require 'PanelMain'
+require 'PanelOther'
