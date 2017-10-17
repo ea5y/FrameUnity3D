@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 1728915332
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: fa546421eb4f9418706c017b99387a48
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 61ccac76603191a68d480f88e7ffbe0c
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 63566899d5455a04a9d9fd00eb915e9b, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/ResForBundle/Asset/PanelInfo.asset
+Dependencies: []

@@ -1,0 +1,36 @@
+ManifestFileVersion: 0
+CRC: 4250979911
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 52cf66cae6cf9ff6d76439d3d5a37532
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ab8f72dc9e0b0fead577f2fe68cdef32
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/ResForBundle/Atlas/Atlas 5.prefab
+- Assets/ResForBundle/Atlas/Atlas.prefab
+- Assets/ResForBundle/Atlas/Atlas 1.prefab
+- Assets/ResForBundle/Atlas/Atlas 8.prefab
+- Assets/ResForBundle/Atlas/Atlas 2.prefab
+- Assets/ResForBundle/Atlas/Atlas 7.prefab
+- Assets/ResForBundle/Atlas/Atlas 4.prefab
+- Assets/ResForBundle/Atlas/Atlas 3.prefab
+- Assets/ResForBundle/Atlas/Atlas 6.prefab
+Dependencies: []
