@@ -13,25 +13,25 @@ namespace Easy.FrameUnity.ScriptableObj
 {
     public class ScriptableObjectHelp
     {
-        public static T Create<T>(string path, string name) where T : ScriptableObject
+        public static bool Create(string type, string path, string name)
         {
             if(new DirectoryInfo(path).Exists == false)
             {
                 Debug.LogError("Can't create asset, path not found");
-                return null;
+                return false;
             }
             if(string.IsNullOrEmpty(name))
             {
                 Debug.LogError("Can't create asset, the name is empty");
-                return null;
+                return false;
             }
 
             string assetPath = Path.Combine(path, name + ".asset");
 
-            T t = ScriptableObject.CreateInstance<T>();
+            var t = ScriptableObject.CreateInstance(type);
             AssetDatabase.CreateAsset(t, assetPath);
             Selection.activeObject = t;
-            return t;
+            return true;
         }
     }
 }

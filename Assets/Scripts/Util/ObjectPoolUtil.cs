@@ -15,7 +15,7 @@ namespace Easy.FrameUnity.Util
         bool IsValidate{get;set;}
         string Identifier{get;set;}
         DateTime Timestamp { get; }
-        IEnumerator Create(object param);
+        IEnumerator Create<T>(object param) where T : ScriptableObject;
         void Release();
         object GetInnerObject();
     }
@@ -85,15 +85,15 @@ namespace Easy.FrameUnity.Util
         {
             _createParam = param;
             PoolObject = new T();
-            PoolObject.Create(_createParam);
+            //PoolObject.Create(_createParam);
             this.HasInnerObject = true;
         }
 
-        public IEnumerator CreateInnerObject<AssetType>(object param) where AssetType : IDynamicObject, new()
+        public IEnumerator CreateInnerObject<AssetType, CallbackParamType>(object param) where AssetType : IDynamicObject, new() where CallbackParamType : ScriptableObject
         {
             _createParam = param;
             PoolObject = new AssetType();
-            yield return PoolObject.Create(_createParam);
+            yield return PoolObject.Create<CallbackParamType>(_createParam);
             this.HasInnerObject = true;
         }
 
@@ -272,8 +272,11 @@ namespace Easy.FrameUnity.Util
                 _hashSetUsingIndex.Clear();
             }
 
-            _gcTimer.Stop();
-            _gcTimer = null;
+            if(_gcTimer != null)
+            {
+                _gcTimer.Stop();
+                _gcTimer = null;
+            }
         }
         public void GCCollection(object source, System.Timers.ElapsedEventArgs e)
         {

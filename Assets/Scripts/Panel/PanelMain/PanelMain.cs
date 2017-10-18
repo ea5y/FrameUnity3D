@@ -35,6 +35,14 @@ namespace Easy.FrameUnity.Panel
         {
         }
 
+        private void OnEnable()
+        {
+        }
+
+        private void OnDisable()
+        {
+        }
+
         private void Awake()
         {
             base.GetInstance();

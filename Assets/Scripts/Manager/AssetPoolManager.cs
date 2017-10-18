@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using Easy.FrameUnity.Util;
+using UnityEngine;
 
 namespace Easy.FrameUnity.Manager
 {
@@ -24,7 +25,7 @@ namespace Easy.FrameUnity.Manager
         }
 
         public void FindAsset<AssetType, CallbackParamType>(string assetPath, string assetName,
-                Action<CallbackParamType> callback) where AssetType : AssetData, new()
+                Action<CallbackParamType> callback) where AssetType : AssetData, new() where CallbackParamType : ScriptableObject
         {
             //Get poolitem
             //  has innerobj
@@ -37,8 +38,9 @@ namespace Easy.FrameUnity.Manager
         }
 
         private IEnumerator _FindAsset<AssetType, CallbackParamType>(string assetPath, string assetName,
-                Action<CallbackParamType> callback) where AssetType : AssetData, new()
-        {
+                Action<CallbackParamType> callback) where AssetType : AssetData, new() where CallbackParamType : ScriptableObject
+        { 
+        
             var identifier = assetPath + assetName;
             PoolItem<AssetData> pItem = _assetPool.FindPoolItem(identifier);
             if (pItem.HasInnerObject)
@@ -60,9 +62,9 @@ namespace Easy.FrameUnity.Manager
         private IEnumerator _CreateInnerObject<AssetType, CallbackParamType>(
                 PoolItem<AssetData> poolItem,
                 CreateAssetPoolItemParam param,
-                Action<CallbackParamType> callback) where AssetType : IDynamicObject, new()
+                Action<CallbackParamType> callback) where AssetType : IDynamicObject, new() where CallbackParamType : ScriptableObject
         {
-            yield return poolItem.CreateInnerObject<AssetType>(param);
+            yield return poolItem.CreateInnerObject<AssetType, CallbackParamType>(param);
 
             _assetPool.UpdatePoolItemIdentifier(poolItem);
 
