@@ -45,16 +45,16 @@ namespace Easy.FrameUnity.Manager
 
         public void EnableHotFix()
         {
-            if(File.Exists(URL.HOTFIX_URL))
+            if(File.Exists(URL.HOTFIX_MAIN_URL))
             {
                 this.LuaEnv = new LuaEnv();
-                this.LuaEnv.DoString(File.ReadAllText(URL.HOTFIX_URL));
+                this.LuaEnv.DoString(File.ReadAllText(URL.HOTFIX_MAIN_URL));
             }
         }
 
         public void GetLuaTable()
         {
-            AssetPoolManager.Inst.FindAsset<AssetScriptableObject, PanelInfo>("asset", "PanelInfo", (obj) => {
+            AssetPoolManager.Inst.FindAsset<AssetScriptableObject, PanelInfo>("Parameter", "PanelInfo", (obj) => {
                 /*
                 foreach(var panelName in obj.PanelNameList)
                 {

@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using Easy.FrameUnity.Util;
+using Easy.FrameUnity.ScriptableObj;
 
 namespace Easy.FrameUnity.EsAssetBundle
 {
@@ -33,6 +34,7 @@ namespace Easy.FrameUnity.EsAssetBundle
             if(this.bundle != null)
                 yield break;
 
+            Debug.Log("BundleName:" + url);
             using(WWW www = new WWW(url))
             {
                 yield return www;
@@ -130,12 +132,21 @@ namespace Easy.FrameUnity.EsAssetBundle
                 yield return null;
         }
 
-        public virtual IEnumerator Create(object param)
+        public virtual IEnumerator Create<T>(object param) where T : ScriptableObject
         {
             CreateAssetPoolItemParam _param = (CreateAssetPoolItemParam)param;
             this.bundleName = _param.BundleName;
             this.assetName = _param.AssetName;
             this.Identifier = this.bundleName + this.assetName;
+
+
+#if UNITY_EDITOR
+            var path = string.Format("{0}{1}/{2}{3}", URL.ASSETBUNDLE_LOCAL_URL, this.bundleName, this.assetName, this.assetSuffix);
+            Debug.Log(path);
+            _asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(path);
+            yield break;
+#endif
+
             BundleData bundle;
             if(!this.FindBundle(_param.BundleName, out bundle))
             {
@@ -169,19 +180,19 @@ namespace Easy.FrameUnity.EsAssetBundle
 
     public class AssetPrefab : AssetData
     {
-        public override IEnumerator Create(object param)
+        public override IEnumerator Create<T>(object param)
         {
             this.assetSuffix = ".prefab";
-            yield return base.Create(param);
+            yield return base.Create<T>(param);
         }
     }
 
     public class AssetScriptableObject : AssetData
     {
-        public override IEnumerator Create(object param)
+        public override IEnumerator Create<T>(object param)
         {
             this.assetSuffix = ".asset";
-            yield return base.Create(param);
+            yield return base.Create<T>(param);
         }
     }
 

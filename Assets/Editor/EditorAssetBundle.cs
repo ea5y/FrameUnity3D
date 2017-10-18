@@ -10,6 +10,7 @@ using UnityEditor;
 using System.IO;
 using Easy.FrameUnity.ScriptableObj;
 using Easy.FrameUnity.Util;
+using System.Reflection;
 
 public class AssetBundles
 {
@@ -24,7 +25,7 @@ public class AssetBundles
 	[MenuItem("AssetBundle/Build For Android")]
     public static void ExportForAndroid()
     {
-        Export(BuildTarget.Android, URL.ASSETBUNDLE_OUTPUT_URL + "android/");
+        Export(BuildTarget.Android, URL.ASSETBUNDLE_OUTPUT_URL + "Bundle/android/");
 
     }
 
@@ -49,13 +50,15 @@ public class AssetBundles
     [MenuItem("AssetBundle/Create SPT Asset")]
     public static void CreateScriptableObjAsset()
     {
-        string assetName = "New SPT";
+        string assetName = "New ScriptableObject";
         string assetPath = "Assets";
+        string fileName = "";
         if(Selection.activeObject)
         {
             assetPath = AssetDatabase.GetAssetPath(Selection.activeObject);
             if(System.IO.Path.GetExtension(assetPath) != "")
             {
+                fileName = System.IO.Path.GetFileName(assetPath).Split('.')[0];
                 assetPath = System.IO.Path.GetDirectoryName(assetPath);
             }
         }
@@ -69,8 +72,7 @@ public class AssetBundles
         }
         if(doCreate)
         {
-            PanelInfo info = ScriptableObjectHelp.Create<PanelInfo>(assetPath, assetName);
-            //Selection.activeObject = info;
+            ScriptableObjectHelp.Create(fileName, assetPath, assetName);
         }
     }
 
@@ -94,10 +96,10 @@ public class AssetBundles
 		ClearAssetBundlesName();
 
 
-        url = url.Substring(7);
+        //url = url.Substring(7);
         Debug.Log("Url: " + url);
-        //CreateBundleFileList(Application.dataPath + "/" + url);
-        CreateResourceFileList<BundleFile>(Application.dataPath + "/" + url);
+        //CreateResourceFileList<BundleFile>(Application.dataPath + "/" + url);
+        CreateResourceFileList<BundleFile>(url);
 	}
 
 	private static void ClearAssetBundlesName()

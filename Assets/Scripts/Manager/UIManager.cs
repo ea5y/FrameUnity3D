@@ -5,16 +5,14 @@
 //================================
 
 using UnityEngine;
-using System;
+using System.Collections;
 using Easy.FrameUnity.EsAssetBundle;
+using Easy.FrameUnity.ScriptableObj;
 
 namespace Easy.FrameUnity.Manager
 {
     public class UIManager : Singleton<UIManager>
     {
-        private string _assetPath = "Prefab";
-        //private string _assetNamepre = "panel/panelmain/";
-
         public GameObject UIRoot
         {
             get
@@ -31,24 +29,13 @@ namespace Easy.FrameUnity.Manager
 
         public void InstantiatePanel(string prefabName)
         {
-            //prefabName = _assetNamepre + prefabName;
-            /*
-            BundleManager.Instance.GetPrefabAsync(_assetPath, prefabName, (obj) => {
-                    Debug.Log("Instantiate panel: " + obj);
-                    var go = Instantiate(obj);
+            AssetPoolManager.Inst.FindAsset<AssetScriptableObject, SObjPrefab>(prefabName, "Panel", (obj)=>{
+                    Debug.Log("Instantiate panel: " + obj.Prefab);
+                    var go = Instantiate(obj.Prefab);
                     go.transform.parent = this.UIRoot.transform;
                     go.transform.localScale = new Vector3(1, 1, 1);
                     go.transform.localPosition = new Vector3(0, 0, 0);
                     });
-                    */
-            AssetPoolManager.Inst.FindAsset<AssetPrefab, GameObject>("prefab", prefabName, (obj)=>{
-                    Debug.Log("Instantiate panel: " + obj);
-                    var go = Instantiate(obj);
-                    go.transform.parent = this.UIRoot.transform;
-                    go.transform.localScale = new Vector3(1, 1, 1);
-                    go.transform.localPosition = new Vector3(0, 0, 0);
-                    });
-
         }
     }
 }

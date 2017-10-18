@@ -137,13 +137,16 @@ namespace Easy.FrameUnity.Manager
 
         public bool IsUpdate()
         {
+#if UNITY_EDITOR
+            return false;
+#endif
             var bundleUrl = URL.ASSETBUNDLE_HOST_URL + URL.RESOURCE_FILE_LIST_FILENAME;
             var bundleFileListHost = this.LoadResourceFileList(bundleUrl);
-            var bundleResult = this.CheckAndFilterResourceFile(bundleFileListHost, URL.RELATIVE_STREAMINGASSETS_URL);
+            var bundleResult = this.CheckAndFilterResourceFile(bundleFileListHost, URL.ASSETBUNDLE_LOCAL_URL);
 
             var luaUrl = URL.LUA_HOST_URL + URL.RESOURCE_FILE_LIST_FILENAME;
             var luaFileListHost = this.LoadResourceFileList(luaUrl);
-            var luaResult = this.CheckAndFilterResourceFile(luaFileListHost, URL.RELATIVE_STREAMINGASSETS_URL);
+            var luaResult = this.CheckAndFilterResourceFile(luaFileListHost, URL.ASSETBUNDLE_LOCAL_URL);
 
             return bundleResult || luaResult;
         }
@@ -159,7 +162,7 @@ namespace Easy.FrameUnity.Manager
                 if (file.type == "lua")
                     hostFileURL = URL.LUA_HOST_URL + file.name;
 
-                Loader loader = new Loader(hostFileURL, URL.RELATIVE_STREAMINGASSETS_URL + file.name, this.ui);
+                Loader loader = new Loader(hostFileURL, URL.ASSETBUNDLE_LOCAL_URL + file.name, this.ui);
                 _loaderQueue.Enqueue(loader);
             }
         }
