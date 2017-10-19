@@ -67,6 +67,7 @@ public class GameConfig : EditorWindow
                 symbols += "WIN_EDITOR;";
                 break;
             case OSType.Linux:
+                symbols += "LINUX_EDITOR;";
                 break;
         }
 
