@@ -59,7 +59,7 @@ public class ScenesManager : Singleton<ScenesManager>
             case SceneName.F_SceneGame_2:
                 op = SceneManager.LoadSceneAsync("F_SceneGame_2");
                 callback = () => {
-                    AssetPoolManager.Inst.FindAsset<AssetScriptableObject, PanelInfo>("Parameter", "PanelInfo", (obj)=>{
+                    AssetPoolManager.Inst.FindAsset<AssetScriptableObject, PanelInfo>("parameter", "PanelInfo", (obj)=>{
                             foreach(var panelName in obj.PanelNameList)
                             {
                                 Debug.Log("PanelName: " + panelName);
