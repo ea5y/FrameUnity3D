@@ -48,13 +48,29 @@ namespace Easy.FrameUnity.Manager
             if(File.Exists(URL.HOTFIX_MAIN_URL))
             {
                 this.LuaEnv = new LuaEnv();
+                this.LuaEnv.AddLoader(CustomLoader);
+                //Debug.Log("Require path: " + URL.LUA_LOCAL_URL + "?.lua");
                 this.LuaEnv.DoString(File.ReadAllText(URL.HOTFIX_MAIN_URL));
+            }
+        }
+
+        private byte[] CustomLoader(ref string fileName)
+        {
+            Debug.Log("Check Lua file: " + fileName);
+            fileName = URL.LUA_LOCAL_URL + fileName.Replace('.', '/') + ".lua";
+            if(File.Exists(fileName))
+            {
+                return File.ReadAllBytes(fileName);
+            }
+            else
+            {
+                return null;
             }
         }
 
         public void GetLuaTable()
         {
-            AssetPoolManager.Inst.FindAsset<AssetScriptableObject, PanelInfo>("Parameter", "PanelInfo", (obj) => {
+            AssetPoolManager.Inst.FindAsset<AssetScriptableObject, PanelInfo>("parameter", "PanelInfo", (obj) => {
                 /*
                 foreach(var panelName in obj.PanelNameList)
                 {

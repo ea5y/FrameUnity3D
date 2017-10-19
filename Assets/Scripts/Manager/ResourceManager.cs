@@ -137,7 +137,7 @@ namespace Easy.FrameUnity.Manager
 
         public bool IsUpdate()
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR && EDITOR_MODE
             return false;
 #endif
             var bundleUrl = URL.ASSETBUNDLE_HOST_URL + URL.RESOURCE_FILE_LIST_FILENAME;
@@ -146,7 +146,7 @@ namespace Easy.FrameUnity.Manager
 
             var luaUrl = URL.LUA_HOST_URL + URL.RESOURCE_FILE_LIST_FILENAME;
             var luaFileListHost = this.LoadResourceFileList(luaUrl);
-            var luaResult = this.CheckAndFilterResourceFile(luaFileListHost, URL.ASSETBUNDLE_LOCAL_URL);
+            var luaResult = this.CheckAndFilterResourceFile(luaFileListHost, URL.LUA_LOCAL_URL);
 
             return bundleResult || luaResult;
         }
@@ -162,6 +162,7 @@ namespace Easy.FrameUnity.Manager
                 if (file.type == "lua")
                     hostFileURL = URL.LUA_HOST_URL + file.name;
 
+                Debug.Log(string.Format("Save {0} to {1}", file.name, URL.ASSETBUNDLE_LOCAL_URL));
                 Loader loader = new Loader(hostFileURL, URL.ASSETBUNDLE_LOCAL_URL + file.name, this.ui);
                 _loaderQueue.Enqueue(loader);
             }
@@ -211,7 +212,7 @@ namespace Easy.FrameUnity.Manager
 
         public bool CheckAndFilterResourceFile(ResourceFileList resourceFileListHost, string projResourcePath)
         {
-            Debug.Log("===>CheckAndFilterResourceFile:");
+            Debug.Log("===>CheckAndFilterResourceFile:\nPath:" + projResourcePath);
             var folder = new DirectoryInfo(projResourcePath);
             FileSystemInfo[] fileInfos = folder.GetFileSystemInfos();
 

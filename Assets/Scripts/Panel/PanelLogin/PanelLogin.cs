@@ -36,7 +36,7 @@ public class PanelLogin : MonoBehaviour//Singleton<PanelLogin>
 
     private void ReadLoginData()
     {
-        _loginData = IOHelperUtil.ReadFromJson<LoginData>(URL.RELATIVE_STREAMINGASSETS_URL);
+        _loginData = IOHelperUtil.ReadFromJson<LoginData>(URL.PERSISTENTDATA_URL);
         PackageReqHead.SessionId = _loginData.Sid;
     }
 
@@ -48,7 +48,7 @@ public class PanelLogin : MonoBehaviour//Singleton<PanelLogin>
                 Debug.Log(string.Format("SessionId: {0}", res.SessionId));
                 PackageReqHead.SessionId = res.SessionId;
                 _loginData.Sid = res.SessionId;
-                IOHelperUtil.SaveToJson<LoginData>(_loginData, URL.RELATIVE_STREAMINGASSETS_URL);
+                IOHelperUtil.SaveToJson<LoginData>(_loginData, URL.PERSISTENTDATA_URL);
 
                 Player.Inst.UserData = res.UserData;
 

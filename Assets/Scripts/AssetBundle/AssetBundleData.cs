@@ -140,7 +140,7 @@ namespace Easy.FrameUnity.EsAssetBundle
             this.Identifier = this.bundleName + this.assetName;
 
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR && EDITOR_MODE
             var path = string.Format("{0}{1}/{2}{3}", URL.ASSETBUNDLE_LOCAL_URL, this.bundleName, this.assetName, this.assetSuffix);
             Debug.Log(path);
             _asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(path);
@@ -151,7 +151,7 @@ namespace Easy.FrameUnity.EsAssetBundle
             if(!this.FindBundle(_param.BundleName, out bundle))
             {
                 //Load Bundle
-                yield return this.LoadBundle(URL.ASSETBUNDLE_LOCAL_URL + _param.BundleName + this.bundleSuffix);
+                yield return this.LoadBundle(URL.FILE_ASSETBUNDLE_LOCAL_URL + _param.BundleName + this.bundleSuffix);
             }
             else
             {
