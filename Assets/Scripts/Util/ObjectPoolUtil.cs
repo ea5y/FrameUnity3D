@@ -4,6 +4,7 @@
 //===Date: 2017-10-13 11:09
 //================================
 
+using Easy.FrameUnity.Net;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace Easy.FrameUnity.Util
 
     public class PoolItem<T> where T : IDynamicObject, new()
     {
+        private object _syncObj = new object();
         public IDynamicObject PoolObject { get; private set; }
         private object _createParam;
 
@@ -42,9 +44,12 @@ namespace Easy.FrameUnity.Util
         {
             get
             {
-                if (PoolObject == null)
-                    return _ownerTempIdentifier.ToString();
-                return PoolObject.Identifier;
+                lock(_syncObj)
+                {
+                    if (PoolObject == null)
+                        return _ownerTempIdentifier.ToString();
+                    return PoolObject.Identifier;
+                }
             }
         }
 
@@ -73,22 +78,6 @@ namespace Easy.FrameUnity.Util
             this.HasInnerObject = false;
         }
 
-        /*
-        public PoolItem(object param)
-        {
-            _createParam = param;
-            this.Create();
-        }
-        */
-
-        public void Create(object param)
-        {
-            _createParam = param;
-            PoolObject = new T();
-            //PoolObject.Create(_createParam);
-            this.HasInnerObject = true;
-        }
-
         public IEnumerator CreateInnerObject<AssetType, CallbackParamType>(object param) where AssetType : IDynamicObject, new() where CallbackParamType : ScriptableObject
         {
             _createParam = param;
@@ -99,8 +88,8 @@ namespace Easy.FrameUnity.Util
 
         public void Recreate()
         {
-            this.Release();
-            this.Create(_createParam);
+            //Release;
+            //Create;
         }
 
         public void Release()
@@ -138,7 +127,8 @@ namespace Easy.FrameUnity.Util
         public ObjectPoolUtil(int initSize, int capacity, int gcInterval = 5)
         {
             this.Init(initSize, capacity);
-            this.StartGCCollection(gcInterval);
+            //Because i write a collection manager, so i am not use this timer, you can delete the annotations to enable
+            //this.StartGCCollection(gcInterval);
         }
 
         private void Init(int initSize, int capacity)
@@ -163,6 +153,7 @@ namespace Easy.FrameUnity.Util
             _currentSize = _hashTableObject.Count;
         }
         
+        /*
         private void StartGCCollection(int gcInterval)
         {
             _gcTimer = new System.Timers.Timer(gcInterval * 1000);
@@ -171,6 +162,7 @@ namespace Easy.FrameUnity.Util
             _gcTimer.Enabled = true;
             _gcTimer.Start();
         }
+        */
 
         public void StopGCCollection()
         {
@@ -278,6 +270,36 @@ namespace Easy.FrameUnity.Util
                 _gcTimer = null;
             }
         }
+
+        public void GCCollection()
+        {
+            lock(this)
+            {
+                Debug.Log("ObjectPool GCColleting...");
+                var tempTable = new Hashtable(_hashTableObject);
+                foreach(DictionaryEntry de in tempTable)
+                {
+                    var pItem = (PoolItem<T>)_hashTableObject[de.Key];
+                    if(pItem.HasInnerObject && !pItem.IsUsing)
+                    {
+                        var timeSpan = this.GetTimeSpanSecond(pItem.PoolObject.Timestamp, DateTime.Now);
+                        if (timeSpan >= 10)
+                        {
+                            var msg = string.Format("Collection Asset: {0}", pItem.PoolObject.GetType().Name);
+                            Debug.Log(msg);
+                            _hashSetFreeIndex.Remove(pItem.Identifier);
+                            _hashTableObject.Remove(pItem.Identifier);
+
+                            pItem.Release();
+
+                            _hashSetFreeIndex.Add(pItem.Identifier);
+                            _hashTableObject.Add(pItem.Identifier, pItem);
+                        }
+                    }
+                }
+            }
+        }
+
         public void GCCollection(object source, System.Timers.ElapsedEventArgs e)
         {
             lock(this)

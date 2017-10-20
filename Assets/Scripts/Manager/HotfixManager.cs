@@ -49,7 +49,6 @@ namespace Easy.FrameUnity.Manager
             {
                 this.LuaEnv = new LuaEnv();
                 this.LuaEnv.AddLoader(CustomLoader);
-                //Debug.Log("Require path: " + URL.LUA_LOCAL_URL + "?.lua");
                 this.LuaEnv.DoString(File.ReadAllText(URL.HOTFIX_MAIN_URL));
             }
         }

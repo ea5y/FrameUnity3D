@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using Easy.FrameUnity.Util;
 using UnityEngine;
+using System.Threading;
 
 namespace Easy.FrameUnity.Manager
 {
@@ -22,6 +23,7 @@ namespace Easy.FrameUnity.Manager
         public override void Init()
         {
             this.CreateAssetPool(10, 20);
+            GCCollectionManager.Inst.AddCollection(_assetPool.GCCollection, CollectionType.Asset);
         }
 
         public void FindAsset<AssetType, CallbackParamType>(string assetPath, string assetName,

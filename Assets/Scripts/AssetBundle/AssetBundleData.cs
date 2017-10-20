@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using Easy.FrameUnity.Util;
 using Easy.FrameUnity.ScriptableObj;
+using Easy.FrameUnity.Manager;
+using Easy.FrameUnity.Net;
 
 namespace Easy.FrameUnity.EsAssetBundle
 {
@@ -25,7 +27,7 @@ namespace Easy.FrameUnity.EsAssetBundle
         public bool IsBundleLoaded
         {
             get{ return _isBundleLoaded;}
-            protected set{_isBundleLoaded = value;}
+            set{_isBundleLoaded = value;}
         }
 
         protected IEnumerator LoadBundle(string url)
@@ -55,6 +57,7 @@ namespace Easy.FrameUnity.EsAssetBundle
         }
     }
 
+
     public class AssetData : BundleData, IDynamicObject 
     {
         protected string assetPath;
@@ -63,7 +66,7 @@ namespace Easy.FrameUnity.EsAssetBundle
 
         private object _asset;
 
-        protected static Dictionary<string, BundleData> bundleDic = new Dictionary<string, BundleData>();
+        protected static Dictionary<string, BundleData> bundleDic;
 
         public bool IsValidate
         {
@@ -85,6 +88,28 @@ namespace Easy.FrameUnity.EsAssetBundle
         public AssetData()
         {
             this.Timestamp = DateTime.Now;
+            if(bundleDic == null)
+                this.InitBundleDic();
+        }
+
+        private void InitBundleDic()
+        {
+            bundleDic = new Dictionary<string, BundleData>();
+            GCCollectionManager.Inst.AddCollection(UnLoadBundle, CollectionType.Bundle);
+        }
+
+        private void UnLoadBundle()
+        {
+            Debug.Log("UnLoading bundle...");
+            var tempList = new List<string>(bundleDic.Keys);
+            foreach(var key in tempList)
+            {
+                Debug.Log("BundleName: " + bundleDic[key].bundle);
+                bundleDic[key].bundle.Unload(false);
+                bundleDic[key].bundle = null;
+                bundleDic[key].IsBundleLoaded = false;
+                bundleDic.Remove(key);
+            }
         }
 
         protected bool FindBundle(string bundleName, out BundleData bundle)
