@@ -19,6 +19,7 @@ PanelHotfix.cs </br>
 LuaBehavior.cs </br>
 ![Aaron Swartz](https://raw.githubusercontent.com/ea5y/FrameUnity3D/master/ReadMeImage/6.png) </br>
 4. 拿到PanelHotfix之后，我就可以获取里面的HotfixUIDic，根据设置的控件名从该字典获取相应Gameobject，如果强迫证的同学想弄个类方便调用的话，可以在lua模拟一个类，然后把控件赋值进去,这样我就动态获取了热更的控件，而不用写好多查找gameobject的代码</br>
+![Aaron Swartz](https://raw.githubusercontent.com/ea5y/FrameUnity3D/master/ReadMeImage/7.png) </br>
 ### 管理工具：
 1.  资源下载管理器：负责资源更新的时候下载资源，目前把所有下载到本地的assetbundle和lua文件都视作资源，会在一个进度条同时下载
 2.  热更管理器：负责热更的启动，获取Lua接口等等
