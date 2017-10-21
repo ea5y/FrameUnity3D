@@ -88,8 +88,10 @@ namespace Easy.FrameUnity.EsAssetBundle
         public AssetData()
         {
             this.Timestamp = DateTime.Now;
+#if !EDITOR_MODE
             if(bundleDic == null)
                 this.InitBundleDic();
+#endif
         }
 
         private void InitBundleDic()

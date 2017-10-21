@@ -5,7 +5,7 @@ _G[modulename] = M
 package.loaded[modulename] = M
 setmetatable(M, {__index = _G})
 local _ENV = M
---]]
+]]
 
 function class(super)
     local class_type = {}
@@ -26,18 +26,14 @@ function class(super)
 
             create(class_type,...)
         end
-        setmetatable(obj, {__index = class_type})
+        setmetatable(obj, obj)
+        obj.__index = class_type
         return obj
     end
 
     if super then
-        setmetatable(class_type, {__index = 
-            function(t,k)
-                local ret = super[k]
-                class_type[k] = ret
-                return ret
-            end
-        })
+        setmetatable(class_type, class_type.super)
+        class_type.super.__index = super
     end
     return class_type
 end
