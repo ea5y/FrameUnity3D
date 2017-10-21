@@ -26,8 +26,8 @@ function class(super)
 
             create(class_type,...)
         end
-        setmetatable(obj, obj)
-        obj.__index = class_type
+        setmetatable(obj, class_type)
+        class_type.__index = class_type
         return obj
     end
 
