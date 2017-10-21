@@ -36,7 +36,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4202753156981970}
   - component: {fileID: 114534121476143156}
-  - component: {fileID: 114699639689609822}
   m_Layer: 8
   m_Name: PanelOther
   m_TagString: Untagged
@@ -259,20 +258,6 @@ MonoBehaviour:
   Injections:
   - Name: Root
     Value: {fileID: 1271936463129696}
---- !u!114 &114699639689609822
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1271936463129696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 878810e08bc1f83468c962900c7ab104, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InputUsername: {fileID: 0}
-  InputPassword: {fileID: 0}
-  BtnLogin: {fileID: 0}
 --- !u!114 &114789117322286530
 MonoBehaviour:
   m_ObjectHideFlags: 1
