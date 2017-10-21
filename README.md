@@ -10,10 +10,15 @@
 ![Aaron Swartz](https://raw.githubusercontent.com/ea5y/FrameUnity3D/master/ReadMeImage/1.png) </br>
 在热更的时候，我们也是可以这么做的，只是稍微麻烦一点点，（首先声明，我的习惯是一个界面不带滚动的就一个脚本，带滚动的就加相应的Item脚本）热更的时候流程是这样的：</br>
 ##### 热更一个原有的界面：
->用到三个文件1.PanelMain.cs 2.PanelBase.cs 3.LuaBehaviour 4.HotfixManager.cs 5.PanelMain.lua 6.ExtendGlobal.lua
-1. 在原有的界面prefab（这里拿PanelMain.prefab举例）上增加新的控件，然后打包成assetbundle更新
+用到6个文件1.PanelMain.cs 2.PanelBase.cs 3.LuaBehaviour.cs 4.HotfixManager.cs 5.Hotfix.lua 6.PanelMain.lua</br>
+1. 在原有的界面prefab（这里拿PanelMain.prefab举例）上增加新的控件，然后打包成assetbundle更新，原有的界面挂上PanelMain.cs脚本 该脚本继承PanelBase.cs, PanelBase.cs又继承自LuaBehaviour.cs， LuaBehaviour.cs又继承MonoBehaviour,继承关系是这样的，我们只要使用一个PanelMain.cs就行了，然后在Injection数组中放入（拖入）新增的UI控件，方便我们在lua代码中获取新增的UI控件
 2. 写一个相应的lua热更代码。（这里拿PanelMain.lua举例用到Xlua的hotfix和hotfix_ex函数）
 3. 程序运行，在下载完热更资源（assetbundle文件PanelMain， lua文件PanelMain.lua）后启动热更,在热更入口中（Hotfix.lua）require 'PanelMain' 替换原有的函数
+##### 热更一个新的界面：
+用到6个界面1.PanelHotfix.cs 2.Luabehaviour.cs 3.HotfixManager.cs 4.Hotfix.lua 5.PanelOther.lua 6.ExtendGlobal.lua</br>
+1. 新建一个prefab（这里拿PanelOther.prefab举例）作为一个新的界面，挂上PanelHotfix.cs脚本，该脚本继承自LuaBehaviour.cs，LuaBehaviour.cs继承自MonoBehaviour,继承关系是这样的，我们只要使用一个PanelHotfix.cs就行了，然后在Injection数组中放入（拖入）新增的UI控件，方便我们在lua代码中获取新增的UI控件
+2. 写一个相应的lua热更代码。（这里拿PanelOther.lua举例，直接自己构造一个类结构）
+3. 程序运行，在下载完热更资源（assetbundle文件PanelOther， lua文件PanelOther.lua）后启动热更,在热更入口中（Hotfix.lua）require 'PanelOther' 载入lua代码，启动完成后，导出PanelOther.lua的接口，用于c#的调用。
 >持续更新中... ... (下面的还要再组织一下语言)
 1. 按照界面列表的参数，动态实例化prefab --所以我是一个界面一个prefab(关于界面列表的参数从哪来，我是用的ScriptableObject,后面会详细说明一下这个东西)
 2. 在实例化prefab的时候，我会将当前这个prefab的gameobject传送到lua里面(也就是用lua写的相应界面脚本，模拟的面向对象写法，可以说是一个类--lua命名空间还没弄，有空弄一下)</br>
