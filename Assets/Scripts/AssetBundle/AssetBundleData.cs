@@ -63,6 +63,7 @@ namespace Easy.FrameUnity.EsAssetBundle
         protected string assetPath;
         protected string assetName;
         protected string assetSuffix = "";
+        
 
         private object _asset;
 

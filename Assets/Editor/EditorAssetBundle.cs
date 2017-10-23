@@ -89,8 +89,8 @@ public class AssetBundles
 		{
 			Directory.CreateDirectory(outputpath);
 		}
-
 		BuildPipeline.BuildAssetBundles(outputpath, 0, EditorUserBuildSettings.activeBuildTarget);
+		//BuildPipeline.BuildAssetBundles(outputpath, BuildAssetBundleOptions.CollectDependencies, EditorUserBuildSettings.activeBuildTarget);
 		AssetDatabase.Refresh();
 		Debug.Log("Build AssetBundles Completed!");
 		ClearAssetBundlesName();
