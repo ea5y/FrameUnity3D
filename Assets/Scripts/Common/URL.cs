@@ -8,6 +8,8 @@ public class URL
 
     public static readonly string ASSETBUNDLE_INPUT_URL = Application.dataPath + "/Hotfix/Bundle/";
     public static readonly string ASSETBUNDLE_OUTPUT_URL = "HotfixExport/";
+    public static readonly string ASSETBUNDLE_PERSONAL_URL = Application.dataPath + "/Hotfix/Bundle/Personal/";
+    public static readonly string ASSETBUNDLE_SHARE_URL = Application.dataPath + "/Hotfix/Bundle/Share/";
 
     public static readonly string PERSISTENTDATA_URL = Application.persistentDataPath + "/";
 

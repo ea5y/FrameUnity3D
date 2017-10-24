@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9b04ac13b008ee42906626adac5ef03, type: 3}
-  m_Name: Materials
+  m_Name: Texture2Ds
   m_EditorClassIdentifier: 
   Injections:
-  - Name: Black
-    Object: {fileID: 2100000, guid: 2c8796a1218f39a4ca931cd45be2de18, type: 2}
-  - Name: Material_1
-    Object: {fileID: 2100000, guid: e3fb22791824949419c059a534d2aa06, type: 2}
+  - Name: 1
+    Object: {fileID: 2800000, guid: 2f79d77fda446a345bee3f7ad4388e8b, type: 3}
+  - Name: muban
+    Object: {fileID: 2800000, guid: 4de9be43c2738c24e9c245b615d7d8e0, type: 3}
