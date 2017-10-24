@@ -42,6 +42,8 @@ namespace Easy.FrameUnity.Manager
         private IEnumerator _FindAsset<AssetType, CallbackParamType>(string assetPath, string assetName,
                 Action<CallbackParamType> callback) where AssetType : AssetData, new() where CallbackParamType : ScriptableObject
         { 
+            if(this.manifest == null)
+                yield return LoadManifest();
         
             var identifier = assetPath + assetName;
             PoolItem<AssetData> pItem = _assetPool.FindPoolItem(identifier);
@@ -71,6 +73,46 @@ namespace Easy.FrameUnity.Manager
             _assetPool.UpdatePoolItemIdentifier(poolItem);
 
             callback((CallbackParamType)poolItem.InnerObject);
+        }
+
+        AssetBundleManifest manifest;
+        private IEnumerator LoadManifest()
+        {
+            using(WWW www = new WWW(URL.FILE_ASSETBUNDLE_LOCAL_URL + "win"))
+            {
+                yield return www;
+                if(www.error != null)
+                {
+                    throw new System.Exception("WWW download had an error:" + www.error);
+                }
+                var bundle = www.assetBundle;
+                if(bundle != null)
+                {
+                    manifest = (AssetBundleManifest)bundle.LoadAsset("AssetBundleManifest");
+                    string[] dependencies = manifest.GetAllDependencies("panelmain");
+                    foreach(var d in dependencies)
+                    {
+                        yield return Test(d);
+                    }
+                }
+            }
+        }
+
+        private IEnumerator Test(string bundleName)
+        {
+            using(WWW www = new WWW(URL.FILE_ASSETBUNDLE_LOCAL_URL + bundleName))
+            {
+                yield return www;
+                if(www.error != null)
+                {
+                    throw new System.Exception("WWW download had an error:" + www.error);
+                }
+                var bundle = www.assetBundle;
+                if(bundle != null)
+                {
+                    www.Dispose();
+                }
+            }
         }
 
         private void OnDestroy()

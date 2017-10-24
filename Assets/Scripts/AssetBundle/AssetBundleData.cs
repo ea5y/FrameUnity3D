@@ -45,6 +45,19 @@ namespace Easy.FrameUnity.EsAssetBundle
                 this.bundle = www.assetBundle;
                 if(this.bundle != null)
                 {
+                    AssetBundleManifest manifest = (AssetBundleManifest)this.bundle.LoadAsset("AssetBundleManifest");
+                    /*
+                    string[] dependencies = manifest.GetAllDependencies("panelmain");
+                    foreach(var d in dependencies)
+                    {
+                        Debug.Log("Dependence: " + d);
+                    }
+                    */
+                    if(manifest != null)
+                    {
+                        Debug.Log("Manifest: " + manifest);
+                    }
+
                     var msg = string.Format("Bundle: {0} load success!", this.bundle);
                     Debug.Log(msg);
                     this.IsBundleLoaded = true;
@@ -206,6 +219,15 @@ namespace Easy.FrameUnity.EsAssetBundle
         }
     }
 
+    public class AssetMainManifest : AssetData
+    {
+        public override IEnumerator Create<T>(object param)
+        {
+            this.assetSuffix = "";
+            yield return base.Create<T>(param);
+        }
+    }
+
     public class AssetPrefab : AssetData
     {
         public override IEnumerator Create<T>(object param)
@@ -223,5 +245,6 @@ namespace Easy.FrameUnity.EsAssetBundle
             yield return base.Create<T>(param);
         }
     }
+
 
 }
