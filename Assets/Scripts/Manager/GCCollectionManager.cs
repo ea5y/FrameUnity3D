@@ -64,7 +64,7 @@ namespace Easy.FrameUnity.Manager
         {
             while(!_isStop)
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(20000);
                 Net.Net.InvokeAsync(() => _collectionBundle.Invoke());
             }
         }
