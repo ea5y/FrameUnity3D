@@ -42,9 +42,6 @@ namespace Easy.FrameUnity.Manager
         private IEnumerator _FindAsset<AssetType, CallbackParamType>(string assetPath, string assetName,
                 Action<CallbackParamType> callback) where AssetType : AssetData, new() where CallbackParamType : ScriptableObject
         { 
-            if(this.manifest == null)
-                yield return LoadManifest();
-        
             var identifier = assetPath + assetName;
             PoolItem<AssetData> pItem = _assetPool.FindPoolItem(identifier);
             if (pItem.HasInnerObject)
@@ -75,44 +72,13 @@ namespace Easy.FrameUnity.Manager
             callback((CallbackParamType)poolItem.InnerObject);
         }
 
-        AssetBundleManifest manifest;
-        private IEnumerator LoadManifest()
+        private int GetTimeSpanSecond(DateTime start, DateTime end)
         {
-            using(WWW www = new WWW(URL.FILE_ASSETBUNDLE_LOCAL_URL + "win"))
-            {
-                yield return www;
-                if(www.error != null)
-                {
-                    throw new System.Exception("WWW download had an error:" + www.error);
-                }
-                var bundle = www.assetBundle;
-                if(bundle != null)
-                {
-                    manifest = (AssetBundleManifest)bundle.LoadAsset("AssetBundleManifest");
-                    string[] dependencies = manifest.GetAllDependencies("panelmain");
-                    foreach(var d in dependencies)
-                    {
-                        yield return Test(d);
-                    }
-                }
-            }
-        }
+            TimeSpan ts1 = new TimeSpan(start.Ticks);
+            TimeSpan ts2 = new TimeSpan(end.Ticks);
+            TimeSpan ts3 = ts1.Subtract(ts2).Duration();
 
-        private IEnumerator Test(string bundleName)
-        {
-            using(WWW www = new WWW(URL.FILE_ASSETBUNDLE_LOCAL_URL + bundleName))
-            {
-                yield return www;
-                if(www.error != null)
-                {
-                    throw new System.Exception("WWW download had an error:" + www.error);
-                }
-                var bundle = www.assetBundle;
-                if(bundle != null)
-                {
-                    www.Dispose();
-                }
-            }
+            return ts3.Milliseconds;
         }
 
         private void OnDestroy()

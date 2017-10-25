@@ -16,12 +16,13 @@ namespace Easy.FrameUnity.EsAssetBundle
         public string AssetName;
     }
 
-    public abstract class BundleData
+    public class BundleData
     {
         public AssetBundle bundle;
         protected string bundlePath;
-        protected string bundleName;
+        public string bundleName;
         protected string bundleSuffix = "";
+        public DateTime bundleTimestamp;
 
         private bool _isBundleLoaded;
         public bool IsBundleLoaded
@@ -30,7 +31,12 @@ namespace Easy.FrameUnity.EsAssetBundle
             set{_isBundleLoaded = value;}
         }
 
-        protected IEnumerator LoadBundle(string url)
+        public BundleData()
+        {
+            bundleTimestamp = DateTime.Now;
+        }
+
+        public IEnumerator LoadBundle(string url)
         {
             Debug.Log("Load Bundle...");
             if(this.bundle != null)
@@ -45,19 +51,6 @@ namespace Easy.FrameUnity.EsAssetBundle
                 this.bundle = www.assetBundle;
                 if(this.bundle != null)
                 {
-                    AssetBundleManifest manifest = (AssetBundleManifest)this.bundle.LoadAsset("AssetBundleManifest");
-                    /*
-                    string[] dependencies = manifest.GetAllDependencies("panelmain");
-                    foreach(var d in dependencies)
-                    {
-                        Debug.Log("Dependence: " + d);
-                    }
-                    */
-                    if(manifest != null)
-                    {
-                        Debug.Log("Manifest: " + manifest);
-                    }
-
                     var msg = string.Format("Bundle: {0} load success!", this.bundle);
                     Debug.Log(msg);
                     this.IsBundleLoaded = true;
@@ -67,9 +60,24 @@ namespace Easy.FrameUnity.EsAssetBundle
                     this.IsBundleLoaded = false;
                 }
             }
+            /*
+            var bundleReq = AssetBundle.LoadFromFileAsync(url);
+            yield return bundleReq;
+
+            this.bundle = bundleReq.assetBundle;
+            if (this.bundle != null)
+            {
+                var msg = string.Format("Bundle: {0} load success!", this.bundle);
+                Debug.Log(msg);
+                this.IsBundleLoaded = true;
+            }
+            else
+            {
+                this.IsBundleLoaded = false;
+            }
+            */
         }
     }
-
 
     public class AssetData : BundleData, IDynamicObject 
     {
@@ -80,7 +88,9 @@ namespace Easy.FrameUnity.EsAssetBundle
 
         private object _asset;
 
+        private static object _syncBundleDic = new object();
         protected static Dictionary<string, BundleData> bundleDic;
+        protected static AssetBundleManifest MainManifest;
 
         public bool IsValidate
         {
@@ -106,6 +116,37 @@ namespace Easy.FrameUnity.EsAssetBundle
             if(bundleDic == null)
                 this.InitBundleDic();
 #endif
+            if (MainManifest == null)
+                this.LoadManifest();
+        }
+
+        private void LoadManifest()
+        {
+            string maniBundle = "win";
+#if !UNITY_EDITOR
+            maniBundle = "android";
+#endif
+            var bundle = AssetBundle.LoadFromFile(System.IO.Path.Combine(URL.ASSETBUNDLE_LOCAL_URL, maniBundle));
+            if (bundle != null)
+            {
+                MainManifest = (AssetBundleManifest)bundle.LoadAsset("AssetBundleManifest");
+            }
+        }
+
+        private void GetDependencies()
+        {
+            string[] dependencies = MainManifest.GetAllDependencies(this.bundleName);
+            foreach(var d in dependencies)
+            {
+                Debug.Log("Dependencies: " + d);
+                var bundleData = new BundleData();
+                var bundle = AssetBundle.LoadFromFile(System.IO.Path.Combine(URL.ASSETBUNDLE_LOCAL_URL, d));
+                bundleData.bundleName = d;
+                bundleData.bundle = bundle;
+                bundleData.IsBundleLoaded = true;
+
+                this.AddToBundleDic(d, bundleData);
+            }
         }
 
         private void InitBundleDic()
@@ -116,28 +157,43 @@ namespace Easy.FrameUnity.EsAssetBundle
 
         private void UnLoadBundle()
         {
-            Debug.Log("UnLoading bundle...");
-            var tempList = new List<string>(bundleDic.Keys);
-            foreach(var key in tempList)
+            lock(_syncBundleDic)
             {
-                Debug.Log("BundleName: " + bundleDic[key].bundle);
-                bundleDic[key].bundle.Unload(false);
-                bundleDic[key].bundle = null;
-                bundleDic[key].IsBundleLoaded = false;
-                bundleDic.Remove(key);
+                Debug.Log("UnLoading bundle...");
+                var tempList = new List<string>(bundleDic.Keys);
+                Debug.Log("Before unload bundleDic's count: " + bundleDic.Count);
+                foreach (var key in tempList)
+                {
+                    Debug.Log("BundleName: " + key);
+                    bundleDic[key].bundle.Unload(false);
+                    bundleDic[key].IsBundleLoaded = false;
+                    bundleDic.Remove(key);
+                    Debug.Log("After unload bundleDic's count: " + bundleDic.Count);
+                }
             }
         }
 
         protected bool FindBundle(string bundleName, out BundleData bundle)
         {
-            var msg = string.Format("===>Find bundle from bundleDic");
-            Debug.Log(msg);
-            if(bundleDic.TryGetValue(bundleName, out bundle))
+            lock(_syncBundleDic)
             {
-                return true;
+                var msg = string.Format("===>Find bundle from bundleDic");
+                Debug.Log(msg);
+                if (bundleDic.TryGetValue(bundleName, out bundle))
+                {
+                    return true;
+                }
+                this.AddToBundleDic(bundleName, this);
+                return false;
             }
-            bundleDic.Add(bundleName, this);
-            return false;
+        }
+
+        private void AddToBundleDic(string bundleName, BundleData bundleData)
+        {
+            lock(_syncBundleDic)
+            {
+                bundleDic.Add(bundleName, bundleData);
+            }
         }
 
         protected void LoadAsset()
@@ -187,12 +243,14 @@ namespace Easy.FrameUnity.EsAssetBundle
             _asset = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(path);
             yield break;
 #endif
+            this.GetDependencies();
 
             BundleData bundle;
             if(!this.FindBundle(_param.BundleName, out bundle))
             {
                 //Load Bundle
                 yield return this.LoadBundle(URL.FILE_ASSETBUNDLE_LOCAL_URL + _param.BundleName + this.bundleSuffix);
+                //yield return this.LoadBundle(URL.ASSETBUNDLE_LOCAL_URL + _param.BundleName + this.bundleSuffix);
             }
             else
             {
@@ -216,15 +274,6 @@ namespace Easy.FrameUnity.EsAssetBundle
         public object GetInnerObject()
         {
             return _asset;
-        }
-    }
-
-    public class AssetMainManifest : AssetData
-    {
-        public override IEnumerator Create<T>(object param)
-        {
-            this.assetSuffix = "";
-            yield return base.Create<T>(param);
         }
     }
 

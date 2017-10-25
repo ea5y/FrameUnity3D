@@ -18,23 +18,27 @@ namespace Easy.FrameUnity.Editor
     {
         public static void ExportForAndroid()
         {
+            var outputpath = URL.ASSETBUNDLE_OUTPUT_URL + "Bundle/android/";
+            BuildAssetBundle(outputpath);
         }
 
         public static void ExportForIOS()
         {
+            var outputpath = URL.ASSETBUNDLE_OUTPUT_URL + "Bundle/ios/";
+            BuildAssetBundle(outputpath);
         }
 
         public static void ExportForWin()
         {
+            var outputpath = URL.ASSETBUNDLE_OUTPUT_URL + "Bundle/win/";
+            BuildAssetBundle(outputpath);
         }
         
-        [MenuItem("Tools/Build AssetBundle")]
-        public static void BuildAssetBundle()
+        public static void BuildAssetBundle(string outputpath)
         {
             ClearAssetBundlesName();
             SetAssetName();
 
-            var outputpath = URL.ASSETBUNDLE_OUTPUT_URL + "Bundle/win/";
             if (!Directory.Exists(outputpath))
             {
                 Directory.CreateDirectory(outputpath);
@@ -47,7 +51,7 @@ namespace Easy.FrameUnity.Editor
             CreateResourceFileList<BundleFile>(outputpath);
         }
 
-        private static void CreateResourceFileList<T>(string inputPath) where T : ResourceFile, new()
+        public static void CreateResourceFileList<T>(string inputPath) where T : ResourceFile, new()
         {
             Debug.Log("JsonFrom: " + inputPath);
             var folder = new DirectoryInfo(inputPath);
